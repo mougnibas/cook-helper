@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- © Copyright 2017 Yoann MOUGNIBAS -->
+
+<!-- This file is part of Cook-Helper. -->
+
+<!-- Cook-Helper is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- Cook-Helper is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Cook-Helper. If not, see <http://www.gnu.org/licenses/> -->
+<recipe>
+    <name>Minestrone</name>
+    <timeToPrepare>8</timeToPrepare>
+    <timeToCook>25</timeToCook>
+    <numberOfPerson>4</numberOfPerson>
+    <category>PLAT_DE_RESISTANCE</category>
+    <steps>
+        <step>
+            <tool>MULTI_BLADE</tool>
+            <rawMaterials/>
+            <refinedMaterials>
+                <refinedMaterial>
+                    <name>Oignon coupé en 4</name>
+                    <processInstructions>Pelez et coupez l'oignon en 4</processInstructions>
+                    <toProcess>
+                        <name>Oignon</name>
+                        <foodFamiliy>VEGETABLE</foodFamiliy>
+                        <foodUnit>GRAMME</foodUnit>
+                        <foodNumber>120</foodNumber>
+                    </toProcess>
+                </refinedMaterial>
+                <refinedMaterial>
+                    <name>gousse d'ail pelé</name>
+                    <processInstructions>Pelez la gousse d'ail</processInstructions>
+                    <toProcess>
+                        <name>Gousse d'ail</name>
+                        <foodFamiliy>VEGETABLE</foodFamiliy>
+                        <foodUnit>VOID</foodUnit>
+                        <foodNumber>1</foodNumber>
+                    </toProcess>
+                </refinedMaterial>
+            </refinedMaterials>
+            <isStubClosed>true</isStubClosed>
+            <instruction>Actionner pendant 5 secondes le bouton impulsion 'pulse', ouvrez le couvercle et raclez les parois du bol.</instruction>
+        </step>
+        <step>
+            <tool>STIR_ASSIST</tool>
+            <rawMaterials>
+                <rawMaterial>
+                    <name>Huile d'olive</name>
+                    <foodFamiliy>OIL</foodFamiliy>
+                    <foodUnit>CS</foodUnit>
+                    <foodNumber>2</foodNumber>
+                </rawMaterial>
+                <rawMaterial>
+                    <name>Dès de lard fumé</name>
+                    <foodFamiliy>MEAT</foodFamiliy>
+                    <foodUnit>GRAMME</foodUnit>
+                    <foodNumber>100</foodNumber>
+                </rawMaterial>
+            </rawMaterials>
+            <refinedMaterials/>
+            <isStubClosed>false</isStubClosed>
+            <programNumber>3</programNumber>
+            <programStepNumber>1</programStepNumber>
+        </step>
+        <step>
+            <tool>STIR_ASSIST</tool>
+            <rawMaterials>
+                <rawMaterial>
+                    <name>Dès de tomates (en conserve)</name>
+                    <foodFamiliy>VEGETABLE</foodFamiliy>
+                    <foodUnit>GRAMME</foodUnit>
+                    <foodNumber>200</foodNumber>
+                </rawMaterial>
+                <rawMaterial>
+                    <name>Cube de bouillon de légume</name>
+                    <foodFamiliy>BOUILLON</foodFamiliy>
+                    <foodUnit>VOID</foodUnit>
+                    <foodNumber>2</foodNumber>
+                </rawMaterial>
+                <rawMaterial>
+                    <name>Feuille de laurier</name>
+                    <foodFamiliy>MISC</foodFamiliy>
+                    <foodUnit>VOID</foodUnit>
+                    <foodNumber>1</foodNumber>
+                </rawMaterial>
+                <rawMaterial>
+                    <name>Eau</name>
+                    <foodFamiliy>WATER</foodFamiliy>
+                    <foodUnit>L</foodUnit>
+                    <foodNumber>1</foodNumber>
+                </rawMaterial>
+            </rawMaterials>
+            <refinedMaterials>
+                <refinedMaterial>
+                    <name>Carottes coupés en dès</name>
+                    <processInstructions>Pelez et coupez en dès de 0.5 cm les carottes</processInstructions>
+                    <toProcess>
+                        <name>Carotte</name>
+                        <foodFamiliy>VEGETABLE</foodFamiliy>
+                        <foodUnit>GRAMME</foodUnit>
+                        <foodNumber>120</foodNumber>
+                    </toProcess>
+                </refinedMaterial>
+                <refinedMaterial>
+                    <name>Pommes de terre coupés en dès</name>
+                    <processInstructions>Pelez et coupez en dès de 0.5 cm les pommes de terre</processInstructions>
+                    <toProcess>
+                        <name>Pomme de terre</name>
+                        <foodFamiliy>VEGETABLE</foodFamiliy>
+                        <foodUnit>GRAMME</foodUnit>
+                        <foodNumber>120</foodNumber>
+                    </toProcess>
+                </refinedMaterial>
+                <refinedMaterial>
+                    <name>Courgette coupés en dès</name>
+                    <processInstructions>Pelez et coupez en dès de 0.5 cm les courgettes</processInstructions>
+                    <toProcess>
+                        <name>Courgette</name>
+                        <foodFamiliy>VEGETABLE</foodFamiliy>
+                        <foodUnit>GRAMME</foodUnit>
+                        <foodNumber>120</foodNumber>
+                    </toProcess>
+                </refinedMaterial>
+                <refinedMaterial>
+                    <name>Céleri coupés en dès</name>
+                    <processInstructions>Coupez en dès de 0.5 cm le céleri</processInstructions>
+                    <toProcess>
+                        <name>Céleri vert</name>
+                        <foodFamiliy>VEGETABLE</foodFamiliy>
+                        <foodUnit>BRANCH</foodUnit>
+                        <foodNumber>2</foodNumber>
+                    </toProcess>
+                </refinedMaterial>
+                <refinedMaterial>
+                    <name>Haricot blanc égouté</name>
+                    <processInstructions>Egouter les haricots blancs</processInstructions>
+                    <toProcess>
+                        <name>Haricot blanct</name>
+                        <foodFamiliy>VEGETABLE</foodFamiliy>
+                        <foodUnit>GRAMME</foodUnit>
+                        <foodNumber>100</foodNumber>
+                    </toProcess>
+                </refinedMaterial>
+            </refinedMaterials>
+            <isStubClosed>false</isStubClosed>
+            <programStepNumber>2</programStepNumber>
+        </step>
+        <step>
+            <tool>STIR_ASSIST</tool>
+            <rawMaterials>
+                <rawMaterial>
+                    <name>Petites pâtes en forme de coquillage, non cuite (pâte avec une durée de cuisson de 9 min.)</name>
+                    <foodFamiliy>PATE</foodFamiliy>
+                    <foodUnit>GRAMME</foodUnit>
+                    <foodNumber>100</foodNumber>
+                </rawMaterial>
+            </rawMaterials>
+            <refinedMaterials/>
+            <isStubClosed>false</isStubClosed>
+            <programStepNumber>3</programStepNumber>
+        </step>
+    </steps>
+    <cookMode>BOUILLIR</cookMode>
+</recipe>

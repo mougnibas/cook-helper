@@ -1,0 +1,15 @@
+# maven stuff
+target
+
+# eclipse stuff
+.project
+.settings
+.classpath
+.checkstyle
+
+# pmd stuff
+.pmd
+.pmdruleset.xml
+
+# Unknown...
+audit.log

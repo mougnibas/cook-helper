@@ -1,0 +1,68 @@
+Risotto (Plat de résistance) (Mijoter)
+
+Pour : 4 personne(s)
+Préparation : 2 min
+Temps de cuisson : 30 min
+
+Outil(s) :
+    StirAssist
+    MultiBlade
+
+Ingrédient(s) :
+    90 g Oignon
+    40 g Huile d'olive
+    300 g Riz Carnaroli
+    150 g Vin blanc sec
+    500 ml Bouillon de légume
+    20 g Beurre
+    80 g Copeaux de parmesan
+
+Préparation :
+
+    Pelez et coupez l'oignon en 4
+
+Etape(s) :
+
+    Bouchon fermé
+    Outil : MultiBlade
+    Mettre dans le bol :
+    - Oignon coupé en 4
+    Actionner pendant 5 secondes le bouton impulsion 'pulse', ouvrez le couvercle et raclez les parois du bol.
+
+    Sélectionner Mijoter P9
+    Etape 1
+    Bouchon ouvert
+    Outil : StirAssist
+    Mettre dans le bol :
+    - Huile d'olive
+    Validez pour passer à l'étape suivante
+
+    Etape 2
+    Bouchon ouvert
+    Outil : StirAssist
+    Mettre dans le bol :
+    - Riz Carnaroli
+    Validez pour passer à l'étape suivante
+
+    Etape 3
+    Bouchon ouvert
+    Outil : StirAssist
+    Mettre dans le bol :
+    - Vin blanc sec
+    Validez pour passer à l'étape suivante
+
+    Etape 4
+    Bouchon ouvert
+    Outil : StirAssist
+    Mettre dans le bol :
+    - Bouillon de légume
+    Validez pour passer à l'étape suivante
+
+    Etape 5
+    Bouchon ouvert
+    Outil : StirAssist
+    Mettre dans le bol :
+    - Beurre
+    - Copeaux de parmesan
+    Appuyez sur annuler pour désactiver la fonction de maintien au chaud. Réglez sur vitesse 1 et laisser tourner pendant une minute.
+

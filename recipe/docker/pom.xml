@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- © Copyright 2017 Yoann MOUGNIBAS -->
+
+<!-- This file is part of Cook-Helper. -->
+
+<!-- Cook-Helper is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- Cook-Helper is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Cook-Helper. If not, see <http://www.gnu.org/licenses/> -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0           http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Project ID -->
+	<parent>
+		<groupId>fr.mougnibas</groupId>
+		<artifactId>cook-helper-recipe</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>cook-helper-recipe-docker</artifactId>
+	<packaging>jar</packaging>
+
+	<!-- General informations -->
+	<name>Cook helper project (recipe docker)</name>
+	<description>Projects to handle recipe docker</description>
+
+	<dependencies>
+		<dependency>
+			<!-- We need this artifact to build a docker image -->
+			<groupId>fr.mougnibas</groupId>
+			<artifactId>cook-helper-recipe-web</artifactId>
+			<type>war</type>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Copy the Dockerfile and the resources (hollow and application war) -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/docker-build-context</outputDirectory>
+							<resources>
+								<resource>
+									<!-- Copy the Dockerfile -->
+									<directory>${project.basedir}/src/main/docker/</directory>
+									<filtering>true</filtering>
+								</resource>
+								<resource>
+									<!-- Copy the wildfly-swarm hollow -->
+									<directory>../web/target/</directory>
+									<includes>
+										<include>cook-helper-recipe-web-${project.version}-hollow-swarm.jar</include>
+										<include>cook-helper-recipe-web-${project.version}.war</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Build a docker image -->
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>mougnibas/cook-helper-recipe</repository>
+					<tag>${project.version}</tag>
+					<contextDirectory>${project.build.directory}/docker-build-context</contextDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
