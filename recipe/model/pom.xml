@@ -22,7 +22,7 @@
 
 	<!-- Project ID -->
 	<parent>
-		<groupId>fr.mougnibas</groupId>
+		<groupId>fr.mougnibas.cook-helper</groupId>
 		<artifactId>cook-helper-recipe</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>

@@ -21,7 +21,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Project ID -->
-	<groupId>fr.mougnibas</groupId>
+	<groupId>fr.mougnibas.cook-helper</groupId>
 	<artifactId>cook-helper</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
