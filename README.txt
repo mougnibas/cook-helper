@@ -50,9 +50,9 @@ mvn clean verify
 =====================
 Application run
 =====================
-java -jar recipe/web/target/cook-helper-recipe-web-1.0.0-hollow-swarm.jar recipe/web/target/cook-helper-recipe-web-1.0.0.war
+java -jar recipe/web/target/cook-helper-recipe-web-1.1.0-SNAPSHOT-hollow-swarm.jar recipe/web/target/cook-helper-recipe-web-1.1.0-SNAPSHOT.war
 or
-docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe:1.0.0
+docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe
 
 
 =====================
@@ -60,6 +60,11 @@ Application browse
 =====================
 http://localhost:8080/list
 http://localhost:8080/recipe?name=SomeRecipeName
+
+=====================
+Application deploy
+=====================
+mvn -Ddocker.username=myusername -Ddocker.password=mypassword clean deploy
 
 
 =====================
@@ -125,3 +130,4 @@ TODO
 =====================
 maven-javadoc-plugin show errors on build.
 Don't use a custom assembly : Try to use the default one and exclude maven and eclipse stuff.
+Add another module to add some recipes for building a "weekly bill of materials"
