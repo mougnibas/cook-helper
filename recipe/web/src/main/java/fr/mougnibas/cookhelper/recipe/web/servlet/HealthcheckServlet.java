@@ -19,13 +19,9 @@
 
 package fr.mougnibas.cookhelper.recipe.web.servlet;
 
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
-import fr.mougnibas.cookhelper.recipe.model.Recipe;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,21 +29,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet to list the recipes.
+ * Servlet used to provide a "health check" of the application.<br>
+ * This is a very basic health check : no injection, no EJB call.
  */
-@WebServlet("/list")
-public class ListServlet extends HttpServlet {
+@WebServlet("/healthcheck")
+public class HealthcheckServlet extends HttpServlet {
 
   /**
-   * Generated serial number.
+   * Default serial number.
    */
-  private static final long serialVersionUID = -1498001046038863394L;
-
-  /**
-   * Recipe manager.
-   */
-  @Inject
-  private RecipeManager manager;
+  private static final long serialVersionUID = 0L;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -59,12 +50,7 @@ public class ListServlet extends HttpServlet {
 
     // Write the recipes
     PrintWriter writer = response.getWriter();
-    writer.println("Recettes :");
-
-    for (String recipeName : manager.listAllRecipeNames()) {
-      Recipe currentRecipe = manager.getByName(recipeName);
-      writer.println(currentRecipe.getName());
-    }
+    writer.println("I'm alive");
     
     // Flush the response
     response.flushBuffer();

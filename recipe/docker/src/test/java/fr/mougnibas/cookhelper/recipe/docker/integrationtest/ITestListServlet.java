@@ -17,59 +17,32 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.model;
+package fr.mougnibas.cookhelper.recipe.docker.integrationtest;
 
-import java.io.Serializable;
+import fr.mougnibas.cookhelper.util.ReaderUtil;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.junit.Test;
+
+import org.junit.Assert;
 
 /**
- * A raw food material family.
+ * Very basic integration test of RecipeManager implementation.
  * 
- * @author Yoann.
+ * @author Yoann
  */
-public enum FoodFamily implements Serializable {
+public class ITestListServlet {
 
-  /**
-   * Meat family.
-   */
-  MEAT,
+  @Test
+  public void testGet() throws MalformedURLException {
 
-  /**
-   * Vegetable family.
-   */
-  VEGETABLE,
+    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.txt");
+    URL urlForActual = new URL("http://localhost:8080/list");
 
-  /**
-   * Oil family.
-   */
-  OIL,
-
-  /**
-   * Alcohol family.
-   */
-  ALCOHOL,
-  
-  /**
-   * Water family.
-   */
-  WATER,
-
-  /**
-   * Bouillon family.
-   */
-  BOUILLON,
-
-  /**
-   * Cheese family.
-   */
-  CHEESE,
-  
-  /**
-   * Pâte family.
-   */
-  PATE,
-
-  /**
-   * All other family.
-   */
-  MISC;
+    String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
+    String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
+    Assert.assertEquals(expected, actual);
+  }
 }

@@ -1,5 +1,5 @@
 /*
-  © Copyright 2017 Yoann MOUGNIBAS
+  © Copyright 2017-2018 Yoann MOUGNIBAS
   
   This file is part of Cook-Helper.
   

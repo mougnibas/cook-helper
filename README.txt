@@ -1,4 +1,4 @@
-© Copyright 2017 Yoann MOUGNIBAS
+© Copyright 2017-2018 Yoann MOUGNIBAS
 
 This file is part of Cook-Helper.
 
@@ -24,10 +24,19 @@ There is also a "food buy" function, where you select some recipe, and it build 
 
 
 =====================
+Requirements
+=====================
+Maven 3.5.2
+JDK 1.8
+Windows 10 (amd64)
+Docker 17.12.0 (or higher)
+
+
+=====================
 Maven Setup
 =====================
 Set JAVE_HOME environment variable to point to a JDK 1.8 install directory.
-Get and unzip a Maven 3.x.
+Get and unzip a Maven 3.5.2.
 Add the "bin" maven directory to the user path.
 
 
@@ -109,3 +118,10 @@ Home direcetory : the previously unziped wildfly install
 Misc project info
 =====================
 Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caracters.
+
+
+=====================
+TODO
+=====================
+maven-javadoc-plugin show errors on build.
+Don't use a custom assembly : Try to use the default one and exclude maven and eclipse stuff.

@@ -17,59 +17,9 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.model;
-
-import java.io.Serializable;
-
 /**
- * A raw food material family.
+ * Docker integration test classes.
  * 
- * @author Yoann.
+ * @author Yoann
  */
-public enum FoodFamily implements Serializable {
-
-  /**
-   * Meat family.
-   */
-  MEAT,
-
-  /**
-   * Vegetable family.
-   */
-  VEGETABLE,
-
-  /**
-   * Oil family.
-   */
-  OIL,
-
-  /**
-   * Alcohol family.
-   */
-  ALCOHOL,
-  
-  /**
-   * Water family.
-   */
-  WATER,
-
-  /**
-   * Bouillon family.
-   */
-  BOUILLON,
-
-  /**
-   * Cheese family.
-   */
-  CHEESE,
-  
-  /**
-   * Pâte family.
-   */
-  PATE,
-
-  /**
-   * All other family.
-   */
-  MISC;
-}
+package fr.mougnibas.cookhelper.recipe.docker.integrationtest;

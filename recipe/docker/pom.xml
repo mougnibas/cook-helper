@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- © Copyright 2017 Yoann MOUGNIBAS -->
+<!-- © Copyright 2017-2018 Yoann MOUGNIBAS -->
 
 <!-- This file is part of Cook-Helper. -->
 
@@ -41,12 +41,25 @@
 			<type>war</type>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<!-- We need this artifact to test the docker image -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-util</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- JUnit test framework -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<!-- Copy the Dockerfile and the resources (hollow and application war) -->
+				<!-- Copy the Dockerfile -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
@@ -59,17 +72,8 @@
 							<outputDirectory>${project.build.directory}/docker-build-context</outputDirectory>
 							<resources>
 								<resource>
-									<!-- Copy the Dockerfile -->
 									<directory>${project.basedir}/src/main/docker/</directory>
 									<filtering>true</filtering>
-								</resource>
-								<resource>
-									<!-- Copy the wildfly-swarm hollow -->
-									<directory>../web/target/</directory>
-									<includes>
-										<include>cook-helper-recipe-web-${project.version}-hollow-swarm.jar</include>
-										<include>cook-helper-recipe-web-${project.version}.war</include>
-									</includes>
 								</resource>
 							</resources>
 						</configuration>
@@ -77,22 +81,103 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<!-- Build a docker image -->
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
+				<!-- Copy the WAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
 						<phase>prepare-package</phase>
 						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>cook-helper-recipe-web</artifactId>
+									<version>${project.version}</version>
+									<type>war</type>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.directory}/docker-build-context</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<!-- Build the docker image -->
+						<id>docker-build</id>
+						<phase>package</phase>
+						<goals>
 							<goal>build</goal>
+						</goals>
+					</execution>
+					<execution>
+						<!-- Run the container  -->
+						<id>docker-start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<!-- Stop the container -->
+						<id>docker-stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<repository>mougnibas/cook-helper-recipe</repository>
-					<tag>${project.version}</tag>
-					<contextDirectory>${project.build.directory}/docker-build-context</contextDirectory>
+					<verbose>true</verbose>
+					<showLogs>true</showLogs>
+					<!-- Uncomment this to connect on legacy docker daemon without TLS -->
+					<!--<dockerHost>tcp://localhost:2375</dockerHost>-->
+					<images>
+						<image>
+							<name>mougnibas/cook-helper-recipe:${project.version}</name>
+							<build>
+								<dockerFileDir>${project.build.directory}/docker-build-context</dockerFileDir>
+							</build>
+							<run>
+								<ports>
+									<port>8080:8080</port>
+								</ports>
+								<wait>
+									<healthy>true</healthy>
+									<time>90000</time>
+								</wait>
+							</run>
+						</image>
+					</images>
 				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Activate integration tests, and fail the build if they don't pass -->
+				<!-- (but gracefully execute post-integration-test phase). -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
