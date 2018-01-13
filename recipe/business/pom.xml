@@ -24,7 +24,7 @@
 	<parent>
 		<groupId>fr.mougnibas.cook-helper</groupId>
 		<artifactId>cook-helper-recipe</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>cook-helper-recipe-business</artifactId>
 	<packaging>ejb</packaging>
@@ -44,25 +44,25 @@
 			<!-- Model -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-model</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<!-- Contract -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-contract</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<!-- Data -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-data</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<!-- Util -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-util</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<!-- JUnit test framework -->

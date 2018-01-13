@@ -30,7 +30,7 @@
 	<!-- Project ID -->
 	<groupId>fr.mougnibas.cook-helper</groupId>
 	<artifactId>cook-helper</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
 	<!-- Childs -->
@@ -152,6 +152,10 @@
 		<!-- File encoding is UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<!-- Don't install nor deploy maven artifact -->
+		<maven.install.skip>true</maven.install.skip>
+		<maven.deploy.skip>true</maven.deploy.skip>
 
 		<!-- Wildfly version to use in integration-tests -->
 		<version.wildfly>11.0.0.Final</version.wildfly>

@@ -24,7 +24,7 @@
 	<parent>
 		<groupId>fr.mougnibas.cook-helper</groupId>
 		<artifactId>cook-helper-recipe</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>cook-helper-recipe-data</artifactId>
 	<packaging>jar</packaging>

@@ -24,7 +24,7 @@
 	<parent>
 		<groupId>fr.mougnibas.cook-helper</groupId>
 		<artifactId>cook-helper-recipe</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>cook-helper-recipe-web</artifactId>
 	<packaging>war</packaging>
@@ -44,7 +44,7 @@
 			<!-- Business -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-business</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<type>ejb</type>
 		</dependency>
 		<dependency>

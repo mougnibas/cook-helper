@@ -50,9 +50,9 @@ mvn clean verify
 =====================
 Application run
 =====================
-java -jar recipe/web/target/cook-helper-recipe-web-1.0.0-SNAPSHOT-hollow-swarm.jar recipe/web/target/cook-helper-recipe-web-1.0.0-SNAPSHOT.war
+java -jar recipe/web/target/cook-helper-recipe-web-1.0.0-hollow-swarm.jar recipe/web/target/cook-helper-recipe-web-1.0.0.war
 or
-docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe:1.0.0-SNAPSHOT
+docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe:1.0.0
 
 
 =====================
