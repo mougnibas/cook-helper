@@ -27,10 +27,32 @@
 		<version>1.1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>cook-helper-recipe-jaxrs</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<!-- General informations -->
 	<name>Cook helper project (recipe jaxrs)</name>
 	<description>Projects to handle recipe jaxrs</description>
+
+	<dependencies>
+		<dependency>
+			<!-- Java EE web profile dependency -->
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<!-- Recipe contract dependency -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-recipe-contract</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<!-- Recipe business dependency -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-recipe-contract</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 </project>
