@@ -17,39 +17,9 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.jaxrs;
-
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
-
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
 /**
- * Get a list of recipe names.
+ * JAX-RS integration test classes.
  * 
  * @author Yoann
  */
-@Path("/")
-public class RecipeList {
-  
-  /**
-   * Recipe manager implementation.
-   */
-  @Inject
-  private RecipeManager recipeManager;
-
-  /**
-   * List all of the recipe names.
-   * 
-   * @return all of the recipe names.
-   */
-  @Produces(MediaType.APPLICATION_JSON)
-  @GET
-  public String[] listAllRecipeNames() {
-    String[] allRecipeNames = recipeManager.listAllRecipeNames();
-    return allRecipeNames;
-  }
-}
+package fr.mougnibas.cookhelper.recipe.jaxrs.integrationtest;

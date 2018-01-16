@@ -20,20 +20,22 @@
 package fr.mougnibas.cookhelper.recipe.jaxrs;
 
 import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.model.Recipe;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Get a list of recipe names.
+ * Get a recipe, by name.
  * 
  * @author Yoann
  */
-@Path("/")
-public class RecipeList {
+@Path("/{name}")
+public class RecipeGet {
   
   /**
    * Recipe manager implementation.
@@ -48,8 +50,8 @@ public class RecipeList {
    */
   @Produces(MediaType.APPLICATION_JSON)
   @GET
-  public String[] listAllRecipeNames() {
-    String[] allRecipeNames = recipeManager.listAllRecipeNames();
-    return allRecipeNames;
+  public Recipe getByName(@PathParam("name") String recipeName) {
+    Recipe recipe = recipeManager.getByName(recipeName);
+    return recipe;
   }
 }

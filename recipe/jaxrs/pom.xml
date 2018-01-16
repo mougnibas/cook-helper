@@ -54,6 +54,94 @@
 			<type>ejb</type>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<!-- JUnit test framework -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Arquillian core -->
+			<groupId>org.jboss.arquillian</groupId>
+			<artifactId>arquillian-bom</artifactId>
+			<scope>test</scope>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<!-- Arquillian integration for JUnit -->
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Arquillian integration for wildfly -->
+			<groupId>org.wildfly.arquillian</groupId>
+			<artifactId>wildfly-arquillian-container-managed</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Install a Wildfly server (on "pre-integration-test" phase), to be -->
+				<!-- ran by arquillian (in "integration-test" phase). -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.wildfly</groupId>
+									<artifactId>wildfly-dist</artifactId>
+									<version>${version.wildfly}</version>
+									<type>zip</type>
+									<outputDirectory>${project.basedir}/target/</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Activate integration tests, and fail the build if they don't pass -->
+				<!-- (but gracefully execute post-integration-test phase). Need a "verify" -->
+				<!-- phase to fail the build. Arquillian need a "jboss.home" system property -->
+				<!-- variable to run an installed wildfly server. We'll use the wildfly -->
+				<!-- installation directory,previously installed on -->
+				<!-- "pre-integration-test" phase. -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration>
+							<systemPropertyVariables>
+								<jboss.home>
+									${project.basedir}/target/wildfly-${version.wildfly}
+								</jboss.home>
+							</systemPropertyVariables>
+						</configuration>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

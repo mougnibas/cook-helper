@@ -62,6 +62,9 @@ Application browse
 http://localhost:8080/list
 http://localhost:8080/recipe?name=SomeRecipeName
 
+http://localhost:8080/recipe
+http://localhost:8080/recipe/SomeRecipeName
+
 =====================
 Application deploy
 =====================
