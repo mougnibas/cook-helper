@@ -32,7 +32,7 @@ import org.junit.runner.RunWith;
 import fr.mougnibas.cookhelper.recipe.business.RecipeManagerImpl;
 import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
 import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeApplication;
-import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeList;
+import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeGet;
 import fr.mougnibas.cookhelper.recipe.model.Category;
 import fr.mougnibas.cookhelper.recipe.model.CookMode;
 import fr.mougnibas.cookhelper.recipe.model.FoodFamily;
@@ -52,7 +52,7 @@ import org.junit.Assert;
  * @author Yoann
  */
 @RunWith(Arquillian.class)
-public class ITestRecipeList {
+public class ITestRecipeGetRisotto {
 
   /**
    * Create a deploy ready WAR.
@@ -87,12 +87,12 @@ public class ITestRecipeList {
 
     // Add restfull webservice to test
     jar.addClass(RecipeApplication.class);
-    jar.addClass(RecipeList.class);
+    jar.addClass(RecipeGet.class);
 
     // Add JUnit resources
     jar.addClass(ReaderUtil.class);
     jar.addAsResource("recipes-list-name.txt");
-    jar.addAsResource("recipe-list.json");
+    jar.addAsResource("recipe-Risotto.json");
 
     // Deployment to return
     WebArchive war = ShrinkWrap.create(WebArchive.class, "cook-helper-recipe-jaxrs.war");
@@ -107,8 +107,8 @@ public class ITestRecipeList {
   @Test
   public void testGet() throws Exception {
 
-    URL urlForExpected = getClass().getClassLoader().getResource("recipe-list.json");
-    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe-jaxrs/recipe");
+    URL urlForExpected = getClass().getClassLoader().getResource("recipe-Risotto.json");
+    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe-jaxrs/recipe/Risotto");
 
     String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
     String actual = ReaderUtil.readResourceAsUtf8(urlForActual);

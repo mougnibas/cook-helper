@@ -37,6 +37,8 @@ import javax.ws.rs.core.MediaType;
 @Path("/{name}")
 public class RecipeGet {
   
+  // FIXME The order objet members of the JSON seem to be random !
+  
   /**
    * Recipe manager implementation.
    */
