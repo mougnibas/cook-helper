@@ -42,4 +42,4 @@ CMD [ \
     "-Djava.net.preferIPv4Stack=true", \
     "-jar", \
     "web-profile.jar", \
-    "cook-helper-recipe-web-${project.version}.war" ]
+    "cook-helper-recipe-packaging-war-${project.version}.war" ]

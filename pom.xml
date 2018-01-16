@@ -213,6 +213,7 @@
 				<!-- package classes into a jar -->
 				<configuration>
 					<archiveClasses>true</archiveClasses>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -337,6 +338,9 @@
 									<arch>amd64</arch>
 								</requireOS>
 								<reactorModuleConvergence />
+								<requireEnvironmentVariable>
+									<variableName>DOCKER_HOST</variableName>
+								</requireEnvironmentVariable>
 							</rules>
 						</configuration>
 					</execution>

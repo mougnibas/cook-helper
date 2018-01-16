@@ -38,7 +38,8 @@
 		<module>business</module>
 		<module>jaxrs</module>
 		<module>web</module>
-		<module>docker</module>
+		<module>packaging-war</module>
+		<module>packaging-docker</module>
 	</modules>
 	
 	<!-- General informations -->

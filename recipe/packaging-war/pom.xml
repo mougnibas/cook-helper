@@ -26,34 +26,52 @@
 		<artifactId>cook-helper-recipe</artifactId>
 		<version>1.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>cook-helper-recipe-jaxrs</artifactId>
+	<artifactId>cook-helper-recipe-packaging-war</artifactId>
 	<packaging>war</packaging>
 
 	<!-- General informations -->
-	<name>Cook helper project (recipe jaxrs)</name>
-	<description>Projects to handle recipe jaxrs</description>
+	<name>Cook helper project (recipe packaging war)</name>
+	<description>Projects to handle recipe packaging war</description>
 
 	<dependencies>
 		<dependency>
-			<!-- Java EE web profile dependency -->
-			<groupId>javax</groupId>
-			<artifactId>javaee-web-api</artifactId>
-			<scope>provided</scope>
+			<!-- web -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-recipe-web</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
 		</dependency>
 		<dependency>
-			<!-- Recipe contract dependency -->
+			<!-- jaxrs -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-recipe-contract</artifactId>
+			<artifactId>cook-helper-recipe-jaxrs</artifactId>
 			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<!-- business -->
-			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-recipe-business</artifactId>
-			<version>${project.version}</version>
-			<type>ejb</type>
-			<scope>runtime</scope>
+			<type>war</type>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Make a wildfly-swarm hollow (web-profile) jar -->
+				<groupId>org.wildfly.swarm</groupId>
+				<artifactId>wildfly-swarm-plugin</artifactId>
+				<version>${version.wildfly-swarm}</version>
+				<executions>
+					<execution>
+						<id>package</id>
+						<goals>
+							<goal>package</goal>
+						</goals>
+						<configuration>
+							<fractionDetectMode>never</fractionDetectMode>
+							<hollow>true</hollow>
+							<fractions>web</fractions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

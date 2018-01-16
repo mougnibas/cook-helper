@@ -19,10 +19,10 @@
 
 package fr.mougnibas.cookhelper.recipe.jaxrs;
 
+import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
+
 import javax.inject.Inject;
 import javax.ws.rs.Path;
-
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
 
 /**
  * Get a list of recipe names.

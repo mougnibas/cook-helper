@@ -30,6 +30,7 @@ Maven 3.5.2
 JDK 1.8
 Windows 10 (amd64)
 Docker 17.12.0 (or higher)
+DOCKER_HOST environment variable (example : http://localhost:2375 or https://localhost:2376)
 
 
 =====================
@@ -50,7 +51,7 @@ mvn clean verify
 =====================
 Application run
 =====================
-java -jar recipe/web/target/cook-helper-recipe-web-1.1.0-SNAPSHOT-hollow-swarm.jar recipe/web/target/cook-helper-recipe-web-1.1.0-SNAPSHOT.war
+java -jar recipe/packaging-war/target/cook-helper-recipe-packaging-war-1.1.0-SNAPSHOT-hollow-swarm.jar recipe/packaging-war/target/cook-helper-recipe-packaging-war-1.1.0-SNAPSHOT.war
 or
 docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe
 

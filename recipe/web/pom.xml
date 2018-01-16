@@ -41,11 +41,18 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<!-- Business -->
+			<!-- contract -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-recipe-contract</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<!-- business -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-business</artifactId>
 			<version>${project.version}</version>
 			<type>ejb</type>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<!-- JUnit test framework -->
@@ -101,7 +108,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<!-- Activate integration tests, and fail the build if they don't pass -->
 				<!-- (but gracefully execute post-integration-test phase). Need a "verify" -->
@@ -132,25 +138,6 @@
 						<goals>
 							<goal>verify</goal>
 						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Make a wildfly-swarm hollow (web-profile) jar -->
-				<groupId>org.wildfly.swarm</groupId>
-				<artifactId>wildfly-swarm-plugin</artifactId>
-				<version>${version.wildfly-swarm}</version>
-				<executions>
-					<execution>
-						<id>package</id>
-						<goals>
-							<goal>package</goal>
-						</goals>
-						<configuration>
-							<fractionDetectMode>never</fractionDetectMode>
-							<hollow>true</hollow>
-							<fractions>web</fractions>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
