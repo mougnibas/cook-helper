@@ -23,14 +23,15 @@
 	<!-- Project ID -->
 	<parent>
 		<groupId>fr.mougnibas.cook-helper</groupId>
-		<artifactId>cook-helper-recipe</artifactId>
+		<artifactId>cook-helper-shoplist</artifactId>
 		<version>1.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>cook-helper-recipe-jaxrs</artifactId>
+	<artifactId>cook-helper-shoplist-jaxrs-recipe-client</artifactId>
+	<packaging>ejb</packaging>
 
 	<!-- General informations -->
-	<name>Cook helper project (recipe jaxrs)</name>
-	<description>Projects to handle recipe jaxrs</description>
+	<name>Cook helper project (shoplist jaxrs-recipe-client)</name>
+	<description>Projects to handle shoplist jaxrs-recipe-client</description>
 
 	<dependencies>
 		<dependency>
@@ -40,18 +41,17 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<!-- Recipe contract dependency -->
+			<!-- Recipe contract -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-contract</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<!-- business -->
+			<!-- Recipe jaxrs as test dependency -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-recipe-business</artifactId>
+			<artifactId>cook-helper-recipe-jaxrs</artifactId>
 			<version>${project.version}</version>
-			<type>ejb</type>
-			<scope>runtime</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<!-- JUnit test framework -->

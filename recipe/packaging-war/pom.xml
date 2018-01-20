@@ -46,7 +46,6 @@
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-jaxrs</artifactId>
 			<version>${project.version}</version>
-			<type>war</type>
 		</dependency>
 	</dependencies>
 

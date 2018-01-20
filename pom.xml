@@ -36,6 +36,7 @@
 	<!-- Childs -->
 	<modules>
 		<module>recipe</module>
+		<module>shoplist</module>
 		<module>util</module>
 	</modules>
 
