@@ -19,7 +19,11 @@
 
 package fr.mougnibas.cookhelper.recipe.jaxrs.integrationtest;
 
-import java.net.URL;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -47,7 +51,7 @@ import fr.mougnibas.cookhelper.util.ReaderUtil;
 import org.junit.Assert;
 
 /**
- * Integration test about "RecipeList" RestFull WebService.
+ * Integration test about "RecipeGet" RestFull WebService.
  * 
  * @author Yoann
  */
@@ -91,8 +95,7 @@ public class ITestRecipeGetMinestrone {
 
     // Add JUnit resources
     jar.addClass(ReaderUtil.class);
-    jar.addAsResource("recipes-list-name.txt");
-    jar.addAsResource("recipe-Minestrone.json");
+    jar.addAsResource("recipe-minestrone.xml");
 
     // Deployment to return
     WebArchive war = ShrinkWrap.create(WebArchive.class, "cook-helper-recipe-jaxrs.war");
@@ -107,11 +110,16 @@ public class ITestRecipeGetMinestrone {
   @Test
   public void testGet() throws Exception {
 
-    URL urlForExpected = getClass().getClassLoader().getResource("recipe-Minestrone.json");
-    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe-jaxrs/recipe/Minestrone");
-
-    String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
-    String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
-    Assert.assertEquals(expected, actual);
+	// Expected
+	JAXBContext jaxbContext = JAXBContext.newInstance(Recipe.class);
+	Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+	Recipe expected = (Recipe) jaxbUnmarshaller.unmarshal(getClass().getClassLoader().getResource("recipe-minestrone.xml"));
+	
+	// Actual
+	Client client = ClientBuilder.newClient();
+	Recipe actual = client.target("http://localhost:8080/cook-helper-recipe-jaxrs/recipe/Minestrone").request(MediaType.APPLICATION_XML).get(Recipe.class);
+	
+	// Compare
+	Assert.assertEquals(expected.toString(), actual.toString());
   }
 }

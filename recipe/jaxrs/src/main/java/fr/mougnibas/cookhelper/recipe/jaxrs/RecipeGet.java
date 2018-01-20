@@ -50,7 +50,7 @@ public class RecipeGet {
    * 
    * @return all of the recipe names.
    */
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_XML)
   @GET
   public Recipe getByName(@PathParam("name") String recipeName) {
     Recipe recipe = recipeManager.getByName(recipeName);

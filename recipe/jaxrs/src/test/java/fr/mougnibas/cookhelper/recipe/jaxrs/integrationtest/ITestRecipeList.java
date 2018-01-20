@@ -91,8 +91,7 @@ public class ITestRecipeList {
 
     // Add JUnit resources
     jar.addClass(ReaderUtil.class);
-    jar.addAsResource("recipes-list-name.txt");
-    jar.addAsResource("recipe-list.json");
+    jar.addAsResource("recipes-list-name.json");
 
     // Deployment to return
     WebArchive war = ShrinkWrap.create(WebArchive.class, "cook-helper-recipe-jaxrs.war");
@@ -105,10 +104,10 @@ public class ITestRecipeList {
   }
 
   @Test
-  public void testGet() throws Exception {
+  public void testList() throws Exception {
 
-    URL urlForExpected = getClass().getClassLoader().getResource("recipe-list.json");
-    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe-jaxrs/recipe");
+    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.json");
+    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe-jaxrs/recipe/");
 
     String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
     String actual = ReaderUtil.readResourceAsUtf8(urlForActual);

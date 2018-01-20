@@ -30,7 +30,7 @@ Maven 3.5.2
 JDK 1.8
 Windows 10 (amd64)
 Docker 17.12.0 (or higher)
-DOCKER_HOST environment variable (example : http://localhost:2375 or https://localhost:2376)
+DOCKER_HOST environment variable (example : tcp://localhost:2375 or tcp://localhost:2376)
 
 
 =====================

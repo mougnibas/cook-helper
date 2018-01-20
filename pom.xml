@@ -60,89 +60,6 @@
 		</site>
 	</distributionManagement>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-                <reportSets>
-					<reportSet>
-						<reports>
-							<!-- All reports, except dependency-management -->
-							<report>cim</report>
-							<report>dependencies</report>
-							<report>dependency-convergence</report>
-							<report>dependency-info</report>
-							<!-- This one takes ages to end. Disabled! -->
-							<!-- <report>dependency-management</report> -->
-							<report>distribution-management</report>
-							<report>index</report>
-							<report>issue-tracking</report>
-							<report>license</report>
-							<report>mailing-list</report>
-							<report>modules</report>
-							<report>plugin-management</report>
-							<report>plugins</report>
-							<report>project-team</report>
-							<report>scm</report>
-							<report>summary</report>
-						</reports>
-					</reportSet>
-                </reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changelog-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<configuration>
-					<aggregate>true</aggregate>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<quiet>true</quiet>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>pmd</report>
-						</reports>
-					</reportSet>
-					<reportSet>
-						<reports>
-							<report>cpd</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-				<configuration>
-					<aggregate>true</aggregate>
-					<skipEmptyReport>false</skipEmptyReport>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</reporting>
-
 	<properties>
 
 		<!-- 1.8 source, for 1.8 JRE -->
@@ -184,251 +101,397 @@
 		<findbugs.threshold>low</findbugs.threshold>
 
 	</properties>
-
-	<build>
-		<plugins>
-			<plugin>
-				<!-- Use google checkstyle rule -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-ejb-plugin</artifactId>
-				<!-- Java EE 8 still use EJB v3.2 -->
-				<configuration>
-					<ejbVersion>3.2</ejbVersion>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<!-- package classes into a jar -->
-				<configuration>
-					<archiveClasses>true</archiveClasses>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Multi-module site don't work well. -->
-				<!-- Use 'stage' to make a working one. -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>stage</goal>
-						</goals>
-						<phase>site</phase>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Package javadoc into a jar -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>jar</goal>
-							<goal>aggregate-jar</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<quiet>true</quiet>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Package source into a jar -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Package project into an archive -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<inherited>false</inherited>
-				<executions>
-					<execution>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<descriptors>
-						<descriptor>
-							${project.basedir}/src/main/assembly/project-assembly-polichouz.xml
-						</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Run PMD checks -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>PMD-Check</id>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>CPD-Check</id>
-						<goals>
-							<goal>cpd-check</goal>
-						</goals>
-					</execution>
-				</executions>
-
-			</plugin>
-			<plugin>
-				<!-- Run JDeps checks -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jdeps-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>jdkinternals</goal>
-							<goal>test-jdkinternals</goal>
-						</goals>
-						<phase>verify</phase>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Enforce requirements. Can be debate. -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-						<phase>validate</phase>
+	
+	<profiles>
+		<profile>
+			<!-- =========================================== -->
+			<!-- Common configuration profile                -->
+			<!-- Activated by default.                       -->
+			<!-- =========================================== -->
+			<id>common-configuration</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<!-- Java EE 8 still use EJB v3.2 -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-ejb-plugin</artifactId>
 						<configuration>
-							<rules>
-								<requireMavenVersion>
-									<version>[3.5.2]</version>
-								</requireMavenVersion>
-								<requireJavaVersion>
-									<version>[1.8.0-0,]</version>
-								</requireJavaVersion>
-								<requireOS>
-									<name>windows 10</name>
-									<version>10.0</version>
-									<family>windows</family>
-									<arch>amd64</arch>
-								</requireOS>
-								<reactorModuleConvergence />
-								<requireEnvironmentVariable>
-									<variableName>DOCKER_HOST</variableName>
-								</requireEnvironmentVariable>
-							</rules>
+							<ejbVersion>3.2</ejbVersion>
 						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<!-- Third party -->
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>3.0.5</version>
-				</plugin>
-				<plugin>
-					<!-- https://dmp.fabric8.io/ -->
-					<groupId>io.fabric8</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
-					<version>0.23.0</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>javax</groupId>
-				<artifactId>javaee-web-api</artifactId>
-				<version>8.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.glassfish.jaxb</groupId>
-				<artifactId>jaxb-runtime</artifactId>
-				<version>2.3.0</version>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.12</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>1.1.13.Final</version>
-				<scope>test</scope>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.junit</groupId>
-				<artifactId>arquillian-junit-container</artifactId>
-				<version>1.1.11.Final</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.wildfly.arquillian</groupId>
-				<artifactId>wildfly-arquillian-container-managed</artifactId>
-				<version>2.1.0.Final</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.shrinkwrap.resolver</groupId>
-				<artifactId>shrinkwrap-resolver-depchain</artifactId>
-				<version>2.2.6</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.wildfly.swarm</groupId>
-				<artifactId>bom</artifactId>
-				<version>${version.wildfly-swarm}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+					</plugin>
+					<plugin>
+						<!-- Package web classes into a jar -->
+						<!-- and don't fail if web.xml is missing -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<archiveClasses>true</archiveClasses>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+						</configuration>
+					</plugin>
+				</plugins>
+				<pluginManagement>
+					<plugins>
+						<!-- Third party plugins -->
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>findbugs-maven-plugin</artifactId>
+							<version>3.0.5</version>
+						</plugin>
+						<plugin>
+							<!-- https://dmp.fabric8.io/ -->
+							<groupId>io.fabric8</groupId>
+							<artifactId>docker-maven-plugin</artifactId>
+							<version>0.23.0</version>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>javax</groupId>
+						<artifactId>javaee-web-api</artifactId>
+						<version>8.0</version>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly.swarm</groupId>
+						<artifactId>bom</artifactId>
+						<version>${version.wildfly-swarm}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+		</profile>
+		<profile>
+			<!-- =========================================== -->
+			<!-- Common test configuration                   -->
+			<!-- Activated by default.                       -->
+			<!-- =========================================== -->
+			<id>common-test-configuration</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>junit</groupId>
+						<artifactId>junit</artifactId>
+						<version>4.12</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian</groupId>
+						<artifactId>arquillian-bom</artifactId>
+						<version>1.1.13.Final</version>
+						<scope>test</scope>
+						<type>pom</type>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.junit</groupId>
+						<artifactId>arquillian-junit-container</artifactId>
+						<version>1.1.11.Final</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly.arquillian</groupId>
+						<artifactId>wildfly-arquillian-container-managed</artifactId>
+						<version>2.1.0.Final</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.resolver</groupId>
+						<artifactId>shrinkwrap-resolver-depchain</artifactId>
+						<version>2.2.6</version>
+						<type>pom</type>
+						<scope>test</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+		</profile>
+		<profile>
+			<!-- =========================================== -->
+			<!-- Packaging profile (make optional artifacts) -->
+			<!-- NOT activated by default.                   -->
+			<!-- =========================================== -->
+			<id>advanced-packaging</id>
+			<activation>
+				<property>
+					<name>full</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<!-- Package javadoc into a jar -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>jar</goal>
+									<goal>aggregate-jar</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<quiet>true</quiet>
+						</configuration>
+					</plugin>
+					<plugin>
+						<!-- Package source into a jar -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<!-- Package project into an archive -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<inherited>false</inherited>
+						<executions>
+							<execution>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<phase>package</phase>
+							</execution>
+						</executions>
+						<configuration>
+							<descriptors>
+								<descriptor>
+									${project.basedir}/src/main/assembly/project-assembly-polichouz.xml
+								</descriptor>
+							</descriptors>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!-- =========================================== -->
+			<!-- Check / Verification profile                -->
+			<!-- Activated by default.                       -->
+			<!-- =========================================== -->
+			<id>check</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<!-- Use google checkstyle rule -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<!-- Run PMD checks -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-pmd-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>PMD-Check</id>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>CPD-Check</id>
+								<goals>
+									<goal>cpd-check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<!-- Run JDeps checks -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jdeps-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>jdkinternals</goal>
+									<goal>test-jdkinternals</goal>
+								</goals>
+								<phase>verify</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<!-- Enforce requirements. Can be debate. -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-enforcer-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>enforce</goal>
+								</goals>
+								<phase>validate</phase>
+								<configuration>
+									<rules>
+										<requireMavenVersion>
+											<version>[3.5.2]</version>
+										</requireMavenVersion>
+										<requireJavaVersion>
+											<version>[1.8.0-0,]</version>
+										</requireJavaVersion>
+										<requireOS>
+											<name>windows 10</name>
+											<version>10.0</version>
+											<family>windows</family>
+											<arch>amd64</arch>
+										</requireOS>
+										<reactorModuleConvergence />
+										<requireEnvironmentVariable>
+											<variableName>DOCKER_HOST</variableName>
+										</requireEnvironmentVariable>
+									</rules>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<!-- FindBugs -->
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!-- =========================================== -->
+			<!-- Site profile                                -->
+			<!-- Activated by default.                       -->
+			<!-- =========================================== -->
+			<id>site</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<!-- Multi-module site don't work well. -->
+						<!-- Use 'stage' to make a working one. -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-site-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>stage</goal>
+								</goals>
+								<phase>site</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-project-info-reports-plugin</artifactId>
+		                <reportSets>
+							<reportSet>
+								<reports>
+									<!-- All reports, except dependency-management -->
+									<report>cim</report>
+									<report>dependencies</report>
+									<report>dependency-convergence</report>
+									<report>dependency-info</report>
+									<!-- This one takes ages to end. Disabled! -->
+									<!-- <report>dependency-management</report> -->
+									<report>distribution-management</report>
+									<report>index</report>
+									<report>issue-tracking</report>
+									<report>license</report>
+									<report>mailing-list</report>
+									<report>modules</report>
+									<report>plugin-management</report>
+									<report>plugins</report>
+									<report>project-team</report>
+									<report>scm</report>
+									<report>summary</report>
+								</reports>
+							</reportSet>
+		                </reportSets>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-changelog-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+						<configuration>
+							<aggregate>true</aggregate>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<quiet>true</quiet>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-pmd-plugin</artifactId>
+						<reportSets>
+							<reportSet>
+								<reports>
+									<report>pmd</report>
+								</reports>
+							</reportSet>
+							<reportSet>
+								<reports>
+									<report>cpd</report>
+								</reports>
+							</reportSet>
+						</reportSets>
+						<configuration>
+							<aggregate>true</aggregate>
+							<skipEmptyReport>false</skipEmptyReport>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+	</profiles>
 
 </project>
