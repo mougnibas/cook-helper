@@ -81,17 +81,13 @@ Import the projects in eclipse as "Existing Maven Projects".
 Checkstyle plugin in eclipse
 Open http://eclipse-cs.sourceforge.net in eclipse "Internal Web Brower".
 Drag & Drop the "install" button into eclipse, then follow the installation instructions.
+Right-clic on projects, then "Checkstyle / Create formater profile".
+Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
+Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
 
 PMD plugin in eclipse
 Add this update site : https://dl.bintray.com/pmd/pmd-eclipse-plugin/updates/
 Install "PMD for eclipse 4", then follow installation instructions.
-
-Code quality plugin configuration (checkstyle and PMD configuration)
-Add this update site : http://m2e-code-quality.github.io/m2e-code-quality/site
-Install "checkstyle" and "PMD" plugins (NOT findbugs), then follow the installation instructions.
-Right-clic on projects, then "Checkstyle / Create formater profile".
-Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
-Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
 
 FindBugs
 Add this update site : http://findbugs.cs.umd.edu/eclipse
