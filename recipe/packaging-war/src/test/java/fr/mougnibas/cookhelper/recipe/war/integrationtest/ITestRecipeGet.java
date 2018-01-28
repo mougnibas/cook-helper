@@ -17,7 +17,7 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.docker.integrationtest;
+package fr.mougnibas.cookhelper.recipe.war.integrationtest;
 
 import fr.mougnibas.cookhelper.util.ReaderUtil;
 
@@ -32,16 +32,27 @@ import org.junit.Assert;
  * 
  * @author Yoann
  */
-public class ITestRecipeList {
+public class ITestRecipeGet {
 
   @Test
-  public void testList() throws Exception {
+  public void testGetMinestrone() throws Exception {
 
-	    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.json");
-	    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/recipe/");
+	  URL urlForExpected = getClass().getClassLoader().getResource("recipe-minestrone.xml");
+	  URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/recipe/Minestrone");
 
-	    String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
-	    String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
-	    Assert.assertEquals(expected, actual);
+	  String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
+	  String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
+	  Assert.assertEquals(expected, actual);
+  }
+  
+  @Test
+  public void testGetRisotto() throws Exception {
+
+	  URL urlForExpected = getClass().getClassLoader().getResource("recipe-risotto.xml");
+	  URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/recipe/Risotto");
+
+	  String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
+	  String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
+	  Assert.assertEquals(expected, actual);
   }
 }

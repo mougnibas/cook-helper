@@ -17,7 +17,7 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.docker.integrationtest;
+package fr.mougnibas.cookhelper.recipe.war.integrationtest;
 
 import fr.mougnibas.cookhelper.util.ReaderUtil;
 

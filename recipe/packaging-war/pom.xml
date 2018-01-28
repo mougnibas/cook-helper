@@ -47,26 +47,107 @@
 			<artifactId>cook-helper-recipe-jaxrs</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<!-- JUnit test framework -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<!-- Make a wildfly-swarm hollow (web-profile) jar -->
-				<groupId>org.wildfly.swarm</groupId>
-				<artifactId>wildfly-swarm-plugin</artifactId>
-				<version>${version.wildfly-swarm}</version>
+				<!-- Install a Wildfly server (on "pre-integration-test" phase) -->
+				<!-- Also copy the WAR (and rename it) to wildfly deployment directory -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>package</id>
+						<id>install_wildfly</id>
 						<goals>
-							<goal>package</goal>
+							<goal>unpack</goal>
 						</goals>
+						<phase>pre-integration-test</phase>
 						<configuration>
-							<fractionDetectMode>never</fractionDetectMode>
-							<hollow>true</hollow>
-							<fractions>web</fractions>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.wildfly</groupId>
+									<artifactId>wildfly-dist</artifactId>
+									<version>${version.wildfly}</version>
+									<type>zip</type>
+									<outputDirectory>${project.basedir}/target/</outputDirectory>
+								</artifactItem>
+							</artifactItems>
 						</configuration>
+					</execution>
+					<execution>
+						<id>install_war</id>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>cook-helper-recipe-packaging-war</artifactId>
+									<version>${project.version}</version>
+									<type>war</type>
+									<destFileName>cook-helper-recipe.war</destFileName>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.basedir}/target/wildfly-${version.wildfly}/standalone/deployments</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- To start and stop wildfly -->
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>start_jboss</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop_jboss</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>shutdown</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<jbossHome>${project.basedir}/target/wildfly-${version.wildfly}</jbossHome>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Activate integration tests, and fail the build if they don't pass -->
+				<!-- (but gracefully execute post-integration-test phase). Need a "verify" -->
+				<!-- phase to fail the build. We'll use the wildfly -->
+				<!-- installation directory,previously installed on -->
+				<!-- "pre-integration-test" phase. -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>

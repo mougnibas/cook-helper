@@ -17,32 +17,31 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.docker.integrationtest;
+package fr.mougnibas.cookhelper.recipe.war.integrationtest;
 
 import fr.mougnibas.cookhelper.util.ReaderUtil;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.junit.Test;
+
+import java.net.URL;
 
 import org.junit.Assert;
 
 /**
- * Very basic integration test of RecipeManager implementation.
+ * Integration test about "RecipeGet" RestFull WebService.
  * 
  * @author Yoann
  */
-public class ITestListServlet {
+public class ITestRecipeList {
 
   @Test
-  public void testGet() throws MalformedURLException {
+  public void testList() throws Exception {
 
-    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.txt");
-    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/list");
+	    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.json");
+	    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/recipe/");
 
-    String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
-    String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
-    Assert.assertEquals(expected, actual);
+	    String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
+	    String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
+	    Assert.assertEquals(expected, actual);
   }
 }

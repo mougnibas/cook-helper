@@ -81,7 +81,7 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<!-- Copy the WAR -->
+				<!-- Copy the WAR (and rename it) -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
@@ -97,6 +97,7 @@
 									<artifactId>cook-helper-recipe-packaging-war</artifactId>
 									<version>${project.version}</version>
 									<type>war</type>
+									<destFileName>cook-helper-recipe.war</destFileName>
 								</artifactItem>
 							</artifactItems>
 							<outputDirectory>${project.build.directory}/docker-build-context</outputDirectory>

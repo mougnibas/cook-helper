@@ -17,32 +17,9 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.docker.integrationtest;
-
-import fr.mougnibas.cookhelper.util.ReaderUtil;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import org.junit.Test;
-
-import org.junit.Assert;
-
 /**
- * Very basic integration test of RecipeManager implementation.
+ * War integration test classes.
  * 
  * @author Yoann
  */
-public class ITestListServlet {
-
-  @Test
-  public void testGet() throws MalformedURLException {
-
-    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.txt");
-    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/list");
-
-    String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
-    String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
-    Assert.assertEquals(expected, actual);
-  }
-}
+package fr.mougnibas.cookhelper.recipe.war.integrationtest;

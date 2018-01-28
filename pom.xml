@@ -51,7 +51,7 @@
 	</scm>
 
 	<url>http://cook-helper.mougnibas.fr/</url>
-	
+
 	<distributionManagement>
 		<downloadUrl>http://cook-helper.mougnibas.fr/download</downloadUrl>
 		<site>
@@ -70,9 +70,8 @@
 		<!-- File encoding is UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		
-		<!-- Don't install nor deploy maven artifact -->
-		<maven.install.skip>true</maven.install.skip>
+
+		<!-- Don't deploy maven artifact -->
 		<maven.deploy.skip>true</maven.deploy.skip>
 
 		<!-- Wildfly version to use in integration-tests -->
@@ -102,12 +101,12 @@
 		<findbugs.threshold>low</findbugs.threshold>
 
 	</properties>
-	
+
 	<profiles>
 		<profile>
 			<!-- =========================================== -->
-			<!-- Common configuration profile                -->
-			<!-- Activated by default.                       -->
+			<!-- Common configuration profile -->
+			<!-- Activated by default. -->
 			<!-- =========================================== -->
 			<id>common-configuration</id>
 			<activation>
@@ -170,8 +169,8 @@
 		</profile>
 		<profile>
 			<!-- =========================================== -->
-			<!-- Common test configuration                   -->
-			<!-- Activated by default.                       -->
+			<!-- Common test configuration -->
+			<!-- Activated by default. -->
 			<!-- =========================================== -->
 			<id>common-test-configuration</id>
 			<activation>
@@ -213,11 +212,22 @@
 					</dependency>
 				</dependencies>
 			</dependencyManagement>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.wildfly.plugins</groupId>
+							<artifactId>wildfly-maven-plugin</artifactId>
+							<version>1.2.1.Final</version>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
 		</profile>
 		<profile>
 			<!-- =========================================== -->
 			<!-- Packaging profile (make optional artifacts) -->
-			<!-- NOT activated by default.                   -->
+			<!-- NOT activated by default. -->
 			<!-- =========================================== -->
 			<id>advanced-packaging</id>
 			<activation>
@@ -281,8 +291,8 @@
 		</profile>
 		<profile>
 			<!-- =========================================== -->
-			<!-- Check / Verification profile                -->
-			<!-- Activated by default.                       -->
+			<!-- Check / Verification profile -->
+			<!-- Activated by default. -->
 			<!-- =========================================== -->
 			<id>check</id>
 			<activation>
@@ -385,8 +395,8 @@
 		</profile>
 		<profile>
 			<!-- =========================================== -->
-			<!-- Site profile                                -->
-			<!-- Activated by default.                       -->
+			<!-- Site profile -->
+			<!-- Activated by default. -->
 			<!-- =========================================== -->
 			<id>site</id>
 			<activation>
@@ -415,7 +425,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-project-info-reports-plugin</artifactId>
-		                <reportSets>
+						<reportSets>
 							<reportSet>
 								<reports>
 									<!-- All reports, except dependency-management -->
@@ -438,7 +448,7 @@
 									<report>summary</report>
 								</reports>
 							</reportSet>
-		                </reportSets>
+						</reportSets>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>

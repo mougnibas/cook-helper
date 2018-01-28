@@ -20,26 +20,15 @@
 #
 
 # From a framework image
-FROM mougnibas/base-framework:1.0.0
+FROM mougnibas/base-framework:1.1.0
 
 # Add all current files to the build context, at this location
-COPY .  /opt/wildfly-swarm
-
-# This location is the working directory
-WORKDIR /opt/wildfly-swarm
+COPY .  /opt/jboss/wildfly/standalone/deployments
 
 # Health check here
 # The healthcheck must be very quick(timeout 2s).
 # If the check make more than 2 seconds, then it's failed.
 # Default retries is 3
-HEALTHCHECK --interval=10s --timeout=2s CMD curl --fail http://localhost:8080/healthcheck || exit 1
+HEALTHCHECK --interval=10s --timeout=2s CMD curl --fail http://localhost:8080/cook-helper-recipe/healthcheck || exit 1
 
-# Run the hollow wildfly-swarm with the application
-# The weird parameters are for container restricted resources detection
-CMD [ \
-    "java", \
-    "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", \
-    "-Djava.net.preferIPv4Stack=true", \
-    "-jar", \
-    "web-profile.jar", \
-    "cook-helper-recipe-packaging-war-${project.version}.war" ]
+# Let the image framework start the server

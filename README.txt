@@ -51,24 +51,22 @@ mvn clean verify
 =====================
 Application run
 =====================
-java -jar recipe/packaging-war/target/cook-helper-recipe-packaging-war-1.1.0-SNAPSHOT-hollow-swarm.jar recipe/packaging-war/target/cook-helper-recipe-packaging-war-1.1.0-SNAPSHOT.war
-or
 docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe
 
 
 =====================
 Application browse
 =====================
-http://localhost:8080/list
-http://localhost:8080/recipe?name=SomeRecipeName
+http://localhost:8080/cook-helper-recipe/list
+http://localhost:8080/cook-helper-recipe/recipe?name=SomeRecipeName
 
-http://localhost:8080/recipe
-http://localhost:8080/recipe/SomeRecipeName
+http://localhost:8080/cook-helper-recipe/recipe
+http://localhost:8080/cook-helper-recipe/recipe/SomeRecipeName
 
 =====================
 Application deploy
 =====================
-mvn -Ddocker.username=myusername -Ddocker.password=mypassword clean deploy
+mvn clean deploy
 
 
 =====================

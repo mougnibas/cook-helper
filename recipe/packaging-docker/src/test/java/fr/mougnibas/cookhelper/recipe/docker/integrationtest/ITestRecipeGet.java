@@ -38,7 +38,7 @@ public class ITestRecipeGet {
   public void testGetMinestrone() throws Exception {
 
 	  URL urlForExpected = getClass().getClassLoader().getResource("recipe-minestrone.xml");
-	  URL urlForActual = new URL("http://localhost:8080/recipe/Minestrone");
+	  URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/recipe/Minestrone");
 
 	  String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
 	  String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
@@ -49,7 +49,7 @@ public class ITestRecipeGet {
   public void testGetRisotto() throws Exception {
 
 	  URL urlForExpected = getClass().getClassLoader().getResource("recipe-risotto.xml");
-	  URL urlForActual = new URL("http://localhost:8080/recipe/Risotto");
+	  URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/recipe/Risotto");
 
 	  String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
 	  String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
