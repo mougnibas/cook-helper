@@ -46,6 +46,12 @@
 			<artifactId>cook-helper-recipe-model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<!-- JUnit test framework -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 </project>

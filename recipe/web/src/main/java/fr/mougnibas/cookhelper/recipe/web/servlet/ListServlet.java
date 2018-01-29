@@ -19,7 +19,7 @@
 
 package fr.mougnibas.cookhelper.recipe.web.servlet;
 
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 import fr.mougnibas.cookhelper.recipe.model.Recipe;
 
 import java.io.IOException;

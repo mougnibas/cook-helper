@@ -28,7 +28,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import fr.mougnibas.cookhelper.recipe.business.RecipeManagerImpl;
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.exception.InitializationException;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.util.EndpointsReader;
 import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeApplication;
 import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeList;
 import fr.mougnibas.cookhelper.recipe.model.Category;
@@ -68,6 +70,11 @@ public class ITestJaxrsRecipeManagerImplList {
     // Add EJB classes
     jar.addClass(RecipeManager.class);
     jar.addClass(RecipeManagerImpl.class);
+    
+    // Add endpoint reader resources
+    jar.addClass(EndpointsReader.class);
+    jar.addClass(InitializationException.class);
+    jar.addAsResource("endpoints.properties");
 
     // Add models
     jar.addClass(Recipe.class);
@@ -97,8 +104,7 @@ public class ITestJaxrsRecipeManagerImplList {
     jar.addClass(ReaderUtil.class);
 
     // Deployment to return
-    // TODO Change this fixed war name
-    WebArchive war = ShrinkWrap.create(WebArchive.class, "cook-helper-recipe-jaxrs.war");
+    WebArchive war = ShrinkWrap.create(WebArchive.class, "cook-helper-recipe.war");
 
     // Add the jar as library
     war.addAsLibrary(jar);

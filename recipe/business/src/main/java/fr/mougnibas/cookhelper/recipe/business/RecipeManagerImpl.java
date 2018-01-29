@@ -19,7 +19,7 @@
 
 package fr.mougnibas.cookhelper.recipe.business;
 
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 import fr.mougnibas.cookhelper.recipe.model.Recipe;
 import fr.mougnibas.cookhelper.util.ReaderUtil;
 

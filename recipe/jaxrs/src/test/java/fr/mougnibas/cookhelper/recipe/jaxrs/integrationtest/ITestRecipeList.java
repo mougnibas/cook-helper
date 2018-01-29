@@ -30,7 +30,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import fr.mougnibas.cookhelper.recipe.business.RecipeManagerImpl;
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeApplication;
 import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeList;
 import fr.mougnibas.cookhelper.recipe.model.Category;

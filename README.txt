@@ -60,7 +60,7 @@ Application browse
 http://localhost:8080/cook-helper-recipe/list
 http://localhost:8080/cook-helper-recipe/recipe?name=SomeRecipeName
 
-http://localhost:8080/cook-helper-recipe/recipe
+http://localhost:8080/cook-helper-recipe/recipe/
 http://localhost:8080/cook-helper-recipe/recipe/SomeRecipeName
 
 =====================

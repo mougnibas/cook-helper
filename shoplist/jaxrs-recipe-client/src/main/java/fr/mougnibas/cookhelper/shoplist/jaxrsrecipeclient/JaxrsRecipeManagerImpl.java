@@ -19,9 +19,11 @@
 
 package fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient;
 
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.util.EndpointsReader;
 import fr.mougnibas.cookhelper.recipe.model.Recipe;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -40,23 +42,29 @@ public class JaxrsRecipeManagerImpl implements RecipeManager {
    * Generated serial number.
    */
   private static final long serialVersionUID = -9122298788442430077L;
-
-  // TODO Find a way to make the endpoints discoverable
+  
   /**
    * JAX-RS recipe endpoint of "list".
    */
-  private static final  String ENDPOINT_RECIPE_LIST = "http://localhost:8080/cook-helper-recipe-jaxrs/recipe/";
+  private String endpointRecipeList;
 
   /**
    * JAX-RS recipe endpoint of "get".
    */
-  private static final String ENDPOINT_RECIPE_GET = "http://localhost:8080/cook-helper-recipe-jaxrs/recipe/{name}";
+  private String endpointRecipeGet;
+
+  @PostConstruct
+  protected void init() {
+    EndpointsReader reader = EndpointsReader.get();
+    endpointRecipeList = reader.getRecipeListUrl();
+    endpointRecipeGet = reader.getRecipeGetUrl();
+  }
 
   @Override
   public String[] listAllRecipeNames() {
 
     // The uri to call
-    String uri = ENDPOINT_RECIPE_LIST;
+    String uri = endpointRecipeList;
 
     // Make the call
     Client client = ClientBuilder.newClient();
@@ -70,7 +78,7 @@ public class JaxrsRecipeManagerImpl implements RecipeManager {
   public Recipe getByName(String recipeName) {
 
     // The uri to call
-    String uri = ENDPOINT_RECIPE_GET.replace("{name}", recipeName);
+    String uri = endpointRecipeGet.replace("{SomeRecipeName}", recipeName);
 
     // Make the call
     Client client = ClientBuilder.newClient();

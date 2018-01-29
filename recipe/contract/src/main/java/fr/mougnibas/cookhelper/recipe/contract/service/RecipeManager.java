@@ -17,41 +17,39 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.jaxrs;
+package fr.mougnibas.cookhelper.recipe.contract.service;
 
-import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 import fr.mougnibas.cookhelper.recipe.model.Recipe;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import java.io.Serializable;
+
+import javax.ejb.Local;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 /**
- * Get a recipe, by name.
+ * Recipe manage.
  * 
  * @author Yoann
  */
-@Path("/{name}")
-public class RecipeGet {
-  
-  /**
-   * Recipe manager implementation.
-   */
-  @Inject
-  private RecipeManager recipeManager;
+@Local
+public interface RecipeManager extends Serializable {
 
   /**
    * List all of the recipe names.
    * 
    * @return all of the recipe names.
    */
-  @Produces(MediaType.APPLICATION_XML)
-  @GET
-  public Recipe getByName(@PathParam("name") String recipeName) {
-    Recipe recipe = recipeManager.getByName(recipeName);
-    return recipe;
-  }
+  @Transactional(value = TxType.NOT_SUPPORTED)
+  String[] listAllRecipeNames();
+
+  /**
+   * Get a recipe by his name.
+   * 
+   * @param recipeName
+   *          The name of the recipe.
+   * @return a recipe.
+   */
+  @Transactional(value = TxType.NOT_SUPPORTED)
+  Recipe getByName(String recipeName);
 }

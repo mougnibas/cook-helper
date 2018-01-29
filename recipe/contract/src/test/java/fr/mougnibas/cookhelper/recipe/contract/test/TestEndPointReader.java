@@ -17,39 +17,33 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.jaxrs;
+package fr.mougnibas.cookhelper.recipe.contract.test;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import org.junit.Assert;
+import org.junit.Test;
 
-import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.util.EndpointsReader;
 
 /**
- * Get a list of recipe names.
+ * Very basic unit test of EndPointReader class.
  * 
  * @author Yoann
  */
-@Path("/")
-public class RecipeList {
-  
-  /**
-   * Recipe manager implementation.
-   */
-  @Inject
-  private RecipeManager recipeManager;
+public class TestEndPointReader {
 
-  /**
-   * List all of the recipe names.
-   * 
-   * @return all of the recipe names.
-   */
-  @Produces(MediaType.APPLICATION_JSON)
-  @GET
-  public String[] listAllRecipeNames() {
-    String[] allRecipeNames = recipeManager.listAllRecipeNames();
-    return allRecipeNames;
+  @Test
+  public void testGetRecipeListUrl() {
+    
+    String expected = "http://localhost:8080/cook-helper-recipe/recipe/";
+    String actual = EndpointsReader.get().getRecipeListUrl();
+    Assert.assertEquals(expected, actual);
+  }
+  
+  @Test
+  public void testGetRecipeGetUrl() {
+    
+    String expected = "http://localhost:8080/cook-helper-recipe/recipe/{SomeRecipeName}";
+    String actual = EndpointsReader.get().getRecipeGetUrl();
+    Assert.assertEquals(expected, actual);
   }
 }

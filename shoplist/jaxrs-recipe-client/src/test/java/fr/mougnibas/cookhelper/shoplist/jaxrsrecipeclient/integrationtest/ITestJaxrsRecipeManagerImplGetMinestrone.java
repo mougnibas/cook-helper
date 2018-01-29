@@ -31,7 +31,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import fr.mougnibas.cookhelper.recipe.business.RecipeManagerImpl;
-import fr.mougnibas.cookhelper.recipe.contract.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.exception.InitializationException;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.util.EndpointsReader;
 import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeApplication;
 import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeGet;
 import fr.mougnibas.cookhelper.recipe.model.Category;
@@ -71,6 +73,11 @@ public class ITestJaxrsRecipeManagerImplGetMinestrone {
     // Add EJB classes
     jar.addClass(RecipeManager.class);
     jar.addClass(RecipeManagerImpl.class);
+    
+    // Add endpoint reader resources
+    jar.addClass(EndpointsReader.class);
+    jar.addClass(InitializationException.class);
+    jar.addAsResource("endpoints.properties");
 
     // Add models
     jar.addClass(Recipe.class);
@@ -101,8 +108,7 @@ public class ITestJaxrsRecipeManagerImplGetMinestrone {
     jar.addAsResource("recipe-minestrone.xml");
 
     // Deployment to return
-    // TODO Change this fixed war name
-    WebArchive war = ShrinkWrap.create(WebArchive.class, "cook-helper-recipe-jaxrs.war");
+    WebArchive war = ShrinkWrap.create(WebArchive.class, "cook-helper-recipe.war");
 
     // Add the jar as library
     war.addAsLibrary(jar);
