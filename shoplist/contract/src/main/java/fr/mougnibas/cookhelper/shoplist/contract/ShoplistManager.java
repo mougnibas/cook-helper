@@ -19,10 +19,10 @@
 
 package fr.mougnibas.cookhelper.shoplist.contract;
 
-import javax.ejb.Local;
-
 import fr.mougnibas.cookhelper.shoplist.model.RecipeForShoplist;
 import fr.mougnibas.cookhelper.shoplist.model.Shoplist;
+
+import javax.ejb.Local;
 
 /**
  * Shoplist manager.
@@ -40,7 +40,7 @@ public interface ShoplistManager {
   RecipeForShoplist[] getAllRecipes();
 
   /**
-   * Compile a shoplist from the given recipes
+   * Compile a shoplist from the given recipes.
    * 
    * @param recipesName
    *          The list of recipe name to add to the shop list.

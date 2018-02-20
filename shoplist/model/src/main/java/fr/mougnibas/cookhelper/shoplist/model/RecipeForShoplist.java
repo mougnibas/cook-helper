@@ -19,10 +19,10 @@
 
 package fr.mougnibas.cookhelper.shoplist.model;
 
-import java.io.Serializable;
-
 import fr.mougnibas.cookhelper.recipe.model.RawMaterial;
 import fr.mougnibas.cookhelper.recipe.model.Recipe;
+
+import java.io.Serializable;
 
 /**
  * A recipe, with only a name, a number of person and the raw materials.
@@ -89,18 +89,23 @@ public class RecipeForShoplist implements Serializable, Comparable<RecipeForShop
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (obj == null)
+    }
+    if (obj == null) {
       return false;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     RecipeForShoplist other = (RecipeForShoplist) obj;
     if (recipe == null) {
-      if (other.recipe != null)
+      if (other.recipe != null) {
         return false;
-    } else if (!recipe.equals(other.recipe))
+      }
+    } else if (!recipe.equals(other.recipe)) {
       return false;
+    }
     return true;
   }
 

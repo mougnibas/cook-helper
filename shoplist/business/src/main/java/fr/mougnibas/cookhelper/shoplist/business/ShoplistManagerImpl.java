@@ -19,11 +19,11 @@
 
 package fr.mougnibas.cookhelper.shoplist.business;
 
-import javax.ejb.Stateless;
-
 import fr.mougnibas.cookhelper.shoplist.contract.ShoplistManager;
 import fr.mougnibas.cookhelper.shoplist.model.RecipeForShoplist;
 import fr.mougnibas.cookhelper.shoplist.model.Shoplist;
+
+import javax.ejb.Stateless;
 
 /**
  * Shop list manager implementation.
