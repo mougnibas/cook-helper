@@ -37,7 +37,7 @@
 	<modules>
 		<module>recipe</module>
 		<module>shoplist</module>
-		<module>util</module>
+		<module>util-aggregator</module>
 	</modules>
 
 	<!-- General informations -->

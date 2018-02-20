@@ -35,11 +35,17 @@
 
 	<dependencies>
 		<dependency>
+			<!-- webapp -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-recipe-webapp</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
 			<!-- web -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-web</artifactId>
 			<version>${project.version}</version>
-			<type>war</type>
 		</dependency>
 		<dependency>
 			<!-- jaxrs -->

@@ -19,17 +19,6 @@
 
 package fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient.integrationtest;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import fr.mougnibas.cookhelper.recipe.business.RecipeManagerImpl;
 import fr.mougnibas.cookhelper.recipe.contract.exception.InitializationException;
 import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
@@ -39,8 +28,8 @@ import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeGet;
 import fr.mougnibas.cookhelper.recipe.model.Category;
 import fr.mougnibas.cookhelper.recipe.model.CookMode;
 import fr.mougnibas.cookhelper.recipe.model.FoodFamily;
-import fr.mougnibas.cookhelper.recipe.model.RawMaterial;
 import fr.mougnibas.cookhelper.recipe.model.FoodUnit;
+import fr.mougnibas.cookhelper.recipe.model.RawMaterial;
 import fr.mougnibas.cookhelper.recipe.model.Recipe;
 import fr.mougnibas.cookhelper.recipe.model.RefinedMaterial;
 import fr.mougnibas.cookhelper.recipe.model.Step;
@@ -49,7 +38,18 @@ import fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient.JaxrsRecipeClientQuali
 import fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient.JaxrsRecipeManagerImpl;
 import fr.mougnibas.cookhelper.util.ReaderUtil;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+
 import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Integration test about "RecipeGet" RestFull WebService.
@@ -73,7 +73,7 @@ public class ITestJaxrsRecipeManagerImplGetMinestrone {
     // Add EJB classes
     jar.addClass(RecipeManager.class);
     jar.addClass(RecipeManagerImpl.class);
-    
+
     // Add endpoint reader resources
     jar.addClass(EndpointsReader.class);
     jar.addClass(InitializationException.class);
@@ -98,7 +98,7 @@ public class ITestJaxrsRecipeManagerImplGetMinestrone {
     // Add restfull webservice to test
     jar.addClass(RecipeApplication.class);
     jar.addClass(RecipeGet.class);
-    
+
     // Add local EJB
     jar.addClass(JaxrsRecipeClientQualifier.class);
     jar.addClass(JaxrsRecipeManagerImpl.class);
@@ -118,17 +118,19 @@ public class ITestJaxrsRecipeManagerImplGetMinestrone {
   }
 
   @Test
-  public void testGetByName(@JaxrsRecipeClientQualifier RecipeManager recipeManager) throws Exception {
+  public void testGetByName(@JaxrsRecipeClientQualifier RecipeManager recipeManager)
+      throws Exception {
 
-	// Expected
-	JAXBContext jaxbContext = JAXBContext.newInstance(Recipe.class);
-	Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-	Recipe expected = (Recipe) jaxbUnmarshaller.unmarshal(getClass().getClassLoader().getResource("recipe-minestrone.xml"));
-	
-	// Actual
-	Recipe actual = recipeManager.getByName("Minestrone");
-	
-	// Compare
-	Assert.assertEquals(expected.toString(), actual.toString());
+    // Expected
+    JAXBContext jaxbContext = JAXBContext.newInstance(Recipe.class);
+    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+    Recipe expected = (Recipe) jaxbUnmarshaller
+        .unmarshal(getClass().getClassLoader().getResource("recipe-minestrone.xml"));
+
+    // Actual
+    Recipe actual = recipeManager.getByName("Minestrone");
+
+    // Compare
+    Assert.assertEquals(expected.toString(), actual.toString());
   }
 }

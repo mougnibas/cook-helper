@@ -21,11 +21,10 @@ package fr.mougnibas.cookhelper.recipe.docker.integrationtest;
 
 import fr.mougnibas.cookhelper.util.ReaderUtil;
 
-import org.junit.Test;
-
 import java.net.URL;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Integration test about "RecipeGet" RestFull WebService.
@@ -37,11 +36,11 @@ public class ITestRecipeList {
   @Test
   public void testList() throws Exception {
 
-	    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.json");
-	    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/recipe/");
+    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.json");
+    URL urlForActual = new URL("http://localhost:8080/cook-helper-recipe/recipe/");
 
-	    String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
-	    String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
-	    Assert.assertEquals(expected, actual);
+    String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
+    String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
+    Assert.assertEquals(expected, actual);
   }
 }

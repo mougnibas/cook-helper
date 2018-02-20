@@ -19,14 +19,6 @@
 
 package fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient.integrationtest;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import fr.mougnibas.cookhelper.recipe.business.RecipeManagerImpl;
 import fr.mougnibas.cookhelper.recipe.contract.exception.InitializationException;
 import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
@@ -36,8 +28,8 @@ import fr.mougnibas.cookhelper.recipe.jaxrs.RecipeList;
 import fr.mougnibas.cookhelper.recipe.model.Category;
 import fr.mougnibas.cookhelper.recipe.model.CookMode;
 import fr.mougnibas.cookhelper.recipe.model.FoodFamily;
-import fr.mougnibas.cookhelper.recipe.model.RawMaterial;
 import fr.mougnibas.cookhelper.recipe.model.FoodUnit;
+import fr.mougnibas.cookhelper.recipe.model.RawMaterial;
 import fr.mougnibas.cookhelper.recipe.model.Recipe;
 import fr.mougnibas.cookhelper.recipe.model.RefinedMaterial;
 import fr.mougnibas.cookhelper.recipe.model.Step;
@@ -46,7 +38,15 @@ import fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient.JaxrsRecipeClientQuali
 import fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient.JaxrsRecipeManagerImpl;
 import fr.mougnibas.cookhelper.util.ReaderUtil;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+
 import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Integration test about "RecipeGet" RestFull WebService.
@@ -70,7 +70,7 @@ public class ITestJaxrsRecipeManagerImplList {
     // Add EJB classes
     jar.addClass(RecipeManager.class);
     jar.addClass(RecipeManagerImpl.class);
-    
+
     // Add endpoint reader resources
     jar.addClass(EndpointsReader.class);
     jar.addClass(InitializationException.class);
@@ -95,7 +95,7 @@ public class ITestJaxrsRecipeManagerImplList {
     // Add restfull webservice to test
     jar.addClass(RecipeApplication.class);
     jar.addClass(RecipeList.class);
-    
+
     // Add local EJB
     jar.addClass(JaxrsRecipeClientQualifier.class);
     jar.addClass(JaxrsRecipeManagerImpl.class);
@@ -114,15 +114,16 @@ public class ITestJaxrsRecipeManagerImplList {
   }
 
   @Test
-  public void listAllRecipeNames(@JaxrsRecipeClientQualifier RecipeManager recipeManager) throws Exception {
+  public void listAllRecipeNames(@JaxrsRecipeClientQualifier RecipeManager recipeManager)
+      throws Exception {
 
-	// Expected
-	String[] expected = {"Minestrone", "Risotto"};
-	
-	// Actual
-	String[] actual = recipeManager.listAllRecipeNames();
-	
-	// Compare
-	Assert.assertArrayEquals(expected, actual);
+    // Expected
+    String[] expected = { "Minestrone", "Risotto" };
+
+    // Actual
+    String[] actual = recipeManager.listAllRecipeNames();
+
+    // Compare
+    Assert.assertArrayEquals(expected, actual);
   }
 }
