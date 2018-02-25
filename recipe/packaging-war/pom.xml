@@ -35,23 +35,17 @@
 
 	<dependencies>
 		<dependency>
+			<!-- web -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-recipe-application</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<!-- webapp -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-recipe-webapp</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-		</dependency>
-		<dependency>
-			<!-- web -->
-			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-recipe-web</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<!-- jaxrs -->
-			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-recipe-jaxrs</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<!-- JUnit test framework -->

@@ -19,8 +19,8 @@
 
 package fr.mougnibas.cookhelper.shoplist.contract;
 
-import fr.mougnibas.cookhelper.shoplist.model.RecipeForShoplist;
-import fr.mougnibas.cookhelper.shoplist.model.Shoplist;
+import fr.mougnibas.cookhelper.shoplist.contract.model.RecipeForShoplist;
+import fr.mougnibas.cookhelper.shoplist.contract.model.Shoplist;
 
 import javax.ejb.Local;
 

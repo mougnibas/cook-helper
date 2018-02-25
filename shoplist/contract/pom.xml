@@ -41,9 +41,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<!-- Model -->
+			<!-- Recipe contract -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-shoplist-model</artifactId>
+			<artifactId>cook-helper-recipe-contract</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

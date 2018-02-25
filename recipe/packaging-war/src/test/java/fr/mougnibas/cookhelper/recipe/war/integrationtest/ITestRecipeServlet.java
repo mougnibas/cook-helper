@@ -19,16 +19,15 @@
 
 package fr.mougnibas.cookhelper.recipe.war.integrationtest;
 
+import fr.mougnibas.cookhelper.util.ReaderUtil;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.junit.Test;
-
-import fr.mougnibas.cookhelper.util.ReaderUtil;
-
 import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Very basic integration test of RecipeManager implementation.

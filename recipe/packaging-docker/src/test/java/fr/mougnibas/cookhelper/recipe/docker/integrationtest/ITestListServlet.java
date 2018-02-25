@@ -24,9 +24,8 @@ import fr.mougnibas.cookhelper.util.ReaderUtil;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.junit.Test;
-
 import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Very basic integration test of RecipeManager implementation.

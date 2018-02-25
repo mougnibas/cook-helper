@@ -31,10 +31,8 @@
 	
 	<!-- Childs -->
 	<modules>
-		<module>jaxrs-recipe-client</module>
-		<module>model</module>
 		<module>contract</module>
-		<module>business</module>
+		<module>application</module>
 	</modules>
 	
 	<!-- General informations -->

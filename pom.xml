@@ -37,7 +37,7 @@
 	<modules>
 		<module>recipe</module>
 		<module>shoplist</module>
-		<module>util-aggregator</module>
+		<module>util</module>
 	</modules>
 
 	<!-- General informations -->
@@ -309,6 +309,9 @@
 								<goals>
 									<goal>check</goal>
 								</goals>
+								<configuration>
+									<includeTestSourceDirectory>true</includeTestSourceDirectory>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>

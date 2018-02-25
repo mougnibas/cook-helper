@@ -31,13 +31,9 @@
 	
 	<!-- Childs -->
 	<modules>
-		<module>model-aggregator</module>
-		<module>example</module>
-		<module>data-aggregator</module>
-		<module>contract-aggregator</module>
-		<module>business-aggregator</module>
-		<module>jaxrs-aggregator</module>
-		<module>web-aggregator</module>
+		<module>contract</module>
+		<module>application</module>
+		<module>webapp</module>
 		<module>packaging-war</module>
 		<module>packaging-docker</module>
 	</modules>
