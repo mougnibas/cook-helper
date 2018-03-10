@@ -144,7 +144,7 @@
 					<name>Haricot blanc égouté</name>
 					<processInstructions>Egouter les haricots blancs</processInstructions>
 					<toProcess>
-						<name>Haricot blanct</name>
+						<name>Haricot blanc</name>
 						<foodFamiliy>VEGETABLE</foodFamiliy>
 						<foodUnit>GRAMME</foodUnit>
 						<foodNumber>100</foodNumber>

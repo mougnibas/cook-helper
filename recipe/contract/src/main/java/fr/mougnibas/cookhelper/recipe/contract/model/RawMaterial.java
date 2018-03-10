@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlElement;
  * 
  * @author Yoann
  */
-public class RawMaterial implements Serializable {
+public class RawMaterial implements Serializable, Comparable<RawMaterial> {
 
   /**
    * Generated serial number.
@@ -121,6 +121,12 @@ public class RawMaterial implements Serializable {
    */
   public Integer getFoodNumber() {
     return foodNumber;
+  }
+
+  @Override
+  public int compareTo(RawMaterial o) {
+    String inefficiant = o.toString();
+    return toString().compareTo(inefficiant);
   }
 
   @Override

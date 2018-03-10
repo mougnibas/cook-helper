@@ -108,9 +108,11 @@ public class RecipeForShoplist implements Serializable, Comparable<RecipeForShop
     return rawMaterials.clone();
   }
 
+  // TODO Fix perf issue
   @Override
   public int compareTo(RecipeForShoplist o) {
-    return name.compareTo(o.name);
+    String inefficiant = o.toString();
+    return toString().compareTo(inefficiant);
   }
 
   @Override
@@ -118,6 +120,8 @@ public class RecipeForShoplist implements Serializable, Comparable<RecipeForShop
     final int prime = 31;
     int result = 1;
     result = prime * result + ((name == null) ? 0 : name.hashCode());
+    result = prime * result + ((numberOfPerson == null) ? 0 : numberOfPerson.hashCode());
+    result = prime * result + Arrays.hashCode(rawMaterials);
     return result;
   }
 
@@ -138,6 +142,16 @@ public class RecipeForShoplist implements Serializable, Comparable<RecipeForShop
         return false;
       }
     } else if (!name.equals(other.name)) {
+      return false;
+    }
+    if (numberOfPerson == null) {
+      if (other.numberOfPerson != null) {
+        return false;
+      }
+    } else if (!numberOfPerson.equals(other.numberOfPerson)) {
+      return false;
+    }
+    if (!Arrays.equals(rawMaterials, other.rawMaterials)) {
       return false;
     }
     return true;
