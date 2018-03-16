@@ -23,15 +23,15 @@
 	<!-- Project ID -->
 	<parent>
 		<groupId>fr.mougnibas.cook-helper</groupId>
-		<artifactId>cook-helper-recipe</artifactId>
+		<artifactId>cook-helper-recipe-packaging</artifactId>
 		<version>1.1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>cook-helper-recipe-packaging-docker</artifactId>
 	<packaging>jar</packaging>
 
 	<!-- General informations -->
-	<name>Cook helper project (recipe docker)</name>
-	<description>Projects to handle recipe docker</description>
+	<name>Cook helper project (recipe docker packaging)</name>
+	<description>Projects to handle recipe docker packaging</description>
 
 	<dependencies>
 		<dependency>
