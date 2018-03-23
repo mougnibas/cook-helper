@@ -105,7 +105,7 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caract
 
 ## Browse
 
-### Recipe
+### Recipe microservice
 
 Plain text :
 * http://localhost:8080/cook-helper-recipe/list
@@ -115,7 +115,7 @@ Webservices :
 * http://localhost:8080/cook-helper-recipe/recipe/
 * http://localhost:8080/cook-helper-recipe/recipe/Minestrone
 
-### Shop list
+### Shop list microservice
 
 TODO
 
