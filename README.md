@@ -74,9 +74,9 @@ There is also a "food buy" function, where you select some recipe, and it build 
 1) Right-clic on ejb/war/jar projects, then "Find Bugs / Find Bugs".
 
 
-# Package and run the application
+# Application lifecycle
 
-## Packaging
+## Package (and verify)
 
 `mvn clean verify`
 
@@ -88,15 +88,17 @@ There is also a "food buy" function, where you select some recipe, and it build 
 
 `docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe`
 
+## Browse
 
+### Recipe
 
-# Application browse
+Plain text :
+* http://localhost:8080/cook-helper-recipe/list
+* http://localhost:8080/cook-helper-recipe/recipe?name=Minestrone
 
-http://localhost:8080/cook-helper-recipe/list
-http://localhost:8080/cook-helper-recipe/recipe?name=SomeRecipeName
-
-http://localhost:8080/cook-helper-recipe/recipe/
-http://localhost:8080/cook-helper-recipe/recipe/SomeRecipeName
+Webservices :
+* http://localhost:8080/cook-helper-recipe/recipe/
+* http://localhost:8080/cook-helper-recipe/recipe/Minestrone
 
 
 # Application deploy
