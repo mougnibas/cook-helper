@@ -28,11 +28,11 @@ There is also a "food buy" function, where you select some recipe, and it build 
 
 # Requirements
 
-Maven 3.5.2
-JDK 1.8
-Windows 10 (amd64)
-Docker 17.12.0 (or higher)
-DOCKER_HOST environment variable (example : tcp://localhost:2375 or tcp://localhost:2376)
+* Maven 3.5.2
+* JDK 1.8
+* Windows 10 (amd64)
+* Docker 17.12.0 (or higher)
+* DOCKER_HOST environment variable (example : tcp://localhost:2375 or tcp://localhost:2376)
 
 # Setup
 
