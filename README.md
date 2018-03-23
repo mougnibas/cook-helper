@@ -46,32 +46,32 @@ There is also a "food buy" function, where you select some recipe, and it build 
 
 ### Oxygen Release
 
-Get an eclipse oxygen release for Java EE.
-Checkout the git repository.
-Import the projects in eclipse as "Existing Maven Projects".
+1) Get an eclipse oxygen release for Java EE.
+1) Checkout the git repository.
+1) Import the projects in eclipse as "Existing Maven Projects".
 
 ### Eclipse checkstyle plugin
 
-Open http://eclipse-cs.sourceforge.net in eclipse "Internal Web Brower".
-Drag & Drop the "install" button into eclipse, then follow the installation instructions.
-Right-clic on projects, then "Checkstyle / Create formater profile".
-Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
-Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
+1) Open http://eclipse-cs.sourceforge.net in eclipse "Internal Web Brower".
+1) Drag & Drop the "install" button into eclipse, then follow the installation instructions.
+1) Right-clic on projects, then "Checkstyle / Create formater profile".
+1) Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
+1) Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
 
 ### Eclipse PMD plugin
 
-Add this update site : https://dl.bintray.com/pmd/pmd-eclipse-plugin/updates/
-Install "PMD for eclipse 4", then follow installation instructions.
+1) Add this update site : https://dl.bintray.com/pmd/pmd-eclipse-plugin/updates/
+1) Install "PMD for eclipse 4", then follow installation instructions.
 
 ### Eclipse FindBugs plugin
 
-Add this update site : http://findbugs.cs.umd.edu/eclipse
-Install "FindBugs Feature", then follow installation instructions.
-Window / Preferences / Java / FindBugs
-Minimum rank to report : 15
-Minimal priority : Low
-Apply
-Right-clic on ejb/war/jar projects, then "Find Bugs / Find Bugs".
+1) Add this update site : http://findbugs.cs.umd.edu/eclipse
+1) Install "FindBugs Feature", then follow installation instructions.
+1) Window / Preferences / Java / FindBugs
+1) Minimum rank to report : 15
+1) Minimal priority : Low
+1) Apply
+1) Right-clic on ejb/war/jar projects, then "Find Bugs / Find Bugs".
 
 
 # Package and run the application
