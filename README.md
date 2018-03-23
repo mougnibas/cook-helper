@@ -58,7 +58,7 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 1) Checkout the git repository.
 1) Import the projects in eclipse as "Existing Maven Projects".
 
-### Eclipse checkstyle plugin
+### Eclipse checkstyle plugin (8.8.0 plugin, based on Checkstyle 8.8)
 
 1) Open http://eclipse-cs.sourceforge.net in eclipse "Internal Web Brower".
 1) Drag & Drop the "install" button into eclipse, then follow the installation instructions.
