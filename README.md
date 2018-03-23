@@ -20,7 +20,9 @@ along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
 # General project info
 
 The aim to this project is to make the use of the KitchenAid Cook processor easier.
+
 There is a basic "recipe brower" function.
+
 There is also a "food buy" function, where you select some recipe, and it build a list of raw food.
 
 
