@@ -79,6 +79,7 @@ There is also a "food buy" function, where you select some recipe, and it build 
 ## Packaging
 
 `mvn clean verify`
+
 *(Don't use eclipse to run maven, because I have weird behavior with it.)*
 
 
