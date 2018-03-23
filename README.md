@@ -38,9 +38,9 @@ There is also a "food buy" function, where you select some recipe, and it build 
 
 ## Maven
 
-Set JAVE_HOME environment variable to point to a JDK 1.8 install directory.
-Get and unzip a Maven 3.5.2.
-Add the "bin" maven directory to the user path.
+1) Set JAVE_HOME environment variable to point to a JDK 1.8 install directory.
+1) Get and unzip a Maven 3.5.2.
+1) Add the "bin" maven directory to the user path.
 
 ## Eclipse
 
