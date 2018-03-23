@@ -17,13 +17,19 @@ You should have received a copy of the GNU General Public License
 along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
 ```
 
-# General project info
+# Project informations
+
+## General
 
 The aim to this project is to make the use of the KitchenAid Cook processor easier.
 
 There is a basic "recipe brower" function.
 
 There is also a "food buy" function, where you select some recipe, and it build a list of raw food.
+
+## Misc
+
+Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caracters.
 
 
 # Requirements
@@ -73,16 +79,25 @@ There is also a "food buy" function, where you select some recipe, and it build 
 1) Apply
 1) Right-clic on ejb/war/jar projects, then "Find Bugs / Find Bugs".
 
+### JUnit
+
+1) Get and unzip a WildFly 11.0.0.Final version.
+1) Add "JBOSS_HOME" environment variable, to point to the unzip wildfly.
+
+### Application Server
+
+1) Window / Preferences / Server / Runtime Environments / Add / Red Hat JBoss Middleware / JBoss AS, Wildfy & EAP Server Tools
+1) Wait for the install to complete.
+1) Add / JBoss Community / WildFly 11 Runtime
+1) Home direcetory : the previously unziped wildfly install
 
 # Application lifecycle
 
-## Package (and verify)
+## Package
 
 `mvn clean verify`
 
 *(Don't use eclipse to run maven, because I have weird behavior with it.)*
-
-
 
 ## Run
 
@@ -104,44 +119,19 @@ Webservices :
 
 TODO
 
-# Application deploy
+## Deploy
 
-mvn clean deploy
-
-
-
-
-
-TODO :
-Create an Oomph setup.
-Find a way to use FindBugs in eclipse, like checkstyle and PMD plugin, with auto config using maven.
+Deploy docker image :
+`mvn clean deploy`
 
 
 
-# Eclipse JUnit Setup
-
-Get and unzip a WildFly 11.0.0.Final version.
-Add "JBOSS_HOME" environment variable, to point to the unzip wildfly.
 
 
+# TODOs
 
-# Eclipse Application Server Setup
-
-Window / Preferences / Server / Runtime Environments / Add / Red Hat JBoss Middleware / JBoss AS, Wildfy & EAP Server Tools
-Wait for the install to complete.
-Add / JBoss Community / WildFly 11 Runtime
-Home direcetory : the previously unziped wildfly install
-
-
-
-# Misc project info
-
-Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caracters.
-
-
-=====================
-TODO
-=====================
-maven-javadoc-plugin show errors on build.
-Don't use a custom assembly : Try to use the default one and exclude maven and eclipse stuff.
-Add another module to add some recipes for building a "weekly bill of materials"
+1) Create an Oomph setup.
+1) Find a way to use FindBugs in eclipse, like checkstyle and PMD plugin, with auto config using maven.
+1) maven-javadoc-plugin show errors on build.
+1) Don't use a custom assembly : Try to use the default one and exclude maven and eclipse stuff.
+1) Add another module to add some recipes for building a "weekly bill of materials"
