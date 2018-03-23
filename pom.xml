@@ -91,6 +91,10 @@
 
 		<!-- The lowest severity level that is considered a violation -->
 		<checkstyle.violationSeverity>info</checkstyle.violationSeverity>
+		
+		<!-- SonarQube configuration -->
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>mougnibas-github</sonar.organization>
 
 	</properties>
 
@@ -133,6 +137,12 @@
 							<groupId>io.fabric8</groupId>
 							<artifactId>docker-maven-plugin</artifactId>
 							<version>0.23.0</version>
+						</plugin>
+						<plugin>
+							<!-- https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Maven -->
+							<groupId>org.sonarsource.scanner.maven</groupId>
+							<artifactId>sonar-maven-plugin</artifactId>
+							<version>3.4.0.905</version>
 						</plugin>
 					</plugins>
 				</pluginManagement>

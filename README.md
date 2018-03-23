@@ -108,13 +108,24 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 
 ## Package
 
-`mvn clean verify`
+`mvn clean package`
 
 *(Don't use eclipse to run maven, because I have weird behavior with it.)*
 
 ## Run
 
 `docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe`
+
+## Verify
+
+### Run all quality check code
+
+`mvn clean verify`
+
+### Run a sonarqube analyze
+
+`mvn clean verify sonar:sonar -Dsonar.login=YourSecretToken`
+
 
 ## Browse
 
