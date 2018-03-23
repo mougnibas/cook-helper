@@ -24,7 +24,6 @@ There is a basic "recipe brower" function.
 There is also a "food buy" function, where you select some recipe, and it build a list of raw food.
 
 
-
 # Requirements
 
 Maven 3.5.2
@@ -33,25 +32,58 @@ Windows 10 (amd64)
 Docker 17.12.0 (or higher)
 DOCKER_HOST environment variable (example : tcp://localhost:2375 or tcp://localhost:2376)
 
+# Setup
 
+## Maven
 
-# Maven Setup
-=====================
 Set JAVE_HOME environment variable to point to a JDK 1.8 install directory.
 Get and unzip a Maven 3.5.2.
 Add the "bin" maven directory to the user path.
 
+## Eclipse
 
-# Application package
+### Oxygen Release
 
-mvn clean verify
-(Don't use eclipse to run maven, because I have weird behavior with it.)
+Get an eclipse oxygen release for Java EE.
+Checkout the git repository.
+Import the projects in eclipse as "Existing Maven Projects".
+
+### Eclipse checkstyle plugin
+
+Open http://eclipse-cs.sourceforge.net in eclipse "Internal Web Brower".
+Drag & Drop the "install" button into eclipse, then follow the installation instructions.
+Right-clic on projects, then "Checkstyle / Create formater profile".
+Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
+Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
+
+### Eclipse PMD plugin
+
+Add this update site : https://dl.bintray.com/pmd/pmd-eclipse-plugin/updates/
+Install "PMD for eclipse 4", then follow installation instructions.
+
+### Eclipse FindBugs plugin
+
+Add this update site : http://findbugs.cs.umd.edu/eclipse
+Install "FindBugs Feature", then follow installation instructions.
+Window / Preferences / Java / FindBugs
+Minimum rank to report : 15
+Minimal priority : Low
+Apply
+Right-clic on ejb/war/jar projects, then "Find Bugs / Find Bugs".
+
+
+# Package and run the application
+
+## Packaging
+
+`mvn clean verify`
+*(Don't use eclipse to run maven, because I have weird behavior with it.)*
 
 
 
-# Application run
+## Run
 
-docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe
+`docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe`
 
 
 
@@ -70,31 +102,7 @@ mvn clean deploy
 
 
 
-# Eclipse Setup
 
-Get an eclipse oxygen release for Java EE.
-Checkout the git repository.
-Import the projects in eclipse as "Existing Maven Projects".
-
-Checkstyle plugin in eclipse
-Open http://eclipse-cs.sourceforge.net in eclipse "Internal Web Brower".
-Drag & Drop the "install" button into eclipse, then follow the installation instructions.
-Right-clic on projects, then "Checkstyle / Create formater profile".
-Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
-Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
-
-PMD plugin in eclipse
-Add this update site : https://dl.bintray.com/pmd/pmd-eclipse-plugin/updates/
-Install "PMD for eclipse 4", then follow installation instructions.
-
-FindBugs
-Add this update site : http://findbugs.cs.umd.edu/eclipse
-Install "FindBugs Feature", then follow installation instructions.
-Window / Preferences / Java / FindBugs
-Minimum rank to report : 15
-Minimal priority : Low
-Apply
-Right-clic on ejb/war/jar projects, then "Find Bugs / Find Bugs".
 
 TODO :
 Create an Oomph setup.
