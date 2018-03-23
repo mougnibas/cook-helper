@@ -122,6 +122,7 @@ TODO
 ## Deploy
 
 Deploy docker image :
+
 `mvn clean deploy`
 
 
