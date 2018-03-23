@@ -92,14 +92,6 @@
 		<!-- The lowest severity level that is considered a violation -->
 		<checkstyle.violationSeverity>info</checkstyle.violationSeverity>
 
-		<!-- ====================== -->
-		<!-- FindBugs configuration -->
-		<!-- ====================== -->
-
-		<!-- FindBugs effort set to max -->
-		<findbugs.effort>max</findbugs.effort>
-		<findbugs.threshold>low</findbugs.threshold>
-
 	</properties>
 
 	<profiles>
@@ -136,11 +128,6 @@
 				<pluginManagement>
 					<plugins>
 						<!-- Third party plugins -->
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>findbugs-maven-plugin</artifactId>
-							<version>3.0.5</version>
-						</plugin>
 						<plugin>
 							<!-- https://dmp.fabric8.io/ -->
 							<groupId>io.fabric8</groupId>
@@ -316,25 +303,6 @@
 						</executions>
 					</plugin>
 					<plugin>
-						<!-- Run PMD checks -->
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-pmd-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>PMD-Check</id>
-								<goals>
-									<goal>check</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>CPD-Check</id>
-								<goals>
-									<goal>cpd-check</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
 						<!-- Run JDeps checks -->
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jdeps-plugin</artifactId>
@@ -378,18 +346,6 @@
 										</requireEnvironmentVariable>
 									</rules>
 								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<!-- FindBugs -->
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>findbugs-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>check</goal>
-								</goals>
 							</execution>
 						</executions>
 					</plugin>
