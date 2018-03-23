@@ -91,7 +91,7 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caract
 1) Add / JBoss Community / WildFly 11 Runtime
 1) Home direcetory : the previously unziped wildfly install
 
-# Application lifecycle
+# Application lifecycles
 
 ## Package
 
@@ -123,9 +123,6 @@ TODO
 
 Deploy docker image :
 `mvn clean deploy`
-
-
-
 
 
 # TODOs
