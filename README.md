@@ -88,7 +88,7 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 
 ### Application Server
 
-This step is optional, as most of the tests should run in a dedicated JUnit Integration test.
+*This step is optional, as most of the tests should run in a dedicated JUnit Integration test.*
 
 1) Window / Preferences / Server / Runtime Environments / Add / Red Hat JBoss Middleware / JBoss AS, Wildfy & EAP Server Tools
 1) Wait for the install to complete.
