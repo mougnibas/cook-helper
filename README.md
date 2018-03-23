@@ -100,6 +100,9 @@ Webservices :
 * http://localhost:8080/cook-helper-recipe/recipe/
 * http://localhost:8080/cook-helper-recipe/recipe/Minestrone
 
+### Shop list
+
+TODO
 
 # Application deploy
 
