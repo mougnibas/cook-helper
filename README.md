@@ -66,9 +66,28 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 1) Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
 1) Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
 
-### Eclipse Sonarlint plugin
+### Eclipse Sonarlint plugin (3.4 plugin)
 
-1) TODO
+1) Installation
+   1) Open https://marketplace.eclipse.org/content/sonarlint in eclipse "Internal Web Brower".
+   1) Drag & Drop the "install" button into eclipse, then follow the installation instructions.
+1) Configuration
+   1) Add a "SonarQube Servers" and a "SonarLint On-The-Fly" view
+   1) On "SonarQube Servers" view, connect to the sonarcloud server
+      1) "Connect to a SonarQube server
+	  1) "Sonarcloud"
+	  1) Token : A secret one !
+	  1) Organization : mougnibas-github
+   1) Eclipse project binding
+      1) Select all eclipse project / right clic / SonarLint / Bind to a sonarqube project
+	  1) Auto bind selected projects / Finish
+   1) On "SonarQube Servers" view / right clic on the server / Update all project bindings
+1) Full scan
+   1) Select all eclipse project
+   1) Right clic
+   1) Analyze
+1) On the fly analyze
+   1) Just open a file!
 
 
 ### JUnit
