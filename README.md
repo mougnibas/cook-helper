@@ -66,20 +66,10 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 1) Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
 1) Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
 
-### Eclipse PMD plugin
+### Eclipse Sonarlint plugin
 
-1) Add this update site : https://dl.bintray.com/pmd/pmd-eclipse-plugin/updates/
-1) Install "PMD for eclipse 4", then follow installation instructions.
+1) TODO
 
-### Eclipse FindBugs plugin
-
-1) Add this update site : http://findbugs.cs.umd.edu/eclipse
-1) Install "FindBugs Feature", then follow installation instructions.
-1) Window / Preferences / Java / FindBugs
-1) Minimum rank to report : 15
-1) Minimal priority : Low
-1) Apply
-1) Right-clic on ejb/war/jar projects, then "Find Bugs / Find Bugs".
 
 ### JUnit
 
@@ -88,7 +78,7 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 
 ### Application Server
 
-*This step is optional, as most of the tests should run in a dedicated JUnit Integration test.*
+*This step is optional, as most of the tests should run in a dedicated JUnit Integration test.
 
 1) Window / Preferences / Server / Runtime Environments / Add / Red Hat JBoss Middleware / JBoss AS, Wildfy & EAP Server Tools
 1) Wait for the install to complete.
