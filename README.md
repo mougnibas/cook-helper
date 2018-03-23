@@ -31,6 +31,8 @@ There is also a "food buy" function, where you select some recipe, and it build 
 
 Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caracters.
 
+SonarQube instance available on sonarcloud.io (github project credentials).
+
 
 # Requirements
 
