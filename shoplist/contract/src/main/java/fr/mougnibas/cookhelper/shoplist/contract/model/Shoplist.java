@@ -19,8 +19,6 @@
 
 package fr.mougnibas.cookhelper.shoplist.contract.model;
 
-import fr.mougnibas.cookhelper.recipe.contract.model.RawMaterial;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.TreeSet;
@@ -40,7 +38,7 @@ public class Shoplist implements Serializable {
   /**
    * The list of materials.
    */
-  private RawMaterial[] materials;
+  private Material[] materials;
 
   /**
    * Intialize the shoplist.
@@ -48,9 +46,9 @@ public class Shoplist implements Serializable {
    * @param materials
    *          The materials.
    */
-  public Shoplist(RawMaterial... materials) {
-    TreeSet<RawMaterial> tree = new TreeSet<>(Arrays.asList(materials));
-    this.materials = tree.toArray(new RawMaterial[tree.size()]);
+  public Shoplist(Material... materials) {
+    TreeSet<Material> tree = new TreeSet<>(Arrays.asList(materials));
+    this.materials = tree.toArray(new Material[tree.size()]);
   }
 
   /**
@@ -58,7 +56,7 @@ public class Shoplist implements Serializable {
    * 
    * @return the materials.
    */
-  public RawMaterial[] getMaterials() {
+  public Material[] getMaterials() {
     return materials.clone();
   }
 
@@ -82,10 +80,7 @@ public class Shoplist implements Serializable {
       return false;
     }
     Shoplist other = (Shoplist) obj;
-    if (!Arrays.equals(materials, other.materials)) {
-      return false;
-    }
-    return true;
+    return Arrays.equals(materials, other.materials);
   }
 
   @Override

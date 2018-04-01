@@ -108,6 +108,10 @@ public class CommonPackaging {
     // Add contract dependency
     JavaArchive contractJar = ShrinkWrap.create(JavaArchive.class);
     contractJar.addClass(ShoplistManager.class);
+    contractJar.addClass(fr.mougnibas.cookhelper.shoplist.contract.model.Category.class);
+    contractJar.addClass(fr.mougnibas.cookhelper.shoplist.contract.model.FoodFamily.class);
+    contractJar.addClass(fr.mougnibas.cookhelper.shoplist.contract.model.FoodUnit.class);
+    contractJar.addClass(fr.mougnibas.cookhelper.shoplist.contract.model.Material.class);
     contractJar.addClass(RecipeForShoplist.class);
     contractJar.addClass(Shoplist.class);
 

@@ -17,27 +17,66 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.shoplist.contract;
-
-import fr.mougnibas.cookhelper.shoplist.contract.model.Shoplist;
-
-import javax.ejb.Local;
+package fr.mougnibas.cookhelper.shoplist.contract.model;
 
 /**
- * Shoplist manager.
+ * Food units.
  * 
  * @author Yoann
  */
-@Local
-public interface ShoplistManager {
+public enum FoodUnit {
 
   /**
-   * Compile a shoplist from the given recipes.
-   * 
-   * @param recipesName
-   *          The list of recipe name to add to the shop list.
-   * 
-   * @return The shop list.
+   * Gramme unit.
    */
-  Shoplist makeShopList(String... recipesName);
+  GRAMME("g"),
+
+  /**
+   * Ml unit.
+   */
+  ML("ml"),
+  
+  /**
+   * l unit.
+   */
+  L("l"),
+  
+  /**
+   * Cuillère à soupe unit.
+   */
+  CS("c. à soupe"),
+  
+  /**
+   * Branch unit.
+   */
+  BRANCH("Branche"),
+  
+  /**
+   * "Void" unit.
+   */
+  VOID("");
+
+  /**
+   * The name of the unit.
+   */
+  private String name;
+
+  /**
+   * Initialize the unit.
+   * 
+   * @param name
+   *          The name of the unit.
+   */
+  FoodUnit(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Get the name of the unit.
+   * 
+   * @return The name of the unit.
+   */
+  public String getName() {
+    return name;
+  }
 }

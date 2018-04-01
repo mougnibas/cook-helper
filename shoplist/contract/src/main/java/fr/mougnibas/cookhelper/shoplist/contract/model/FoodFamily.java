@@ -17,27 +17,59 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.shoplist.contract;
+package fr.mougnibas.cookhelper.shoplist.contract.model;
 
-import fr.mougnibas.cookhelper.shoplist.contract.model.Shoplist;
-
-import javax.ejb.Local;
+import java.io.Serializable;
 
 /**
- * Shoplist manager.
+ * A raw food material family.
  * 
- * @author Yoann
+ * @author Yoann.
  */
-@Local
-public interface ShoplistManager {
+public enum FoodFamily implements Serializable {
 
   /**
-   * Compile a shoplist from the given recipes.
-   * 
-   * @param recipesName
-   *          The list of recipe name to add to the shop list.
-   * 
-   * @return The shop list.
+   * Meat family.
    */
-  Shoplist makeShopList(String... recipesName);
+  MEAT,
+
+  /**
+   * Vegetable family.
+   */
+  VEGETABLE,
+
+  /**
+   * Oil family.
+   */
+  OIL,
+
+  /**
+   * Alcohol family.
+   */
+  ALCOHOL,
+  
+  /**
+   * Water family.
+   */
+  WATER,
+
+  /**
+   * Bouillon family.
+   */
+  BOUILLON,
+
+  /**
+   * Cheese family.
+   */
+  CHEESE,
+  
+  /**
+   * Pâte family.
+   */
+  PATE,
+
+  /**
+   * All other family.
+   */
+  MISC;
 }

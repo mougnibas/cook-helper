@@ -23,7 +23,9 @@ import fr.mougnibas.cookhelper.recipe.contract.model.RawMaterial;
 import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
 import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 import fr.mougnibas.cookhelper.shoplist.contract.ShoplistManager;
-import fr.mougnibas.cookhelper.shoplist.contract.model.RecipeForShoplist;
+import fr.mougnibas.cookhelper.shoplist.contract.model.FoodFamily;
+import fr.mougnibas.cookhelper.shoplist.contract.model.FoodUnit;
+import fr.mougnibas.cookhelper.shoplist.contract.model.Material;
 import fr.mougnibas.cookhelper.shoplist.contract.model.Shoplist;
 import fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient.JaxrsRecipeClientQualifier;
 
@@ -51,24 +53,6 @@ public class ShoplistManagerImpl implements ShoplistManager {
   @JaxrsRecipeClientQualifier
   @Inject
   private RecipeManager recipeManager;
-
-  @Override
-  public RecipeForShoplist[] getAllRecipes() {
-
-    // List of recipe for shop list to return
-    List<RecipeForShoplist> list = new ArrayList<>();
-
-    // Get the list from the recipe service, and transform it to a local recipe
-    String[] recipeNames = recipeManager.listAllRecipeNames();
-    for (String recipeName : recipeNames) {
-      Recipe recipe = recipeManager.getByName(recipeName);
-      RecipeForShoplist transform = new RecipeForShoplist(recipe);
-      list.add(transform);
-    }
-
-    // Return the list as array
-    return list.toArray(new RecipeForShoplist[list.size()]);
-  }
 
   // TODO So much inefficiency here...
   @Override
@@ -115,9 +99,42 @@ public class ShoplistManagerImpl implements ShoplistManager {
       materials.add(material);
     }
 
+    // Transform the materials
+    List<Material> transformedMaterials = new ArrayList<>(materials.size());
+    for (RawMaterial rawMaterial : materials) {
+      Material transformedMaterial = MaterialTransformer.transform(rawMaterial);
+      transformedMaterials.add(transformedMaterial);
+    }
+
     // Create and return the shoplist
-    Shoplist shoplist = new Shoplist(materials.toArray(new RawMaterial[materials.size()]));
-    return shoplist;
+    return new Shoplist(transformedMaterials.toArray(new Material[transformedMaterials.size()]));
   }
 
+  /**
+   * An utility class to transform RawMaterial (from 'recipe contract') to Material (from 'shoplist
+   * builder contract').
+   * 
+   * @author Yoann
+   */
+  private static class MaterialTransformer {
+
+    /**
+     * Transform a raw material to a material (microservice contract transform).
+     * 
+     * @param toTransform
+     *          The raw material to transform.
+     * @return The transformed material.
+     */
+    private static Material transform(RawMaterial toTransform) {
+
+      // Extract and/or transform informations
+      String name = toTransform.getName();
+      FoodFamily foodFamily = FoodFamily.valueOf(toTransform.getFoodFamily().name());
+      FoodUnit foodUnit = FoodUnit.valueOf(toTransform.getFoodUnit().name());
+      Integer foodNumber = toTransform.getFoodNumber();
+
+      // Return the new transformed instance
+      return new Material(name, foodFamily, foodUnit, foodNumber);
+    }
+  }
 }
