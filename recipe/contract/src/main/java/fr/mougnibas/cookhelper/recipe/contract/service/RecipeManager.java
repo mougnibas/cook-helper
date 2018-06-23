@@ -21,27 +21,19 @@ package fr.mougnibas.cookhelper.recipe.contract.service;
 
 import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
 
-import java.io.Serializable;
-
-import javax.ejb.Local;
-import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
-
 /**
  * Recipe manage.
  * 
  * @author Yoann
  */
-@Local
-public interface RecipeManager extends Serializable {
+public interface RecipeManager {
 
   /**
-   * List all of the recipe names.
+   * Get all recipes.
    * 
-   * @return all of the recipe names.
+   * @return all recipes.
    */
-  @Transactional(value = TxType.NOT_SUPPORTED)
-  String[] listAllRecipeNames();
+  Recipe[] get();
 
   /**
    * Get a recipe by his name.
@@ -50,6 +42,5 @@ public interface RecipeManager extends Serializable {
    *          The name of the recipe.
    * @return a recipe.
    */
-  @Transactional(value = TxType.NOT_SUPPORTED)
-  Recipe getByName(String recipeName);
+  Recipe get(String recipeName);
 }

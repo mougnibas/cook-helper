@@ -21,8 +21,6 @@ package fr.mougnibas.cookhelper.recipe.contract.model;
 
 import java.io.Serializable;
 
-import javax.xml.bind.annotation.XmlElement;
-
 /**
  * A refined material, based on a raw material.
  * 
@@ -38,19 +36,16 @@ public class RefinedMaterial implements Serializable {
   /**
    * The name of the refined material.
    */
-  @XmlElement
   private String name;
 
   /**
    * The instructions to process a raw material into a refined one.
    */
-  @XmlElement
   private String processInstructions;
 
   /**
    * The raw material to process.
    */
-  @XmlElement
   private RawMaterial toProcess;
 
   /**

@@ -31,23 +31,20 @@ There is also a "food buy" function, where you select some recipe, and it build 
 
 Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caracters.
 
-SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizations/mougnibas-github/projects) (github project credentials).
-
 
 # Requirements
 
-* Maven 3.5.2
-* JDK 1.8
+* Maven 3.5.3
+* JDK 10.0.1
 * Windows 10 (amd64)
-* Docker 17.12.0 (or higher)
-* DOCKER_HOST environment variable (example : tcp://localhost:2375 or tcp://localhost:2376)
+* Docker 18.03.1 (or higher)
 
 # Setup
 
 ## Maven
 
-1) Set JAVE_HOME environment variable to point to a JDK 1.8 install directory.
-1) Get and unzip a Maven 3.5.2.
+1) Set JAVE_HOME environment variable to point to the JDK install directory.
+1) Get and unzip a Maven.
 1) Add the "bin" maven directory to the user path.
 
 ## Eclipse
@@ -71,29 +68,12 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 1) Installation
    1) Open https://marketplace.eclipse.org/content/sonarlint in eclipse "Internal Web Brower".
    1) Drag & Drop the "install" button into eclipse, then follow the installation instructions.
-1) Configuration
-   1) Add a "SonarQube Servers" and a "SonarLint On-The-Fly" view
-   1) On "SonarQube Servers" view, connect to the sonarcloud server
-      1) "Connect to a SonarQube server
-	  1) "Sonarcloud"
-	  1) Token : A secret one !
-	  1) Organization : mougnibas-github
-   1) Eclipse project binding
-      1) Select all eclipse project / right clic / SonarLint / Bind to a sonarqube project
-	  1) Auto bind selected projects / Finish
-   1) On "SonarQube Servers" view / right clic on the server / Update all project bindings
 1) Full scan
    1) Select all eclipse project
    1) Right clic
    1) Analyze
 1) On the fly analyze
    1) Just open a file!
-
-
-### JUnit
-
-1) Get and unzip a WildFly 11.0.0.Final version.
-1) Add "JBOSS_HOME" environment variable, to point to the unzip wildfly.
 
 ### Application Server
 
@@ -114,7 +94,15 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 
 ## Run
 
-`docker run --rm -it -p 8080:8080 mougnibas/cook-helper-recipe`
+`docker network create cook_helper`
+
+`docker run --rm -it -p 8080:8080 --network=cook_helper --name cook-helper-recipe-microprofile   mougnibas/cook-helper-recipe-microprofile`
+
+`docker run --rm -it -p 8090:8090 --network=cook_helper --name cook-helper-recipe-ui             mougnibas/cook-helper-recipe-ui`
+
+`docker run --rm -it -p 8100:8100 --network=cook_helper --name cook-helper-shoplist-microprofile mougnibas/cook-helper-shoplist-microprofile`
+
+`docker network rm     cook_helper`
 
 ## Verify
 
@@ -122,25 +110,24 @@ SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizati
 
 `mvn clean verify`
 
-### Run a sonarqube analyze
-
-`mvn clean verify sonar:sonar -Dsonar.login=YourSecretToken`
-
-
 ## Browse
 
 ### Recipe microservice
 
-Plain text :
-* http://localhost:8080/cook-helper-recipe/list
-* http://localhost:8080/cook-helper-recipe/recipe?name=Minestrone
-
 Webservices :
-* http://localhost:8080/cook-helper-recipe/recipe/
-* http://localhost:8080/cook-helper-recipe/recipe/Minestrone
+* http://localhost:8080/
+* http://localhost:8080/{recipe name}
+
+Plain text :
+* http://localhost:8090/list
+* http://localhost:8090/recipe?name=Minestrone
 
 ### Shop list microservice
 
+Webservices :
+* http://localhost:8100/?name=Minestrone&name=Risotto&name=...
+
+Plain text :
 TODO
 
 ## Deploy

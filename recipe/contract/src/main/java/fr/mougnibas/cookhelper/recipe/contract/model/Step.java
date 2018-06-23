@@ -24,9 +24,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-
 /**
  * A step of a recipe.
  * 
@@ -42,45 +39,36 @@ public class Step implements Serializable {
   /**
    * The tool needed by this step.
    */
-  @XmlElement
   private Tool tool;
 
   /**
    * The materials of this step.
    */
-  @XmlElementWrapper(name = "rawMaterials")
-  @XmlElement(name = "rawMaterial")
   private List<RawMaterial> rawMaterials;
 
   /**
    * The refined materials of this step.
    */
-  @XmlElementWrapper(name = "refinedMaterials")
-  @XmlElement(name = "refinedMaterial")
   private List<RefinedMaterial> refinedMaterials;
 
   /**
    * True if the stub is closed, false otherwise.
    */
-  @XmlElement
   private Boolean isStubClosed;
 
   /**
    * Instruction of this step (may be null).
    */
-  @XmlElement
   private String instruction;
 
   /**
    * Program number (may be null).
    */
-  @XmlElement
   private Integer programNumber;
 
   /**
    * Program step number (may be null).
    */
-  @XmlElement
   private Integer programStepNumber;
 
   /**

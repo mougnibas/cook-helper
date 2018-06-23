@@ -32,7 +32,8 @@
 	<!-- Childs -->
 	<modules>
 		<module>contract</module>
-		<module>application</module>
+		<module>microprofile</module>
+		<module>microprofile-test</module>
 	</modules>
 	
 	<!-- General informations -->

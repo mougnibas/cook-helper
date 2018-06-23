@@ -21,8 +21,6 @@ package fr.mougnibas.cookhelper.shoplist.contract.model;
 
 import java.io.Serializable;
 
-import javax.xml.bind.annotation.XmlElement;
-
 /**
  * A base food raw material.
  * 
@@ -38,25 +36,21 @@ public class Material implements Serializable, Comparable<Material> {
   /**
    * The name of the food material.
    */
-  @XmlElement
   private String name;
 
   /**
    * The food family of this raw material.
    */
-  @XmlElement
-  private FoodFamily foodFamiliy;
+  private FoodFamily foodFamily;
 
   /**
    * The food unit.
    */
-  @XmlElement
   private FoodUnit foodUnit;
 
   /**
    * The number of this food.
    */
-  @XmlElement
   private Integer foodNumber;
   
   /**
@@ -72,17 +66,17 @@ public class Material implements Serializable, Comparable<Material> {
    * 
    * @param name
    *          The name of the material.
-   * @param foodFamiliy
+   * @param foodFamily
    *          The food family of this raw material.
    * @param foodUnit
    *          The food family of this raw material.
    * @param foodNumber
    *          The number of this food.
    */
-  public Material(String name, FoodFamily foodFamiliy, FoodUnit foodUnit,
+  public Material(String name, FoodFamily foodFamily, FoodUnit foodUnit,
       Integer foodNumber) {
     this.name = name;
-    this.foodFamiliy = foodFamiliy;
+    this.foodFamily = foodFamily;
     this.foodUnit = foodUnit;
     this.foodNumber = foodNumber;
   }
@@ -102,7 +96,7 @@ public class Material implements Serializable, Comparable<Material> {
    * @return The food family of this raw material.
    */
   public FoodFamily getFoodFamily() {
-    return foodFamiliy;
+    return foodFamily;
   }
 
   /**
@@ -133,7 +127,7 @@ public class Material implements Serializable, Comparable<Material> {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((foodFamiliy == null) ? 0 : foodFamiliy.hashCode());
+    result = prime * result + ((foodFamily == null) ? 0 : foodFamily.hashCode());
     result = prime * result + ((foodNumber == null) ? 0 : foodNumber.hashCode());
     result = prime * result + ((foodUnit == null) ? 0 : foodUnit.hashCode());
     result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -152,7 +146,7 @@ public class Material implements Serializable, Comparable<Material> {
       return false;
     }
     Material other = (Material) obj;
-    if (foodFamiliy != other.foodFamiliy) {
+    if (foodFamily != other.foodFamily) {
       return false;
     }
     if (foodNumber == null) {
@@ -178,10 +172,10 @@ public class Material implements Serializable, Comparable<Material> {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("RawMaterial [name=");
+    builder.append("Material [name=");
     builder.append(name);
-    builder.append(", foodFamiliy=");
-    builder.append(foodFamiliy);
+    builder.append(", foodFamily=");
+    builder.append(foodFamily);
     builder.append(", foodUnit=");
     builder.append(foodUnit);
     builder.append(", foodNumber=");

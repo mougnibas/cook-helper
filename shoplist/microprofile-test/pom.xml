@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- © Copyright 2017-2018 Yoann MOUGNIBAS -->
+
+<!-- This file is part of Cook-Helper. -->
+
+<!-- Cook-Helper is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- Cook-Helper is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Cook-Helper. If not, see <http://www.gnu.org/licenses/> -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0           http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Project ID -->
+	<parent>
+		<groupId>fr.mougnibas.cook-helper</groupId>
+		<artifactId>cook-helper-shoplist</artifactId>
+		<version>1.1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>cook-helper-shoplist-microprofile-test</artifactId>
+
+	<!-- General informations -->
+	<name>Cook helper project (shoplist microprofile test)</name>
+
+	<dependencies>
+		<dependency>
+			<!-- Shoplist Contract -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-shoplist-contract</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Application utilities -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-util</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Shoplist microprofile -->
+			<groupId>fr.mougnibas.cook-helper</groupId>
+			<artifactId>cook-helper-shoplist-microprofile</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- JUnit test framework -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- JAX-RS client implementation -->
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Jersey need this recently due to architectural changes -->
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Jersey hk2 need this when running into standalone (JDK) mode -->
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<!-- Start and stop the docker container from microprofile image -->
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>start</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+					</execution>
+					<execution>
+						<id>stop</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+						<phase>post-integration-test</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<images>
+						<image>
+							<alias>cook-helper-shoplist-microprofile</alias>
+							<name>mougnibas/cook-helper-shoplist-microprofile:%l</name>
+							<run>
+								<ports>
+									<port>8100:8100</port>
+								</ports>
+								<wait>
+									<!-- Wait for the server to be ready, within 60 first seconds -->
+									<log>WFSWARM99999: WildFly Swarm is Ready</log>
+									<time>60000</time>
+								</wait>
+								<hostname>cook-helper-shoplist-microprofile</hostname>
+								<namingStrategy>alias</namingStrategy>
+								<dependsOn>
+									<container>cook-helper-recipe-microprofile</container>
+								</dependsOn>
+								<network>
+									<mode>custom </mode>
+									<name>cook_helper</name>
+								</network>
+							</run>
+						</image>
+						<image>
+							<alias>cook-helper-recipe-microprofile</alias>
+							<name>mougnibas/cook-helper-recipe-microprofile:%l</name>
+							<run>
+								<ports>
+									<port>8080:8080</port>
+								</ports>
+								<wait>
+									<!-- Wait for the server to be ready, within 60 first seconds -->
+									<log>WFSWARM99999: WildFly Swarm is Ready</log>
+									<time>60000</time>
+								</wait>
+								<hostname>cook-helper-recipe-microprofile</hostname>
+								<namingStrategy>alias</namingStrategy>
+								<network>
+									<mode>custom </mode>
+									<name>cook_helper</name>
+								</network>
+							</run>
+						</image>
+					</images>
+					<autoCreateCustomNetworks>true</autoCreateCustomNetworks>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<!-- Enable integration tests -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -21,14 +21,11 @@ package fr.mougnibas.cookhelper.shoplist.contract;
 
 import fr.mougnibas.cookhelper.shoplist.contract.model.Shoplist;
 
-import javax.ejb.Local;
-
 /**
  * Shoplist manager.
  * 
  * @author Yoann
  */
-@Local
 public interface ShoplistManager {
 
   /**
@@ -39,5 +36,5 @@ public interface ShoplistManager {
    * 
    * @return The shop list.
    */
-  Shoplist makeShopList(String... recipesName);
+  Shoplist getShoplist(String... recipesName);
 }

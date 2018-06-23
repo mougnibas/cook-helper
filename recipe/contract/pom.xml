@@ -15,7 +15,8 @@
 
 <!-- You should have received a copy of the GNU General Public License -->
 <!-- along with Cook-Helper. If not, see <http://www.gnu.org/licenses/> -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0           http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
@@ -34,18 +35,22 @@
 	<description>Projects to handle recipe data model</description>
 
 	<dependencies>
+
 		<dependency>
-			<!-- Java EE web profile dependency -->
-			<groupId>javax</groupId>
-			<artifactId>javaee-web-api</artifactId>
+			<!-- Eclipse MicroProfile API -->
+			<groupId>org.eclipse.microprofile</groupId>
+			<artifactId>microprofile</artifactId>
+			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<!-- JUnit test framework -->
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 </project>

@@ -26,16 +26,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * A recipe.
  * 
  * @author Yoann
  */
-@XmlRootElement
 public class Recipe implements Serializable, Comparable<Recipe> {
 
   /**
@@ -46,44 +41,36 @@ public class Recipe implements Serializable, Comparable<Recipe> {
   /**
    * The name of the recipe.
    */
-  @XmlElement
   private String name;
 
   /**
    * The time to prepare the raw materials (in minutes).
    */
-  @XmlElement
   private Integer timeToPrepare;
 
   /**
    * The time to cook the raw materials (in minutes).
    */
-  @XmlElement
   private Integer timeToCook;
 
   /**
    * The number of person for this recipe.
    */
-  @XmlElement
   private Integer numberOfPerson;
 
   /**
    * The category of the recipe.
    */
-  @XmlElement
   private Category category;
 
   /**
    * The steps of the recipe.
    */
-  @XmlElementWrapper(name = "steps")
-  @XmlElement(name = "step")
   private List<Step> steps;
 
   /**
    * The cook mode of the recipe.
    */
-  @XmlElement
   private CookMode cookMode;
 
   /**
