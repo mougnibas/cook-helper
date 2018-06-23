@@ -103,12 +103,8 @@ public class RecipeManagerImpl implements RecipeManager {
                 + "Réglez sur vitesse 1 et laisser tourner pendant une minute.",
             null, 5) };
 
-    // Instantiate the recipe
-    Recipe recipe = new Recipe("Risotto", 2, 30, 4, Category.PLAT_DE_RESISTANCE, steps,
-        CookMode.MIJOTER);
-
-    // Return it
-    return recipe;
+    // Instantiate the recipe and return it
+    return new Recipe("Risotto", 2, 30, 4, Category.PLAT_DE_RESISTANCE, steps, CookMode.MIJOTER);
   }
 
   /**
@@ -162,23 +158,18 @@ public class RecipeManagerImpl implements RecipeManager {
                 FoodFamily.PATE, FoodUnit.GRAMME, 100) },
             new RefinedMaterial[] {}, false, null, null, 3) };
 
-    // Instantiate the recipe
-    Recipe recipe = new Recipe("Minestrone", 8, 25, 4, Category.PLAT_DE_RESISTANCE, steps,
+    // Instantiate the recipe and return it
+    return new Recipe("Minestrone", 8, 25, 4, Category.PLAT_DE_RESISTANCE, steps,
         CookMode.BOUILLIR);
-
-    // Return it
-    return recipe;
   }
 
   @Override
   public Recipe[] get() {
-    Recipe[] recipesArray = recipes.values().toArray(new Recipe[recipes.size()]);
-    return recipesArray;
+    return recipes.values().toArray(new Recipe[recipes.size()]);
   }
 
   @Override
   public Recipe get(String recipeName) {
-    Recipe recipe = recipes.get(recipeName);
-    return recipe;
+    return recipes.get(recipeName);
   }
 }

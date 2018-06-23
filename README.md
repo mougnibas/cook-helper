@@ -29,8 +29,9 @@ There is also a "food buy" function, where you select some recipe, and it build 
 
 ## Misc
 
-Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caracters.
+Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line characters.
 
+SonarQube instance available on [sonarcloud.io](https://sonarcloud.io/organizations/mougnibas-github/projects) (github project credentials).
 
 # Requirements
 
@@ -38,6 +39,7 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caract
 * JDK 10.0.1
 * Windows 10 (amd64)
 * Docker 18.03.1 (or higher)
+* DOCKER_HOST environment variable (example : tcp://localhost:2375 or tcp://localhost:2376)
 
 # Setup
 
@@ -68,6 +70,17 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caract
 1) Installation
    1) Open https://marketplace.eclipse.org/content/sonarlint in eclipse "Internal Web Brower".
    1) Drag & Drop the "install" button into eclipse, then follow the installation instructions.
+1) Configuration
+   1) Add a "SonarQube Servers" and a "SonarLint On-The-Fly" view
+   1) On "SonarQube Servers" view, connect to the sonarcloud server
+      1) "Connect to a SonarQube server
+	  1) "Sonarcloud"
+	  1) Token : A secret one !
+	  1) Organization : mougnibas-github
+   1) Eclipse project binding
+      1) Select all eclipse project / right clic / SonarLint / Bind to a sonarqube project
+	  1) Auto bind selected projects / Finish (must run an initial sonar:sonar before)
+   1) On "SonarQube Servers" view / right clic on the server / Update all project bindings
 1) Full scan
    1) Select all eclipse project
    1) Right clic
@@ -109,6 +122,11 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line caract
 ### Run all quality check code
 
 `mvn clean verify`
+
+### Run a sonarqube analyze
+
+`mvn clean verify sonar:sonar -Dsonar.login=YourSecretToken`
+
 
 ## Browse
 

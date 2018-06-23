@@ -24,6 +24,8 @@ import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -44,6 +46,11 @@ public class ListServlet extends HttpServlet {
   private static final long serialVersionUID = -1498001046038863394L;
 
   /**
+   * Class logger.
+   */
+  private static final Logger LOGGER = Logger.getLogger(ListServlet.class.getName());
+
+  /**
    * Recipe manager.
    */
   @Inject
@@ -51,22 +58,35 @@ public class ListServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+      throws ServletException {
 
     // Set the content type and encoding
     response.setContentType("text/plain");
     response.setCharacterEncoding("UTF-8");
 
-    // Write the recipes
-    PrintWriter writer = response.getWriter();
-    writer.println("Recettes :");
+    // Try to write the recipes
+    try {
 
-    for (Recipe currentRecipe : manager.get()) {
-      writer.println(currentRecipe.getName());
+      PrintWriter writer = response.getWriter();
+      writer.println("Recettes :");
+
+      for (Recipe currentRecipe : manager.get()) {
+        writer.println(currentRecipe.getName());
+      }
+
+      // Flush the response
+      response.flushBuffer();
+
+    } catch (IOException ex) {
+
+      // Log the exception
+      String msg = "response write exception";
+      LOGGER.log(Level.SEVERE, msg, ex);
+
+      // Send a http 500 code
+      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
 
-    // Flush the response
-    response.flushBuffer();
   }
 
 }

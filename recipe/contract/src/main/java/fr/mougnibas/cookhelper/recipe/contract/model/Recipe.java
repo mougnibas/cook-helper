@@ -74,14 +74,6 @@ public class Recipe implements Serializable, Comparable<Recipe> {
   private CookMode cookMode;
 
   /**
-   * Used only by jaxb.
-   */
-  @Deprecated
-  protected Recipe() {
-
-  }
-
-  /**
    * Initialize a recipe.
    * 
    * @param name

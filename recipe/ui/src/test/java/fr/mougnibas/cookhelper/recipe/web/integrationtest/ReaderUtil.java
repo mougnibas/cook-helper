@@ -17,7 +17,7 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.util;
+package fr.mougnibas.cookhelper.recipe.web.integrationtest;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -55,5 +55,12 @@ public class ReaderUtil {
     }
 
     return text;
+  }
+
+  /**
+   * Utility class don't need a public constructor.
+   */
+  private ReaderUtil() {
+
   }
 }

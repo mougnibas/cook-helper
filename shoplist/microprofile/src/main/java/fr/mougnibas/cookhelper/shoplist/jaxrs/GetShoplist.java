@@ -24,6 +24,7 @@ import fr.mougnibas.cookhelper.shoplist.contract.exception.RecipeNotFoundExcepti
 import fr.mougnibas.cookhelper.shoplist.contract.model.Shoplist;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import javax.inject.Inject;
@@ -55,7 +56,7 @@ public class GetShoplist {
    */
   @Produces(MediaType.APPLICATION_OCTET_STREAM)
   @GET
-  public byte[] getByName(@QueryParam("name") String... recipeNames) throws Exception {
+  public byte[] getByName(@QueryParam("name") String... recipeNames) throws IOException {
 
     // Try to make the shoplist
     Shoplist shoplist;

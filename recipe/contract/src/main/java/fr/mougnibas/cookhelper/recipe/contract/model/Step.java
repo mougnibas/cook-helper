@@ -72,14 +72,6 @@ public class Step implements Serializable {
   private Integer programStepNumber;
 
   /**
-   * Used only by jaxb.
-   */
-  @Deprecated
-  protected Step() {
-
-  }
-
-  /**
    * Initialize the step.
    * 
    * @param tool
@@ -249,10 +241,7 @@ public class Step implements Serializable {
     } else if (!refinedMaterials.equals(other.refinedMaterials)) {
       return false;
     }
-    if (tool != other.tool) {
-      return false;
-    }
-    return true;
+    return tool != other.tool;
   }
 
   @Override

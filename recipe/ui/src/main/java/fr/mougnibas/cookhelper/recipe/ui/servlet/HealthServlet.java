@@ -2,6 +2,8 @@ package fr.mougnibas.cookhelper.recipe.ui.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,25 +13,41 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/health")
 public class HealthServlet extends HttpServlet {
-  
+
   /**
    * Generated serial number.
    */
   private static final long serialVersionUID = 1432990186646825568L;
+  
+  /**
+   * Class logger.
+   */
+  private static final Logger LOGGER = Logger.getLogger(HealthServlet.class.getName());
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+      throws ServletException {
 
     // Set the content type and encoding
     response.setContentType("text/plain");
     response.setCharacterEncoding("UTF-8");
 
-    // Write health
-    PrintWriter writer = response.getWriter();
-    writer.println("I'm alive!");
+    // Try to write health
+    try {
 
-    // Flush the response
-    response.flushBuffer();
+      PrintWriter writer = response.getWriter();
+      writer.println("I'm alive!");
+      response.flushBuffer();
+
+    } catch (IOException ex) {
+      
+      // Log the exception
+      String msg = "response write exception";
+      LOGGER.log(Level.SEVERE, msg, ex);
+      
+      // Send a http 500 code
+      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    }
+
   }
 }

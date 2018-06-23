@@ -49,14 +49,6 @@ public class RefinedMaterial implements Serializable {
   private RawMaterial toProcess;
 
   /**
-   * Used only by jaxb.
-   */
-  @Deprecated
-  protected RefinedMaterial() {
-
-  }
-
-  /**
    * Initialize the refined material.
    * 
    * @param name

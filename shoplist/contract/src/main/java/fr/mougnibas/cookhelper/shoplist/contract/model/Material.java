@@ -52,14 +52,6 @@ public class Material implements Serializable, Comparable<Material> {
    * The number of this food.
    */
   private Integer foodNumber;
-  
-  /**
-   * Used only by jaxb.
-   */
-  @Deprecated
-  protected Material() {
-    
-  }
 
   /**
    * Initialize the material.

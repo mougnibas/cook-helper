@@ -23,6 +23,7 @@ import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
 import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import javax.inject.Inject;
@@ -53,7 +54,7 @@ public class GetRecipeByName {
    */
   @Produces(MediaType.APPLICATION_OCTET_STREAM)
   @GET
-  public byte[] getByName(@PathParam("name") String recipeName) throws Exception {
+  public byte[] getByName(@PathParam("name") String recipeName) throws IOException {
     
     Recipe recipe = recipeManager.get(recipeName);
     

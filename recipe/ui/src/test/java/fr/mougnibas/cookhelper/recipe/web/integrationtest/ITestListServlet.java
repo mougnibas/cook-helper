@@ -19,8 +19,6 @@
 
 package fr.mougnibas.cookhelper.recipe.web.integrationtest;
 
-import fr.mougnibas.cookhelper.util.ReaderUtil;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 

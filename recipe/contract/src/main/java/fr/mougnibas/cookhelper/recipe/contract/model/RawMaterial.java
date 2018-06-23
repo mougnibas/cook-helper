@@ -54,14 +54,6 @@ public class RawMaterial implements Serializable, Comparable<RawMaterial> {
   private Integer foodNumber;
 
   /**
-   * Used only by jaxb.
-   */
-  @Deprecated
-  protected RawMaterial() {
-
-  }
-
-  /**
    * Initialize the material.
    * 
    * @param name
