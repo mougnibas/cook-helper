@@ -41,7 +41,9 @@
         locateNestedProjects="true"/>
   </setupTask>
   <stream name="master"
-      label="Master"/>
+      label="master"/>
+  <stream name="topic-shoplist-builder"
+      label="shoplist builder"/>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='com.github']"/>
