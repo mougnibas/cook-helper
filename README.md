@@ -63,7 +63,7 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 1) Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
 1) Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
 
-### Eclipse Sonarlint plugin (3.x plugin)
+### Eclipse Sonarlint plugin (3.6 plugin)
 
 1) Installation
    1) Open `https://marketplace.eclipse.org/content/sonarlint` in eclipse "Internal Web Brower".
