@@ -48,22 +48,30 @@
         xsi:type="setup:CompoundTask"
         name="Sonar">
       <setupTask
-          xsi:type="setup.p2:P2Task">
-        <requirement
-            name="org.sonarlint.eclipse.feature.feature.group"/>
-        <repository
-            url="https://eclipse-uc.sonarlint.org"/>
+          xsi:type="setup:CompoundTask"
+          name="plugin">
+        <setupTask
+            xsi:type="setup.p2:P2Task">
+          <requirement
+              name="org.sonarlint.eclipse.feature.feature.group"/>
+          <repository
+              url="https://eclipse-uc.sonarlint.org"/>
+        </setupTask>
       </setupTask>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
         name="Checkstyle">
       <setupTask
-          xsi:type="setup.p2:P2Task">
-        <requirement
-            name="net.sf.eclipsecs.feature.group"/>
-        <repository
-            url="https://checkstyle.github.io/eclipse-cs/update"/>
+          xsi:type="setup:CompoundTask"
+          name="plugin">
+        <setupTask
+            xsi:type="setup.p2:P2Task">
+          <requirement
+              name="net.sf.eclipsecs.feature.group"/>
+          <repository
+              url="https://checkstyle.github.io/eclipse-cs/update"/>
+        </setupTask>
       </setupTask>
       <setupTask
           xsi:type="setup:CompoundTask"
@@ -105,12 +113,26 @@
               value="2"/>
         </setupTask>
       </setupTask>
+      <setupTask
+          xsi:type="setup:CompoundTask"
+          name="editor">
+        <setupTask
+            xsi:type="setup:CompoundTask"
+            name="org.eclipse.ui.editors">
+          <setupTask
+              xsi:type="setup:PreferenceTask"
+              key="/instance/org.eclipse.ui.editors/printMarginColumn"
+              value="100"/>
+          <setupTask
+              xsi:type="setup:PreferenceTask"
+              key="/instance/org.eclipse.ui.editors/printMargin"
+              value="true"/>
+        </setupTask>
+      </setupTask>
     </setupTask>
   </setupTask>
   <stream name="master"
       label="master"/>
-  <stream name="topic-shoplist-builder"
-      label="shoplist builder"/>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='com.github']"/>
