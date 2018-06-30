@@ -15,7 +15,8 @@
 
 <!-- You should have received a copy of the GNU General Public License -->
 <!-- along with Cook-Helper. If not, see <http://www.gnu.org/licenses/> -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0           http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
@@ -28,18 +29,15 @@
 	</parent>
 	<artifactId>cook-helper-recipe</artifactId>
 	<packaging>pom</packaging>
-	
+
 	<!-- Childs -->
 	<modules>
-		<module>model</module>
-		<module>example</module>
-		<module>data</module>
 		<module>contract</module>
-		<module>business</module>
-		<module>web</module>
-		<module>docker</module>
+		<module>microprofile</module>
+		<module>microprofile-test</module>
+		<module>ui</module>
 	</modules>
-	
+
 	<!-- General informations -->
 	<name>Cook helper project (recipe)</name>
 	<description>Projects to handle recipe stuff.</description>

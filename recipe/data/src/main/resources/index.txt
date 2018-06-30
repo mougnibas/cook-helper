@@ -1,2 +1,0 @@
-risotto.xml
-minestrone.xml
