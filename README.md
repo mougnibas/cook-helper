@@ -49,13 +49,26 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 
 ## Eclipse
 
-### Photon Release
+### Oomph project setup
+
+1) Download the project setup file : `https://raw.githubusercontent.com/mougnibas/cook-helper/master/project.setup`
+1) Run eclipse installer (advanced mode)
+   1) Product : `Eclipse.org` / `Eclipse IDE for Java EE Developers`
+   1) Project
+      1) Drag&Drop the `project.setup` file onto `Github Projects`
+      1) Check `<User>` / `Cook Helper`
+   1) Variables : Whatever you want
+   1) Confirmation
+
+### "Traditional" way
+
+#### Photon Release
 
 1) Get this eclipse release for Java EE.
 1) Checkout the git repository.
 1) Import the projects in eclipse as "Existing Maven Projects".
 
-### Eclipse checkstyle plugin (8.10.0 plugin, based on Checkstyle 8.10)
+#### Eclipse checkstyle plugin (8.10.0 plugin, based on Checkstyle 8.10)
 
 1) Open `http://eclipse-cs.sourceforge.net` in eclipse "Internal Web Brower".
 1) Drag & Drop the "install" button into eclipse, then follow the installation instructions.
@@ -63,7 +76,7 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 1) Window / Preferences / Java / Code Style / Clean Up / Activate profile, then select the new one ("eclipse-cs cook-helper")
 1) Window / Preferences / Java / Code Style / Formater / Activate profile, then select the new one ("eclipse-cs cook-helper")
 
-### Eclipse Sonarlint plugin (3.6 plugin)
+#### Eclipse Sonarlint plugin (3.6 plugin)
 
 1) Installation
    1) Open `https://marketplace.eclipse.org/content/sonarlint` in eclipse "Internal Web Brower".
@@ -127,6 +140,5 @@ Deploy docker image :
 
 # TODOs
 
-1) Create an Oomph setup.
 1) Find a way to use FindBugs in eclipse, like checkstyle and PMD plugin, with auto config using maven.
 1) maven-javadoc-plugin show errors on build.
