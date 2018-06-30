@@ -41,13 +41,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<!-- Application utilities -->
-			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-util</artifactId>
-			<version>${project.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<!-- Shoplist microprofile -->
 			<groupId>fr.mougnibas.cook-helper</groupId>
 			<artifactId>cook-helper-shoplist-microprofile</artifactId>

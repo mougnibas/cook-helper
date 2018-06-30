@@ -31,7 +31,7 @@
 	<packaging>jar</packaging>
 
 	<!-- General informations -->
-	<name>Cook helper project (recipe model)</name>
+	<name>Cook helper project (recipe contract)</name>
 	<description>Projects to handle recipe data model</description>
 
 	<dependencies>
