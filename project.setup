@@ -34,7 +34,7 @@
       id="git.clone"
       location="${installation.location/git}"
       remoteURI="https://github.com/mougnibas/cook-helper.git"
-      pushURI="ssh://git@github.com:mougnibas/cook-helper.git"/>
+      pushURI="git@github.com:mougnibas/cook-helper.git"/>
   <setupTask
       xsi:type="maven:MavenImportTask">
     <sourceLocator
