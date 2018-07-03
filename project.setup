@@ -10,7 +10,7 @@
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/maven/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Maven.ecore"
     name="cook.helper.git"
-    label="Cooh Helper">
+    label="Cook Helper">
   <setupTask
       xsi:type="jdt:JRETask"
       version="JavaSE-1.8"
@@ -144,7 +144,7 @@
     <setupTask
         xsi:type="setup:EclipseIniTask"
         option="-Doomph.redirection.cook.helper.git"
-        value="=https://raw.githubusercontent.com/mougnibas/cook-helper.git/master//project.setup->${git.clone.cook.helper.git.location|uri}//project.setup"
+        value="=https://raw.githubusercontent.com/mougnibas/cook-helper.git/master/project.setup->${git.clone.cook.helper.git.location|uri}/project.setup"
         vm="true">
       <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
     </setupTask>
