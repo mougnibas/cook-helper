@@ -33,7 +33,7 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 
 # Requirements
 
-* Maven 3.5.3
+* Maven 3.5.4
 * JDK 10.0.1
 * Windows 10 (amd64)
 * Docker 18.03.1 (or higher)
