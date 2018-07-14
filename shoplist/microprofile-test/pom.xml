@@ -41,14 +41,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<!-- Shoplist microprofile -->
-			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-shoplist-microprofile</artifactId>
-			<version>${project.version}</version>
-			<type>war</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<!-- JUnit test framework -->
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
