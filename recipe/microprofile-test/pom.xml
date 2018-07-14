@@ -41,21 +41,13 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<!-- Recipe microprofile -->
-			<groupId>fr.mougnibas.cook-helper</groupId>
-			<artifactId>cook-helper-recipe-microprofile</artifactId>
-			<version>${project.version}</version>
-			<type>war</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<!-- JUnit test framework -->
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<!-- JAX-RS client implementation -->
+			<!-- JAX-RS client implementation (Jersey Client application on JDK) -->
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
 			<scope>test</scope>

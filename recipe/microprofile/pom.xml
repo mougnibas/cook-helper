@@ -38,18 +38,21 @@
 			<!-- Eclipse MicroProfile API / JAX-RS -->
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${jaxrs-version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<!-- Eclipse MicroProfile API / CDI -->
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
+			<version>${cdi-version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<!-- Eclipse MicroProfile API / Health Check -->
 			<groupId>org.eclipse.microprofile.health</groupId>
 			<artifactId>microprofile-health-api</artifactId>
+			<version>${health-version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
