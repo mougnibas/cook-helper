@@ -5,6 +5,6 @@ module fr.mougnibas.cookhelper.recipe.contract {
   exports fr.mougnibas.cookhelper.recipe.contract.model;
   exports fr.mougnibas.cookhelper.recipe.contract.service;
 
-  // TODO Migrate to a real module when Eclipse MicroProfile will get this one
+  // TODO Migrate to a real module when it will be possible
   requires javax.ws.rs.api;
 }
