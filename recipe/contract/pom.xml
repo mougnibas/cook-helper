@@ -37,10 +37,9 @@
 	<dependencies>
 
 		<dependency>
-			<!-- Eclipse MicroProfile API -->
-			<groupId>org.eclipse.microprofile</groupId>
-			<artifactId>microprofile</artifactId>
-			<type>pom</type>
+			<!-- Eclipse MicroProfile API / JAX-RS -->
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
