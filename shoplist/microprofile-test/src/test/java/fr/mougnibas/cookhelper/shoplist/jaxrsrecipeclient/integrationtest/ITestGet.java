@@ -19,12 +19,12 @@
 
 package fr.mougnibas.cookhelper.shoplist.jaxrsrecipeclient.integrationtest;
 
-import fr.mougnibas.cookhelper.shoplist.contract.ShoplistManager;
 import fr.mougnibas.cookhelper.shoplist.contract.client.ShoplistManagerJaxRsClientImpl;
 import fr.mougnibas.cookhelper.shoplist.contract.model.FoodFamily;
 import fr.mougnibas.cookhelper.shoplist.contract.model.FoodUnit;
 import fr.mougnibas.cookhelper.shoplist.contract.model.Material;
 import fr.mougnibas.cookhelper.shoplist.contract.model.Shoplist;
+import fr.mougnibas.cookhelper.shoplist.contract.service.ShoplistManager;
 
 import org.junit.Assert;
 import org.junit.Before;

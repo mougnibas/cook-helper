@@ -1,8 +1,8 @@
 package fr.mougnibas.cookhelper.shoplist.contract.client;
 
-import fr.mougnibas.cookhelper.shoplist.contract.ShoplistManager;
 import fr.mougnibas.cookhelper.shoplist.contract.exception.FetchException;
 import fr.mougnibas.cookhelper.shoplist.contract.model.Shoplist;
+import fr.mougnibas.cookhelper.shoplist.contract.service.ShoplistManager;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
