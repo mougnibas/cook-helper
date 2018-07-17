@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Recipe informations</title>
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:viewParam name="name" value="#{recipeBean.recipe}" required="true"
+			requiredMessage="Recipe's name must be set."
+			converter="recipeConverter"
+			converterMessage="This recipe can't be displayed." />
+	</f:metadata>
+	<h:outputLabel value="#{recipeBean.recipe.name}" />
+</h:body>
+</html>
