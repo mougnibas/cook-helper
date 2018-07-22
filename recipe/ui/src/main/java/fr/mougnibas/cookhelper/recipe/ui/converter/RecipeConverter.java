@@ -1,5 +1,6 @@
 package fr.mougnibas.cookhelper.recipe.ui.converter;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -30,11 +31,10 @@ public class RecipeConverter implements Converter {
     // Try to get the recipe
     Recipe recipe = recipeManager.get(value);
 
-    // TODO Handle exception is more user friendly format
-    // (I think context or component can be used to post converter message)
     // Throw an exception if the recipe is null
     if (recipe == null) {
-      throw new FetchException("The following recipe is not found : " + value);
+      context.addMessage(null, new FacesMessage("The following recipe is not found : " + value));
+      return null;
     }
 
     // Return the recipe
@@ -43,8 +43,19 @@ public class RecipeConverter implements Converter {
 
   @Override
   public String getAsString(FacesContext context, UIComponent component, Object value) {
-    Recipe recipe = (Recipe) value;
-    return recipe.getName();
+
+    // The string to return (may be null)
+    String toReturn;
+
+    // Get the recipe name, or null
+    if (value == null) {
+      toReturn = null;
+    } else {
+      toReturn = ((Recipe) value).getName();
+    }
+
+    // Return it
+    return toReturn;
   }
 
 }

@@ -7,19 +7,90 @@
 <h:body>
 	<ui:composition template="./template.xhtml">
 
+		<f:metadata>
+			<f:viewParam name="name" value="#{recipeBean.recipe}" required="true"
+				requiredMessage="Recipe's name must be set."
+				converter="recipeConverter" />
+		</f:metadata>
+
 		<ui:define name="top">
-                Cook Helper recipe detail
-        </ui:define>
+			Cook Helper - #{recipeBean.recipe.name}
+		</ui:define>
 
 		<ui:define name="content">
 
-			<f:metadata>
-				<f:viewParam name="name" value="#{recipeBean.recipe}"
-					required="true" requiredMessage="Recipe's name must be set."
-					converter="recipeConverter"
-					converterMessage="This recipe can't be displayed." />
-			</f:metadata>
-			<h:outputLabel value="#{recipeBean.recipe.name}" />
+			<h1>#{recipeBean.recipe.name}
+				(#{recipeBean.recipe.category.name})
+				(#{recipeBean.recipe.cookMode.name})</h1>
+			<h2>Pour : #{recipeBean.recipe.numberOfPerson} personne(s)</h2>
+			<h2>Préparation : #{recipeBean.recipe.timeToPrepare} min</h2>
+			<h2>Temps de cuisson : #{recipeBean.recipe.timeToCook} min</h2>
+
+			<h2>Outils :</h2>
+			<ul>
+				<ui:repeat value="#{recipeBean.recipe.tools}" var="tool">
+					<li>#{tool.name}</li>
+				</ui:repeat>
+			</ul>
+
+			<h2>Ingrédients :</h2>
+			<ul>
+				<ui:repeat var="material" value="#{recipeBean.recipe.materials}">
+					<li>#{material.foodNumber} #{material.foodUnit.name}
+						#{material.name}</li>
+				</ui:repeat>
+			</ul>
+
+			<h2>Préparation :</h2>
+			<ul>
+				<ui:repeat var="refined"
+					value="#{recipeBean.recipe.refinedMaterials}">
+					<li>#{refined.processInstructions}</li>
+				</ui:repeat>
+			</ul>
+
+			<h2>Etape(s) :</h2>
+			<ui:repeat value="#{recipeBean.recipe.steps}" var="step">
+				<div>
+
+					<h:panelGroup rendered="#{step.programNumber != null}">
+						<p>Sélectionner #{recipeBean.recipe.cookMode.name}
+							P#{step.programNumber}</p>
+					</h:panelGroup>
+
+					<h:panelGroup rendered="#{step.programStepNumber != null}">
+						<p>Etape #{step.programStepNumber}</p>
+					</h:panelGroup>
+
+					<h:panelGroup rendered="#{step.stubClosed == true}">
+						<p>Bouchon fermé</p>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{step.stubClosed == false}">
+						<p>Bouchon ouvert</p>
+					</h:panelGroup>
+
+					<p>Outil : #{step.tool.name}</p>
+
+					<p>Mettre dans le bol :</p>
+					<ul>
+						<ui:repeat value="#{step.rawMaterials}" var="raw">
+							<li>#{raw.name}</li>
+						</ui:repeat>
+						<ui:repeat value="#{step.refinedMaterials}" var="refined">
+							<li>#{refined.name}</li>
+						</ui:repeat>
+					</ul>
+
+					<h:panelGroup rendered="#{step.instruction != null}">
+						<p>#{step.instruction}</p>
+					</h:panelGroup>
+
+					<h:panelGroup rendered="#{step.programStepNumber != null}">
+						<p>Validez</p>
+					</h:panelGroup>
+
+				</div>
+			</ui:repeat>
 
 		</ui:define>
 

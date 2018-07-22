@@ -30,13 +30,13 @@ import org.junit.Test;
  * 
  * @author Yoann
  */
-public class ITestListServlet {
+public class ITestRecipes {
 
   @Test
   public void testGet() throws MalformedURLException {
 
-    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.txt");
-    URL urlForActual = new URL("http://localhost:8090/list");
+    URL urlForExpected = getClass().getClassLoader().getResource("recipes-list-name.html");
+    URL urlForActual = new URL("http://localhost:8090/recipes.xhtml");
 
     String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
     String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
