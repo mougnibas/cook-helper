@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- © Copyright 2017-2018 Yoann MOUGNIBAS -->
+
+<!-- This file is part of Cook-Helper. -->
+
+<!-- Cook-Helper is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- Cook-Helper is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Cook-Helper. If not, see <http://www.gnu.org/licenses/ -->
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+  http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+  
+  	<!-- JSF configuration -->
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Session configuration -->
+    <!-- It's a session cookie, not a persistent cookie, so it should be OK with E.U. rules -->
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+    
+    <!-- Welcome file : List of recipes -->
+    <welcome-file-list>
+        <welcome-file>recipes.xhtml</welcome-file> 
+    </welcome-file-list>
+    
+</web-app>

@@ -32,14 +32,14 @@ import org.junit.Test;
  * 
  * @author Yoann
  */
-public class ITestRecipeServlet {
+public class ITestRecipe {
 
   @Test
   public void testGetMissingParameter() throws MalformedURLException, IOException {
 
     int expected = HttpURLConnection.HTTP_NOT_FOUND;
 
-    HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8090/recipe")
+    HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8090/recipe.xhtml")
         .openConnection();
     int actual = connection.getResponseCode();
 
@@ -52,7 +52,7 @@ public class ITestRecipeServlet {
     int expected = HttpURLConnection.HTTP_NOT_FOUND;
 
     HttpURLConnection connection = (HttpURLConnection) new URL(
-        "http://localhost:8090/recipe?name=fdshgfq").openConnection();
+        "http://localhost:8090/recipe.xhtml?name=fdshgfq").openConnection();
     int actual = connection.getResponseCode();
 
     Assert.assertEquals(expected, actual);
@@ -61,8 +61,8 @@ public class ITestRecipeServlet {
   @Test
   public void testGetRisotto() throws MalformedURLException {
 
-    URL urlForExpected = getClass().getClassLoader().getResource("recipe-risotto.txt");
-    URL urlForActual = new URL("http://localhost:8090/recipe?name=Risotto");
+    URL urlForExpected = getClass().getClassLoader().getResource("recipe-risotto.html");
+    URL urlForActual = new URL("http://localhost:8090/recipe.xhtml?name=Risotto");
 
     String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
     String actual = ReaderUtil.readResourceAsUtf8(urlForActual);
@@ -72,8 +72,8 @@ public class ITestRecipeServlet {
   @Test
   public void testGetMinestrone() throws MalformedURLException {
 
-    URL urlForExpected = getClass().getClassLoader().getResource("recipe-minestrone.txt");
-    URL urlForActual = new URL("http://localhost:8090/recipe?name=Minestrone");
+    URL urlForExpected = getClass().getClassLoader().getResource("recipe-minestrone.html");
+    URL urlForActual = new URL("http://localhost:8090/recipe.xhtml?name=Minestrone");
 
     String expected = ReaderUtil.readResourceAsUtf8(urlForExpected);
     String actual = ReaderUtil.readResourceAsUtf8(urlForActual);

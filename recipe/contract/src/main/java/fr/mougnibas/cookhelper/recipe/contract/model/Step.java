@@ -142,7 +142,7 @@ public class Step implements Serializable {
    * 
    * @return True if the stub is closed, false otherwise.
    */
-  public Boolean isStubClosed() {
+  public boolean isStubClosed() {
     return isStubClosed;
   }
 
