@@ -8,9 +8,8 @@
 	<ui:composition template="./template.xhtml">
 
 		<f:metadata>
-			<f:viewParam name="name" value="#{recipeBean.recipe}" required="true"
-				requiredMessage="Recipe's name must be set."
-				converter="recipeConverter" />
+			<f:viewParam name="name" value="#{recipeBean.recipeName}" />
+			<f:viewAction action="#{recipeBean.init}" />
 		</f:metadata>
 
 		<ui:define name="top">

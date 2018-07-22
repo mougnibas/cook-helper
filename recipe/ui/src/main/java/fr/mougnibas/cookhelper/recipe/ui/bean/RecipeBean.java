@@ -1,11 +1,15 @@
 package fr.mougnibas.cookhelper.recipe.ui.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 
 /**
  * Application bean, connected to recipe microservices.
@@ -21,10 +25,34 @@ public class RecipeBean implements Serializable {
    */
   private static final long serialVersionUID = 1L;
 
+  @Inject
+  private RecipeManager recipeManager;
+
+  private String recipeName;
+
   /**
    * Loaded recipe.
    */
   private Recipe recipe;
+
+  public void init() throws IOException {
+
+    // Recipe name is required
+    if (recipeName == null || recipeName.isEmpty()) {
+      FacesContext.getCurrentInstance().getExternalContext().responseSendError(404,
+          "Recipe's name must be set.");
+      return;
+    }
+
+    // Try to get the recipe
+    recipe = recipeManager.get(recipeName);
+
+    // A recipe is required to show the page content.
+    if (recipe == null) {
+      FacesContext.getCurrentInstance().getExternalContext().responseSendError(404,
+          "The following recipe was not found : " + recipeName);
+    }
+  }
 
   /**
    * Get the loaded recipe.
@@ -35,12 +63,11 @@ public class RecipeBean implements Serializable {
     return recipe;
   }
 
-  /**
-   * Set the recipe.
-   * 
-   * @param recipe The recipe.
-   */
-  public void setRecipe(Recipe recipe) {
-    this.recipe = recipe;
+  public String getRecipeName() {
+    return recipeName;
+  }
+
+  public void setRecipeName(String recipeName) {
+    this.recipeName = recipeName;
   }
 }
