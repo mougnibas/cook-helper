@@ -3,9 +3,11 @@ package fr.mougnibas.cookhelper.recipe.contract.client;
 import fr.mougnibas.cookhelper.recipe.contract.exception.FetchException;
 import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
 import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
+import fr.mougnibas.cookhelper.recipe.contract.util.EndpointsReader;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
+import java.net.URI;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -22,23 +24,13 @@ public class RecipeManagerJaxRsClientImpl implements RecipeManager {
   /**
    * Microservice URL.
    */
-  private String serviceUri;
+  private URI serviceUri;
 
   /**
-   * Initialize the client with the default URI.
+   * Initialize the client with the target URI defined in "endpoints.properties".
    */
   public RecipeManagerJaxRsClientImpl() {
-    this("http://cook-helper-recipe-microprofile:8080");
-  }
-
-  /**
-   * Initialize the client with a custom URI.
-   * 
-   * @param uri
-   *          custom URI.
-   */
-  public RecipeManagerJaxRsClientImpl(String uri) {
-    serviceUri = uri;
+    serviceUri = EndpointsReader.get().getTarget();
   }
 
   @Override

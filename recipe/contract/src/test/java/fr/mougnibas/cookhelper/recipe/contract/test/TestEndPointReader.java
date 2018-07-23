@@ -21,6 +21,8 @@ package fr.mougnibas.cookhelper.recipe.contract.test;
 
 import fr.mougnibas.cookhelper.recipe.contract.util.EndpointsReader;
 
+import java.net.URI;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,18 +34,10 @@ import org.junit.Test;
 public class TestEndPointReader {
 
   @Test
-  public void testGetRecipeListUrl() {
-    
-    String expected = "http://localhost:8080/cook-helper-recipe/recipe/";
-    String actual = EndpointsReader.get().getRecipeListUrl();
-    Assert.assertEquals(expected, actual);
-  }
-  
-  @Test
-  public void testGetRecipeGetUrl() {
-    
-    String expected = "http://localhost:8080/cook-helper-recipe/recipe/{SomeRecipeName}";
-    String actual = EndpointsReader.get().getRecipeGetUrl();
+  public void testGetRecipeListUrl() throws Exception {
+
+    URI expected = new URI("http", null, "cook-helper-recipe-microprofile", 8080, null, null, null);
+    URI actual = EndpointsReader.get().getTarget();
     Assert.assertEquals(expected, actual);
   }
 }
