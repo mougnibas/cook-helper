@@ -1,5 +1,8 @@
 package fr.mougnibas.cookhelper.recipe.ui.bean;
 
+import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
+
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -7,9 +10,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
-import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 
 /**
  * Application bean, connected to recipe microservices.
@@ -35,6 +35,11 @@ public class RecipeBean implements Serializable {
    */
   private Recipe recipe;
 
+  /**
+   * Initialize the recipe bean.
+   * 
+   * @throws IOException If there is something wrong sending 404 error responses.
+   */
   public void init() throws IOException {
 
     // Recipe name is required
