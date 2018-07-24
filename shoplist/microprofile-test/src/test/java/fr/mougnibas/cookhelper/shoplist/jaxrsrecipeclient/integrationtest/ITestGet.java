@@ -44,7 +44,7 @@ public class ITestGet {
 
   @Before
   public void init() {
-    shoplistManager = new ShoplistManagerJaxRsClientImpl("http://localhost:8100/");
+    shoplistManager = new ShoplistManagerJaxRsClientImpl("http", "localhost", 8100, "");
   }
 
   @Test

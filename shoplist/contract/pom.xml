@@ -33,6 +33,22 @@
 	<name>Cook helper project (shoplist contract)</name>
 	<description>Projects to handle shoplist contract</description>
 
+	<properties>
+		<endpoints.protocol>http</endpoints.protocol>
+		<endpoints.host>cook-helper-shoplist-microprofile</endpoints.host>
+		<endpoints.port>8100</endpoints.port>
+		<endpoints.webContextRoot></endpoints.webContextRoot>
+	</properties>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
 	<dependencies>
 
 		<dependency>
