@@ -1,13 +1,13 @@
 package fr.mougnibas.cookhelper.recipe.ui.bean;
 
+import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
+import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
+
 import java.io.Serializable;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import fr.mougnibas.cookhelper.recipe.contract.model.Recipe;
-import fr.mougnibas.cookhelper.recipe.contract.service.RecipeManager;
 
 /**
  * Application bean, connected to recipe microservices.

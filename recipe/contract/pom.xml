@@ -34,6 +34,22 @@
 	<name>Cook helper project (recipe contract)</name>
 	<description>Projects to handle recipe data model</description>
 
+	<properties>
+		<endpoints.protocol>http</endpoints.protocol>
+		<endpoints.host>cook-helper-recipe-microprofile</endpoints.host>
+		<endpoints.port>8080</endpoints.port>
+		<endpoints.webContextRoot></endpoints.webContextRoot>
+	</properties>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
 	<dependencies>
 		<dependency>
 			<!-- Eclipse MicroProfile API / JAX-RS -->

@@ -19,10 +19,10 @@
 
 package fr.mougnibas.cookhelper.recipe.contract.util;
 
-import fr.mougnibas.cookhelper.recipe.contract.exception.InitializationException;
+import fr.mougnibas.cookhelper.recipe.contract.exception.EndpointConfigurationException;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ResourceBundle;
 
 /**
@@ -48,14 +48,9 @@ public final class EndpointsReader {
   }
 
   /**
-   * The recipe list URL.
+   * THe target endpoint URI.
    */
-  private String recipeListUrl;
-
-  /**
-   * The recipe get URL.
-   */
-  private String recipeGetUrl;
+  private URI target;
 
   /**
    * Private constructor, for singleton pattern.
@@ -70,53 +65,32 @@ public final class EndpointsReader {
     String host = rb.getString("HOST");
     Integer port = Integer.parseInt(rb.getString("PORT"));
 
-    // Get the endpoints
-    String recipeList = rb.getString("RECIPE_LIST");
-    String recipeGet = rb.getString("RECIPE_GET");
-
     // Get the web context root
     String webContextRoot = rb.getString("WEB_CONTEXT_ROOT");
 
-    // Build the recipe list URL
+    // Generate the target URL.
     try {
-      recipeListUrl = new URL(protocol, host, port, webContextRoot + "/" + recipeList).toString();
-    } catch (MalformedURLException ex) {
-      throw new InitializationException(ex);
-    }
-
-    // Build the recipe get URL
-    try {
-      recipeGetUrl = new URL(protocol, host, port, webContextRoot + "/" + recipeGet).toString();
-    } catch (MalformedURLException ex) {
-      throw new InitializationException(ex);
+      target = new URI(protocol, null, host, port, webContextRoot, null, null);
+    } catch (URISyntaxException ex) {
+      String msg = "Can't create target endpoint URL.";
+      throw new EndpointConfigurationException(msg, ex);
     }
   }
 
   /**
-   * Get the recipe list URL.
+   * Get the target endpoint URL.
    * 
-   * @return the recipe list URL.
+   * @return The target endpoint URL.
    */
-  public String getRecipeListUrl() {
-    return recipeListUrl;
-  }
-
-  /**
-   * Get the recipe get URL.
-   * 
-   * @return the recipe get URL.
-   */
-  public String getRecipeGetUrl() {
-    return recipeGetUrl;
+  public URI getTarget() {
+    return target;
   }
 
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("EndpointsReader [recipeListUrl=");
-    builder.append(recipeListUrl);
-    builder.append(", recipeGetUrl=");
-    builder.append(recipeGetUrl);
+    builder.append("EndpointsReader [target=");
+    builder.append(target);
     builder.append("]");
     return builder.toString();
   }
