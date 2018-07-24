@@ -49,7 +49,7 @@ public class ITestRecipe {
 
   @Before
   public void init() {
-    recipeManager = new RecipeManagerJaxRsClientImpl();
+    recipeManager = new RecipeManagerJaxRsClientImpl("http", "localhost", 8080, "");
   }
 
   @Test
