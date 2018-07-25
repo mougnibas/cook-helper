@@ -51,6 +51,9 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 
 ### Oomph project setup
 
+Warning : Because Open Liberty don't seem to support `--archive` parameter with `-` in pathname,
+be sure to create a project without `-`. `_` is supported, as replacement.
+
 1) Download the project setup file : `https://raw.githubusercontent.com/mougnibas/cook-helper/master/project.setup`
 1) Run eclipse installer (advanced mode)
    1) Product : `Eclipse.org` / `Eclipse IDE for Java EE Developers`

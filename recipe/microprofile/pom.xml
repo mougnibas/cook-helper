@@ -95,6 +95,7 @@
 					<execution>
 						<!-- Package a ubber jar -->
 						<!-- WARNING : 'archive' parameter DON'T SUPPORT '-' character in path -->
+						<!-- TODO : Open a issue about it -->
 						<id>package-server</id>
 						<phase>package</phase>
 						<goals>
@@ -102,7 +103,7 @@
 						</goals>
 						<configuration>
 							<include>minify,runnable</include>
-							<packageFile>cook_helper_recipe_microprofile.jar</packageFile>
+							<packageFile>${project.build.directory}/cook_helper_recipe_microprofile.jar</packageFile>
 						</configuration>
 					</execution>
 				</executions>
