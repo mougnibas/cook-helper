@@ -94,8 +94,7 @@
 					</execution>
 					<execution>
 						<!-- Package a ubber jar -->
-						<!-- This is not working, because open liberty server seems to do nothing 
-							when "-archive" parameter is set to an absolute path -->
+						<!-- WARNING : 'archive' parameter DON'T SUPPORT '-' character in path -->
 						<id>package-server</id>
 						<phase>package</phase>
 						<goals>
@@ -103,6 +102,7 @@
 						</goals>
 						<configuration>
 							<include>minify,runnable</include>
+							<packageFile>cook_helper_recipe_microprofile.jar</packageFile>
 						</configuration>
 					</execution>
 				</executions>
