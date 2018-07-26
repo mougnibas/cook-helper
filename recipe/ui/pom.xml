@@ -39,6 +39,7 @@
 			<!-- Not MicroProfile spec : Java EE web spec -->
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<!-- contract dependency -->
@@ -201,7 +202,7 @@
 							<name>mougnibas/cook-helper-recipe-microprofile:%l</name>
 							<run>
 								<ports>
-									<port>8080:8090</port>
+									<port>8080:9080</port>
 								</ports>
 								<wait>
 									<!-- Wait for the server to be ready (health check), within 60 first 

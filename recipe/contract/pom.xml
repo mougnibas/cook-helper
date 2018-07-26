@@ -37,7 +37,7 @@
 	<properties>
 		<endpoints.protocol>http</endpoints.protocol>
 		<endpoints.host>cook-helper-recipe-microprofile</endpoints.host>
-		<endpoints.port>8080</endpoints.port>
+		<endpoints.port>9080</endpoints.port>
 		<endpoints.webContextRoot></endpoints.webContextRoot>
 	</properties>
 

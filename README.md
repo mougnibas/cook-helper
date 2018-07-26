@@ -125,8 +125,8 @@ Webservices :
 * http://localhost:8080/{recipe name}
 
 Plain text :
-* http://localhost:8090/list
-* http://localhost:8090/recipe?name=Minestrone
+* http://localhost:8090/recipes.xhtml
+* http://localhost:8090/recipe.xhtml?name=Minestrone
 
 ### Shop list microservice
 

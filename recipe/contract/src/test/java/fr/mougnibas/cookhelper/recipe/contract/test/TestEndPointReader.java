@@ -36,7 +36,7 @@ public class TestEndPointReader {
   @Test
   public void testGetRecipeListUrl() throws Exception {
 
-    URI expected = new URI("http", null, "cook-helper-recipe-microprofile", 8080, null, null, null);
+    URI expected = new URI("http", null, "cook-helper-recipe-microprofile", 9080, null, null, null);
     URI actual = EndpointsReader.get().getTarget();
     Assert.assertEquals(expected, actual);
   }
