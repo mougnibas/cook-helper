@@ -65,7 +65,6 @@
 
 	<build>
 		<plugins>
-
 			<plugin>
 				<!-- Open Libert maven plugin -->
 				<!-- Source : https://github.com/WASdev/ci.maven -->
@@ -119,9 +118,8 @@
 					<configFile>src/main/liberty/config/server.xml</configFile>
 				</configuration>
 			</plugin>
-
 			<plugin>
-				<!-- Copy the Dockerfile -->
+				<!-- Copy the Dockerfile and the ubber-jar to the docker build context -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
@@ -134,40 +132,23 @@
 							<outputDirectory>${project.build.directory}/docker-build-context</outputDirectory>
 							<resources>
 								<resource>
+									<!-- Dockerfile -->
 									<directory>${project.basedir}/src/main/docker/</directory>
 									<filtering>true</filtering>
+								</resource>
+								<resource>
+									<!-- Ubber-jar -->
+									<directory>${project.build.directory}</directory>
+									<includes>
+										<include>cook_helper_recipe_microprofile.jar</include>
+									</includes>
+
 								</resource>
 							</resources>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin> -->
-			<!-- Copy the open liberty application ubber jar to -->
-			<!-- the docker build context -->
-			<!-- <groupId>org.apache.maven.plugins</groupId> -->
-			<!-- <artifactId>maven-dependency-plugin</artifactId> -->
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <phase>package</phase> -->
-			<!-- <goals> -->
-			<!-- <goal>copy</goal> -->
-			<!-- </goals> -->
-			<!-- <configuration> -->
-			<!-- <artifactItems> -->
-			<!-- <artifactItem> -->
-			<!-- <groupId>org.wildfly.swarm.servers</groupId> -->
-			<!-- <artifactId>microprofile</artifactId> -->
-			<!-- <version>${version.wildfly-swarm}</version> -->
-			<!-- <classifier>hollowswarm</classifier> -->
-			<!-- <destFileName>wildfly-swarm-microprofile.jar</destFileName> -->
-			<!-- </artifactItem> -->
-			<!-- </artifactItems> -->
-			<!-- <outputDirectory>${project.build.directory}/docker-build-context</outputDirectory> -->
-			<!-- </configuration> -->
-			<!-- </execution> -->
-			<!-- </executions> -->
-			<!-- </plugin> -->
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>

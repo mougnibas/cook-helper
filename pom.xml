@@ -280,8 +280,7 @@
 						<executions>
 							<execution>
 								<goals>
-									<!-- ('jdk-internals 'disable because it can't resolve automodule) -->
-									<!-- <goal>jdkinternals</goal> -->
+									<goal>jdkinternals</goal>
 									<goal>test-jdkinternals</goal>
 								</goals>
 								<phase>verify</phase>
