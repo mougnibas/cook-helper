@@ -41,6 +41,24 @@
 		<endpoints.webContextRoot></endpoints.webContextRoot>
 	</properties>
 
+	<profiles>
+		<profile>
+			<!-- Eclipse configuration, when there is one single liberty server, -->
+			<!-- with all applications deployed inside. -->
+			<!-- Activated by default in eclipse -->
+			<id>eclipse</id>
+			<activation>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<properties>
+				<endpoints.host>localhost</endpoints.host>
+				<endpoints.webContextRoot>/cook-helper-recipe-microprofile</endpoints.webContextRoot>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
 		<resources>
 			<resource>
