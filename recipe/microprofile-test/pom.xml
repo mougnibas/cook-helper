@@ -95,7 +95,7 @@
 							<name>mougnibas/cook-helper-recipe-microprofile:%l</name>
 							<run>
 								<ports>
-									<port>8080:8080</port>
+									<port>8080:9080</port>
 								</ports>
 								<wait>
 									<!-- Wait for the server to be ready (health check), within 60 first seconds -->

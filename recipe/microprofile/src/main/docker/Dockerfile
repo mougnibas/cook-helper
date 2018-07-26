@@ -22,6 +22,9 @@
 # From a base java image
 FROM openjdk:8
 
+# http port is exposed here
+EXPOSE 9080
+
 # Add all current files to the build context, at this location
 COPY .  /opt/liberty/wlp/
 
