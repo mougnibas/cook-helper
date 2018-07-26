@@ -111,7 +111,7 @@
 						<!-- Open Liberty runtime to use : Microprofile -->
 						<groupId>io.openliberty</groupId>
 						<artifactId>openliberty-runtime</artifactId>
-						<version>18.0.0.2</version>
+						<version>${version.openliberty.runtime}</version>
 						<type>zip</type>
 					</assemblyArtifact>
 					<!-- Server configuration file to use -->

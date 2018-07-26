@@ -68,8 +68,8 @@
 		<!-- Don't deploy maven artifact -->
 		<maven.deploy.skip>true</maven.deploy.skip>
 
-		<!-- Wildfly-swarm version to use -->
-		<version.wildfly-swarm>2018.5.0</version.wildfly-swarm>
+		<!-- Open Liberty version to use -->
+		<version.openliberty.runtime>18.0.0.2</version.openliberty.runtime>
 
 		<!-- Don't display the repository locations of the dependencies -->
 		<!-- (to speed up the build) -->
