@@ -96,11 +96,11 @@
 							<name>mougnibas/cook-helper-shoplist-microprofile:%l</name>
 							<run>
 								<ports>
-									<port>8100:8100</port>
+									<port>8100:9080</port>
 								</ports>
 								<wait>
-									<!-- Wait for the server to be ready, within 60 first seconds -->
-									<log>WFSWARM99999: WildFly Swarm is Ready</log>
+									<!-- Wait for the server to be ready (health check), within 60 first seconds -->
+									<healthy>true</healthy>
 									<time>60000</time>
 								</wait>
 								<hostname>cook-helper-shoplist-microprofile</hostname>
@@ -119,11 +119,11 @@
 							<name>mougnibas/cook-helper-recipe-microprofile:%l</name>
 							<run>
 								<ports>
-									<port>8080:8080</port>
+									<port>8080:9080</port>
 								</ports>
 								<wait>
-									<!-- Wait for the server to be ready, within 60 first seconds -->
-									<log>WFSWARM99999: WildFly Swarm is Ready</log>
+									<!-- Wait for the server to be ready (health check), within 60 first seconds -->
+									<healthy>true</healthy>
 									<time>60000</time>
 								</wait>
 								<hostname>cook-helper-recipe-microprofile</hostname>

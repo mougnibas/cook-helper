@@ -16,28 +16,28 @@
 # along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
 
 #
-# Cook Helper recipe dockerfile
+# Cook Helper shoplist dockerfile
 #
 
 # From a base java image
-FROM openjdk:10
+FROM openjdk:8-alpine
+
+# http port is exposed here
+EXPOSE 9080
 
 # Add all current files to the build context, at this location
-COPY .  /opt/jboss/wildfly-swarm/
+COPY .  /opt/liberty/wlp/
 
-# Set workdir to wildfly swarm installation directory
-WORKDIR /opt/jboss/wildfly-swarm/
+# Set workdir to application ubber jar directory
+WORKDIR /opt/liberty/wlp/
 
 # Health check here
-# The healthcheck must be very quick(timeout 2s).
-# If the check make more than 2 seconds, then it's failed.
-# Default retries is 3
-HEALTHCHECK --interval=10s --timeout=2s CMD curl --fail http://localhost:8100/health || exit 1
+HEALTHCHECK --start-period=5s --interval=2s --timeout=1s CMD java -jar /opt/liberty/wlp/healthcheck-client.jar
 
 # Run the server
 CMD [ \
 	"java", \
-	"-jar", "wildfly-swarm-microprofile.jar", "cook-helper-shoplist-microprofile.war", \
-	"-Djava.net.preferIPv4Stack=true", \
-	"-Dswarm.port.offset=20" \
+	"-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", \
+	"-jar", \
+	"cook_helper_shoplist_microprofile.jar" \
 ]

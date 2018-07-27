@@ -66,7 +66,7 @@
 	<build>
 		<plugins>
 			<plugin>
-				<!-- Open Libert maven plugin -->
+				<!-- Open Liberty maven plugin -->
 				<!-- Source : https://github.com/WASdev/ci.maven -->
 				<groupId>net.wasdev.wlp.maven.plugins</groupId>
 				<artifactId>liberty-maven-plugin</artifactId>

@@ -105,7 +105,7 @@ be sure to create a project without `-`. `_` is supported, as replacement.
 
 `docker run --rm -it -p 8090:9080 --network=cook_helper --name cook-helper-recipe-ui             mougnibas/cook-helper-recipe-ui`
 
-`docker run --rm -it -p 8100:8100 --network=cook_helper --name cook-helper-shoplist-microprofile mougnibas/cook-helper-shoplist-microprofile`
+`docker run --rm -it -p 8100:9080 --network=cook_helper --name cook-helper-shoplist-microprofile mougnibas/cook-helper-shoplist-microprofile`
 
 `docker network rm     cook_helper`
 

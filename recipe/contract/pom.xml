@@ -34,6 +34,7 @@
 	<name>Cook helper project (recipe contract)</name>
 	<description>Projects to handle recipe data model</description>
 
+	<!-- Default endpoints properties -->
 	<properties>
 		<endpoints.protocol>http</endpoints.protocol>
 		<endpoints.host>cook-helper-recipe-microprofile</endpoints.host>
@@ -43,8 +44,7 @@
 
 	<profiles>
 		<profile>
-			<!-- Eclipse configuration, when there is one single liberty server, -->
-			<!-- with all applications deployed inside. -->
+			<!-- Eclipse configuration -->
 			<!-- Activated by default in eclipse -->
 			<id>eclipse</id>
 			<activation>
