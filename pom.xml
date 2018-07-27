@@ -29,6 +29,7 @@
 
 	<!-- Childs -->
 	<modules>
+		<module>healthcheck-client</module>
 		<module>recipe</module>
 		<module>shoplist</module>
 	</modules>

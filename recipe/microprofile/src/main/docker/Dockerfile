@@ -21,7 +21,7 @@
 
 # From a base java image
 # (Alpine is smaller than slim, but java agent with open liberty is not working on alpine)
-FROM openjdk:8
+FROM openjdk:8-alpine
 
 # http port is exposed here
 EXPOSE 9080
@@ -33,10 +33,7 @@ COPY .  /opt/liberty/wlp/
 WORKDIR /opt/liberty/wlp/
 
 # Health check here
-# The healthcheck must be very quick(timeout 2s).
-# If the check make more than 2 seconds, then it's failed.
-# Default retries is 3
-HEALTHCHECK --interval=10s --timeout=2s CMD curl --fail http://localhost:9080/health || exit 1
+HEALTHCHECK --start-period=5s --interval=2s --timeout=1s CMD java -jar /opt/liberty/wlp/healthcheck-client.jar
 
 # Run the server
 CMD [ \

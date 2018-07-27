@@ -142,9 +142,32 @@
 									<includes>
 										<include>cook_helper_recipe_microprofile.jar</include>
 									</includes>
-
 								</resource>
 							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Also copy the healthcheck custom client -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>healthcheck-client</artifactId>
+									<version>${project.version}</version>
+									<outputDirectory>${project.build.directory}/docker-build-context</outputDirectory>
+									<destFileName>healthcheck-client.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
 						</configuration>
 					</execution>
 				</executions>

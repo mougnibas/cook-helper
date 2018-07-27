@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Mimic Eclipse MicroProfile HealthCheck 1.0 specification.
+ * 
+ * @author Yoann MOUGNIBAS
+ */
 @WebServlet("/health")
 public class HealthServlet extends HttpServlet {
 
@@ -18,7 +23,7 @@ public class HealthServlet extends HttpServlet {
    * Generated serial number.
    */
   private static final long serialVersionUID = 1432990186646825568L;
-  
+
   /**
    * Class logger.
    */
@@ -36,15 +41,16 @@ public class HealthServlet extends HttpServlet {
     try {
 
       PrintWriter writer = response.getWriter();
-      writer.println("I'm alive!");
+      writer.println("{\"checks\":[{\"data\":{},\"name\":\"successful-check\",\"state\":\"UP\"}],"
+          + "\"outcome\":\"UP\"}");
       response.flushBuffer();
 
     } catch (IOException ex) {
-      
+
       // Log the exception
       String msg = "response write exception";
       LOGGER.log(Level.SEVERE, msg, ex);
-      
+
       // Send a http 500 code
       response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
