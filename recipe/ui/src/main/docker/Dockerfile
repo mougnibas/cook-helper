@@ -20,7 +20,6 @@
 #
 
 # From a base java image
-# (Alpine is smaller than slim, but java agent with open liberty is not working on alpine)
 FROM openjdk:8-alpine
 
 # http port is exposed here
