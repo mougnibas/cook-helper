@@ -17,9 +17,28 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
+package fr.mougnibas.cookhelper.shoplist.contract.test;
+
+import fr.mougnibas.cookhelper.shoplist.contract.util.EndpointsReader;
+
+import java.net.URI;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
- * Handle jaxrs restfull webservice.
+ * Very basic unit test of EndPointReader class.
  * 
  * @author Yoann
  */
-package fr.mougnibas.cookhelper.recipe.microprofile.jaxrs;
+public class TestEndPointReader {
+
+  @Test
+  public void testGetRecipeListUrl() throws Exception {
+
+    URI expected = new URI("http", null, "cook-helper-shoplist-microprofile", 9080, null, null,
+        null);
+    URI actual = EndpointsReader.get().getTarget();
+    Assert.assertEquals(expected, actual);
+  }
+}

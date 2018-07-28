@@ -29,6 +29,7 @@
 
 	<!-- Childs -->
 	<modules>
+		<module>healthcheck-client</module>
 		<module>recipe</module>
 		<module>shoplist</module>
 	</modules>
@@ -56,8 +57,10 @@
 
 	<properties>
 
-		<!-- Same java level for both source and target : Java 10 -->
-		<maven.compiler.release>10</maven.compiler.release>
+		<!-- Same java level for both source and target : Java 8 -->
+		<!-- <maven.compiler.release>10</maven.compiler.release> -->
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 
 		<!-- File encoding is UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -66,8 +69,8 @@
 		<!-- Don't deploy maven artifact -->
 		<maven.deploy.skip>true</maven.deploy.skip>
 
-		<!-- Wildfly-swarm version to use -->
-		<version.wildfly-swarm>2018.5.0</version.wildfly-swarm>
+		<!-- Open Liberty version to use -->
+		<version.openliberty.runtime>18.0.0.2</version.openliberty.runtime>
 
 		<!-- Don't display the repository locations of the dependencies -->
 		<!-- (to speed up the build) -->
@@ -115,10 +118,13 @@
 							<!-- https://dmp.fabric8.io/ -->
 							<groupId>io.fabric8</groupId>
 							<artifactId>docker-maven-plugin</artifactId>
-							<version>0.23.0</version>
-							<configuration>
-								<useColor>false</useColor>
-							</configuration>
+							<version>0.26.1</version>
+						</plugin>
+						<plugin>
+							<!-- Websphere Liberty maven plugin -->
+							<groupId>net.wasdev.wlp.maven.plugins</groupId>
+							<artifactId>liberty-maven-plugin</artifactId>
+							<version>2.5</version>
 						</plugin>
 					</plugins>
 				</pluginManagement>
@@ -130,7 +136,7 @@
 						<!-- (UI stuff like Servlet and JSF) -->
 						<groupId>javax</groupId>
 						<artifactId>javaee-web-api</artifactId>
-						<version>7.0</version>
+						<version>8.0</version>
 					</dependency>
 					<dependency>
 						<!-- JAX-RS client implementation -->
@@ -275,8 +281,7 @@
 						<executions>
 							<execution>
 								<goals>
-									<!-- ('jdk-internals 'disable because it can't resolve automodule) -->
-									<!-- <goal>jdkinternals</goal> -->
+									<goal>jdkinternals</goal>
 									<goal>test-jdkinternals</goal>
 								</goals>
 								<phase>verify</phase>
@@ -299,7 +304,7 @@
 											<version>[3.5.4]</version>
 										</requireMavenVersion>
 										<requireJavaVersion>
-											<version>[10.0.2]</version>
+											<version>[1.8.0-121]</version>
 										</requireJavaVersion>
 										<requireOS>
 											<name>windows 10</name>

@@ -34,9 +34,9 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 # Requirements
 
 * Maven 3.5.4
-* JDK 10.0.2
+* JDK 1.8.0_121
 * Windows 10 (amd64)
-* Docker 18.03.1 (or higher)
+* Docker 18.06.0 (or higher)
 * DOCKER_HOST environment variable (example : `tcp://localhost:2375` or `tcp://localhost:2376`)
 
 # Setup
@@ -50,6 +50,9 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 ## Eclipse
 
 ### Oomph project setup
+
+Warning : Because Open Liberty don't seem to support `--archive` parameter with `-` in pathname,
+be sure to create a project without `-`. `_` is supported, as replacement.
 
 1) Download the project setup file : `https://raw.githubusercontent.com/mougnibas/cook-helper/master/project.setup`
 1) Run eclipse installer (advanced mode)
@@ -98,11 +101,11 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 
 `docker network create cook_helper`
 
-`docker run --rm -it -p 8080:8080 --network=cook_helper --name cook-helper-recipe-microprofile   mougnibas/cook-helper-recipe-microprofile`
+`docker run --rm -it -p 8080:9080 --network=cook_helper --name cook-helper-recipe-microprofile   mougnibas/cook-helper-recipe-microprofile`
 
-`docker run --rm -it -p 8090:8090 --network=cook_helper --name cook-helper-recipe-ui             mougnibas/cook-helper-recipe-ui`
+`docker run --rm -it -p 8090:9080 --network=cook_helper --name cook-helper-recipe-ui             mougnibas/cook-helper-recipe-ui`
 
-`docker run --rm -it -p 8100:8100 --network=cook_helper --name cook-helper-shoplist-microprofile mougnibas/cook-helper-shoplist-microprofile`
+`docker run --rm -it -p 8100:9080 --network=cook_helper --name cook-helper-shoplist-microprofile mougnibas/cook-helper-shoplist-microprofile`
 
 `docker network rm     cook_helper`
 
@@ -122,8 +125,8 @@ Webservices :
 * http://localhost:8080/{recipe name}
 
 Plain text :
-* http://localhost:8090/list
-* http://localhost:8090/recipe?name=Minestrone
+* http://localhost:8090/recipes.xhtml
+* http://localhost:8090/recipe.xhtml?name=Minestrone
 
 ### Shop list microservice
 

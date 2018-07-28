@@ -17,7 +17,7 @@
   along with Cook-Helper. If not, see <http://www.gnu.org/licenses/>
  */
 
-package fr.mougnibas.cookhelper.recipe.web.integrationtest;
+package fr.mougnibas.cookhelper.recipe.web.integrationtest.util;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

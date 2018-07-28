@@ -58,7 +58,7 @@ public final class EndpointsReader {
   private EndpointsReader() {
 
     // Get a resource bundle
-    ResourceBundle rb = ResourceBundle.getBundle("endpoints");
+    ResourceBundle rb = ResourceBundle.getBundle("endpoints-recipe");
 
     // Get server host data
     String protocol = rb.getString("PROTOCOL");

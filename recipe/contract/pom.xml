@@ -34,12 +34,30 @@
 	<name>Cook helper project (recipe contract)</name>
 	<description>Projects to handle recipe data model</description>
 
+	<!-- Default endpoints properties -->
 	<properties>
 		<endpoints.protocol>http</endpoints.protocol>
 		<endpoints.host>cook-helper-recipe-microprofile</endpoints.host>
-		<endpoints.port>8080</endpoints.port>
+		<endpoints.port>9080</endpoints.port>
 		<endpoints.webContextRoot></endpoints.webContextRoot>
 	</properties>
+
+	<profiles>
+		<profile>
+			<!-- Eclipse configuration -->
+			<!-- Activated by default in eclipse -->
+			<id>eclipse</id>
+			<activation>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<properties>
+				<endpoints.host>localhost</endpoints.host>
+				<endpoints.webContextRoot>/cook-helper-recipe-microprofile</endpoints.webContextRoot>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<resources>
