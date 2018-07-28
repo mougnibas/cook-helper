@@ -58,8 +58,7 @@ public final class EndpointsReader {
   private EndpointsReader() {
 
     // Get a resource bundle
-    // FIXME Rename "endpoints.properties" to "endpoints-recipe.properties"
-    ResourceBundle rb = ResourceBundle.getBundle("endpoints");
+    ResourceBundle rb = ResourceBundle.getBundle("endpoints-shoplist");
 
     // Get server host data
     String protocol = rb.getString("PROTOCOL");
