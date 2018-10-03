@@ -1,4 +1,4 @@
-package fr.mougnibas.cook_helper.cookhelper.fr.mougnibas.android.ui.splashscreen;
+package fr.mougnibas.cookhelper.android.ui.splashscreen;
 
 import android.arch.lifecycle.ViewModel;
 

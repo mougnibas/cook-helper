@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cook Helper</string>
+    <string name="loading_stuff">Default loading text value</string>
 </resources>

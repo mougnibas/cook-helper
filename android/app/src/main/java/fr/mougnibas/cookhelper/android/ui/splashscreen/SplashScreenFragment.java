@@ -1,4 +1,4 @@
-package fr.mougnibas.cook_helper.cookhelper.fr.mougnibas.android.ui.splashscreen;
+package fr.mougnibas.cookhelper.android.ui.splashscreen;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import fr.mougnibas.cook_helper.cookhelper.R;
+import fr.mougnibas.cookhelper.R;
 
 public class SplashScreenFragment extends Fragment {
 
