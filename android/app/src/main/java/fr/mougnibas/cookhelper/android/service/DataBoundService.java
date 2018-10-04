@@ -1,4 +1,4 @@
-package fr.mougnibas.cookhelper.android;
+package fr.mougnibas.cookhelper.android.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 
 /**
  * A bound service, used to read data from the application internal file storage.
@@ -55,7 +56,7 @@ public class DataBoundService extends Service {
      * Get the service result.
      * @return the service result.
      */
-    public  String getResult() {
+    public String getResult() {
 
         // Read the result from internal file only once (cache it)
         if (result == null) {
@@ -90,7 +91,7 @@ public class DataBoundService extends Service {
      * Local binder, used by UI to access this service.
      */
     public class LocalBinder extends Binder {
-        DataBoundService getService() {
+        public DataBoundService getService() {
             return DataBoundService.this;
         }
     }

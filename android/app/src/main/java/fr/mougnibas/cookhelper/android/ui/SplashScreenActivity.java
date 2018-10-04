@@ -1,21 +1,22 @@
-package fr.mougnibas.cookhelper.android;
+package fr.mougnibas.cookhelper.android.ui;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.widget.TextView;
 
-import fr.mougnibas.cookhelper.R;
-import fr.mougnibas.cookhelper.android.ui.splashscreen.SplashScreenFragment;
+import fr.mougnibas.cookhelper.android.R;
+import fr.mougnibas.cookhelper.android.service.DataBackgroundService;
+import fr.mougnibas.cookhelper.android.service.DataBoundService;
 
 /**
  * The application's splash screen activity.
  */
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends Activity {
 
     /**
      * Class tag, for logging.
@@ -38,17 +39,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         // Some logging
         Log.i(TAG, "onCreate (begin)");
 
-        // Base stuff to do
+        // Base stuff
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen_activity);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, SplashScreenFragment.newInstance())
-                    .commitNow();
-        }
 
-        // Start the data background service
-        startService(new Intent(SplashScreenActivity.this, DataBackgroundService.class));
+        // Set the content view
+        setContentView(R.layout.activity_splash_screen);
 
         // Some logging
         Log.i(TAG, "onCreate (end)");
@@ -66,6 +61,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         // Change UI label value
         TextView textView = findViewById(R.id.splash_text);
         textView.setText("Loading data...");
+
+        // Start the data background service
+        startService(new Intent(SplashScreenActivity.this, DataBackgroundService.class));
 
         // Some logging
         Log.i(TAG, "onStart (end)");

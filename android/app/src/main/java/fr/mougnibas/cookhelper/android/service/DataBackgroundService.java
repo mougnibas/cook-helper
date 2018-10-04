@@ -1,4 +1,4 @@
-package fr.mougnibas.cookhelper.android;
+package fr.mougnibas.cookhelper.android.service;
 
 import android.app.IntentService;
 import android.app.Service;
