@@ -59,6 +59,7 @@ public class SplashScreenActivity extends Activity {
         super.onStart();
 
         // Change UI label value
+        // TODO Use AsyncTask to update the loading bar
         TextView textView = findViewById(R.id.splash_text);
         textView.setText("Loading data...");
 
