@@ -4,9 +4,12 @@ import android.app.IntentService;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Binder;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -26,6 +29,11 @@ public class DataService extends IntentService {
     public DataService() {
         super(DataService.class.getName());
     }
+
+    /**
+     * The data retrieved from an online source.
+     */
+    private String result;
 
     @Override
     public void onCreate() {
@@ -68,12 +76,18 @@ public class DataService extends IntentService {
             // Simulate heavy IO wait
             Thread.sleep(5 * 1000);
 
+            // Fake data
+            String fakeData = "Awesome work";
+
             // Data file write
             File file = new File(getApplicationContext().getFilesDir(), "data.txt");
             PrintWriter writer = new PrintWriter(file);
-            writer.println("Awesome work");
+            writer.println(fakeData);
             writer.flush();
             writer.close();
+
+            // Put the result in cache
+            result = fakeData;
 
         } catch (InterruptedException ex) {
             Log.e(TAG, "something go wrong while trying to pause the thread", ex);
@@ -88,6 +102,38 @@ public class DataService extends IntentService {
         Log.i(TAG, "onHandleIntent (end)");
     }
 
+    /**
+     * Get the service result.
+     *
+     * @return the service result.
+     */
+    public String getResult() {
+
+        // Some logging
+        Log.i(TAG, "getResult (begin)");
+
+        // The result must be fetched. Throw an exception if it's not the case.
+        if (result == null) {
+
+            // Create an exception
+            String msg = "This method is not supposed to be called before the service has not" +
+                    "finished to handle the intent";
+            RuntimeException ex = new RuntimeException(msg);
+
+            // Log it
+            Log.e(TAG, msg, ex);
+
+            // Throw it
+            throw ex;
+        }
+
+        // Some logging
+        Log.i(TAG, "getResult (end)");
+
+        // Return the result
+        return result;
+    }
+
     @Override
     public void onDestroy() {
 
@@ -99,5 +145,14 @@ public class DataService extends IntentService {
 
         // Some logging
         Log.i(TAG, "onDestroy (end)");
+    }
+
+    /**
+     * Local binder, used by UI to access this service.
+     */
+    public class LocalBinder extends Binder {
+        public DataService getService() {
+            return DataService.this;
+        }
     }
 }

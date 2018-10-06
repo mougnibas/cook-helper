@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import fr.mougnibas.cookhelper.android.R;
 import fr.mougnibas.cookhelper.android.service.DataService;
-import fr.mougnibas.cookhelper.android.service.DataBoundService;
 
 /**
  * The application's splash screen activity.
@@ -31,7 +30,7 @@ public class SplashScreenActivity extends Activity {
     /**
      * Service instance.
      */
-    private DataBoundService dataBoundService;
+    private DataService dataservice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +62,7 @@ public class SplashScreenActivity extends Activity {
         TextView textView = findViewById(R.id.splash_text);
         textView.setText("Loading data...");
 
-        // Start the data background service
+        // Ask the data service to start to work
         startService(new Intent(SplashScreenActivity.this, DataService.class));
 
         // Some logging
@@ -76,7 +75,7 @@ public class SplashScreenActivity extends Activity {
     private void doUnbindService() {
 
         // Unbind the service
-        if (dataBoundService != null)
+        if (dataservice != null)
         {
             unbindService(myServiceConnection);
         }
@@ -107,7 +106,7 @@ public class SplashScreenActivity extends Activity {
         public void onServiceConnected(ComponentName name, IBinder service) {
 
             // Get service instance. This will ALWAYS be this class instance.
-            dataBoundService = ((DataBoundService.LocalBinder) service).getService();
+            dataservice = ((DataService.LocalBinder) service).getService();
 
             // Logging
             Log.i(INNER_TAG, "onServiceConnected");
@@ -117,7 +116,7 @@ public class SplashScreenActivity extends Activity {
         public void onServiceDisconnected(ComponentName name) {
 
             // Dereference the service
-            dataBoundService = null;
+            dataservice = null;
 
             // Logging
             Log.i(INNER_TAG, "onServiceDisconnected");
