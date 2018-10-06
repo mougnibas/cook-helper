@@ -1,8 +1,6 @@
 package fr.mougnibas.cookhelper.android.service;
 
-import android.app.IntentService;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
@@ -42,43 +40,25 @@ public class DataService extends Service {
         // Some logging
         Log.i(TAG, "onCreate (begin)");
 
-        // Some heavy stuff to do
-        try {
+        // The file filled with online data
+        File dataFile = new File(getApplicationContext().getFilesDir(), "data.txt");
 
-            // The file filled with online data
-            File file = new File(getApplicationContext().getFilesDir(), "data.txt");
+        // If the file already exist, just read it.
+        // TODO Handle the case when online data has changed. Timestamp cache validity may be a solution
+        if (dataFile.exists()) {
 
-            // If the file already exist, just read it.
-            // TODO Handle the case when online data has changed. Timestamp cache validity may be a solution
-            if (file.exists()) {
-
-                // Just read the unique first line
-                BufferedReader reader = new BufferedReader(new FileReader(file));
+            // Just read the unique first line
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(dataFile));
                 result = reader.readLine();
-
-            } else {
-
-                // The file don't exist. Fetch it online
-                // Simulate heavy IO wait
-                Thread.sleep(5 * 1000);
-
-                // Fake data
-                String fakeData = "Awesome work";
-
-                // Data file write
-                PrintWriter writer = new PrintWriter(file);
-                writer.println(fakeData);
-                writer.flush();
-                writer.close();
-
-                // Put the result in cache
-                result = fakeData;
+            } catch (IOException ex) {
+                Log.e(TAG, "something go wrong while trying to write the file", ex);
             }
 
-        } catch (InterruptedException ex) {
-            Log.e(TAG, "something go wrong while trying to pause the thread", ex);
-        } catch (IOException ex) {
-            Log.e(TAG, "something go wrong while trying to write the file", ex);
+        } else {
+
+            // Start a new worker thread, to not block the UI thread
+            new Thread(new FetchOnlineData()).start();
         }
 
         // Call the superclass method
@@ -98,7 +78,7 @@ public class DataService extends Service {
         IBinder result = binder;
 
         // Some logging
-        Log.i(TAG, "onBind (begin)");
+        Log.i(TAG, "onBind (end)");
 
         // Return the result
         return result;
@@ -155,6 +135,44 @@ public class DataService extends Service {
     public class LocalBinder extends Binder {
         public DataService getService() {
             return DataService.this;
+        }
+    }
+
+    /**
+     * A runnable task to fetch online data
+     */
+    private class FetchOnlineData implements Runnable {
+
+        @Override
+        public void run() {
+
+            // Some heavy stuff to do
+            try {
+
+                // The file filled with online data
+                File dataFile = new File(getApplicationContext().getFilesDir(), "data.txt");
+
+                // The file don't exist. Fetch it online
+                // Simulate heavy IO wait
+                Thread.sleep(5 * 1000);
+
+                // Fake data
+                String fakeData = "Awesome work";
+
+                // Data file write
+                PrintWriter writer = new PrintWriter(dataFile);
+                writer.println(fakeData);
+                writer.flush();
+                writer.close();
+
+                // Put the result in cache
+                result = fakeData;
+
+            } catch (InterruptedException ex) {
+                Log.e(TAG, "something go wrong while trying to pause the thread", ex);
+            } catch (IOException ex) {
+                Log.e(TAG, "something go wrong while trying to write the file", ex);
+            }
         }
     }
 }
