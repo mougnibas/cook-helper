@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.IBinder;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -15,8 +16,10 @@ import java.io.PrintWriter;
 
 /**
  * An intent service used to handle application data, like fetching from an online source, retrieve it for views or manage a cache.
+ * This service is intent to be ran indefinitely, because Activities start it AND bind to it.
+ * Because of this, the service will NOT be destroyed when all clients unbind to it.
  */
-public class DataService extends IntentService {
+public class DataService extends Service {
 
     /**
      * Class tag.
@@ -24,11 +27,9 @@ public class DataService extends IntentService {
     private static final String TAG = DataService.class.getName();
 
     /**
-     * No-arg constructor, required by the api.
+     * Local binder.
      */
-    public DataService() {
-        super(DataService.class.getName());
-    }
+    private IBinder binder = new LocalBinder();
 
     /**
      * The data retrieved from an online source.
@@ -40,35 +41,6 @@ public class DataService extends IntentService {
 
         // Some logging
         Log.i(TAG, "onCreate (begin)");
-
-        // Call the superclass method
-        super.onCreate();
-
-        // Some logging
-        Log.i(TAG, "onCreate (end)");
-    }
-
-    /**
-     * This method is invoked on the worker thread with a request to process.
-     * Only one Intent is processed at a time, but the processing happens on a
-     * worker thread that runs independently from other application logic.
-     * So, if this code takes a long time, it will hold up other requests to
-     * the same IntentService, but it will not hold up anything else.
-     * When all requests have been handled, the IntentService stops itself,
-     * so you should not call {@link #stopSelf}.
-     *
-     * @param intent The value passed to {@link
-     *               Context#startService(Intent)}.
-     *               This may be null if the service is being restarted after
-     *               its process has gone away; see
-     *               {@link Service#onStartCommand}
-     *               for details.
-     */
-    @Override
-    protected void onHandleIntent(Intent intent) {
-
-        // Some logging
-        Log.i(TAG, "onHandleIntent (begin)");
 
         // Some heavy stuff to do
         try {
@@ -109,11 +81,27 @@ public class DataService extends IntentService {
             Log.e(TAG, "something go wrong while trying to write the file", ex);
         }
 
-        // Job is done. Can be stopped.
-        stopSelf();
+        // Call the superclass method
+        super.onCreate();
 
         // Some logging
-        Log.i(TAG, "onHandleIntent (end)");
+        Log.i(TAG, "onCreate (end)");
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+
+        // Some logging
+        Log.i(TAG, "onBind (begin)");
+
+        // Do the work
+        IBinder result = binder;
+
+        // Some logging
+        Log.i(TAG, "onBind (begin)");
+
+        // Return the result
+        return result;
     }
 
     /**
