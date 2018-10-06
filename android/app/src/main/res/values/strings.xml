@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Cook Helper</string>
-    <string name="loading_stuff">Default loading text value</string>
+    <string name="loading_stuff">This line will change once the loading process will start.</string>
+    <string name="loading_result">This line will change once loading is complete...</string>
 </resources>

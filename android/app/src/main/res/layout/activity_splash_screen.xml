@@ -31,6 +31,16 @@
             tools:layout_editor_absoluteX="wrap_content"
             tools:layout_editor_absoluteY="wrap_content" />
 
+        <TextView
+            android:id="@+id/splash_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_result"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
