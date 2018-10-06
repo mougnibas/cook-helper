@@ -11,30 +11,33 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * A foreground task used to fill the application internal file storage from an online source.
+ * An intent service used to handle application data, like fetching from an online source, retrieve it for views or manage a cache.
  */
-public class DataBackgroundService extends IntentService {
+public class DataService extends IntentService {
 
     /**
      * Class tag.
      */
-    private static final String TAG = DataBackgroundService.class.getName();
+    private static final String TAG = DataService.class.getName();
 
     /**
      * No-arg constructor, required by the api.
      */
-    public DataBackgroundService() {
-        super("DataBackgroundService");
+    public DataService() {
+        super(DataService.class.getName());
     }
 
     @Override
     public void onCreate() {
 
+        // Some logging
+        Log.i(TAG, "onCreate (begin)");
+
         // Call the superclass method
         super.onCreate();
 
         // Some logging
-        Log.i(TAG, "onCreate");
+        Log.i(TAG, "onCreate (end)");
     }
 
     /**
@@ -78,7 +81,7 @@ public class DataBackgroundService extends IntentService {
             Log.e(TAG, "something go wrong while trying to write the file", ex);
         }
 
-        // Job is done. Can be stopped
+        // Job is done. Can be stopped.
         stopSelf();
 
         // Some logging
@@ -88,10 +91,13 @@ public class DataBackgroundService extends IntentService {
     @Override
     public void onDestroy() {
 
+        // Some logging
+        Log.i(TAG, "onDestroy (begin)");
+
         // Call the superclass method
         super.onDestroy();
 
         // Some logging
-        Log.i(TAG, "onDestroy");
+        Log.i(TAG, "onDestroy (end)");
     }
 }

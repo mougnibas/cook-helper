@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".service.DataBackgroundService" />
+        <service android:name=".service.DataService" />
         <service android:name=".service.DataBoundService" />
     </application>
 

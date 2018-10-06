@@ -10,7 +10,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import fr.mougnibas.cookhelper.android.R;
-import fr.mougnibas.cookhelper.android.service.DataBackgroundService;
+import fr.mougnibas.cookhelper.android.service.DataService;
 import fr.mougnibas.cookhelper.android.service.DataBoundService;
 
 /**
@@ -64,7 +64,7 @@ public class SplashScreenActivity extends Activity {
         textView.setText("Loading data...");
 
         // Start the data background service
-        startService(new Intent(SplashScreenActivity.this, DataBackgroundService.class));
+        startService(new Intent(SplashScreenActivity.this, DataService.class));
 
         // Some logging
         Log.i(TAG, "onStart (end)");
