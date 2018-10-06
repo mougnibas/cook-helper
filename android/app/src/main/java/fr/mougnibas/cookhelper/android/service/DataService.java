@@ -73,21 +73,35 @@ public class DataService extends IntentService {
         // Some heavy stuff to do
         try {
 
-            // Simulate heavy IO wait
-            Thread.sleep(5 * 1000);
-
-            // Fake data
-            String fakeData = "Awesome work";
-
-            // Data file write
+            // The file filled with online data
             File file = new File(getApplicationContext().getFilesDir(), "data.txt");
-            PrintWriter writer = new PrintWriter(file);
-            writer.println(fakeData);
-            writer.flush();
-            writer.close();
 
-            // Put the result in cache
-            result = fakeData;
+            // If the file already exist, just read it.
+            // TODO Handle the case when online data has changed. Timestamp cache validity may be a solution
+            if (file.exists()) {
+
+                // Just read the unique first line
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                result = reader.readLine();
+
+            } else {
+
+                // The file don't exist. Fetch it online
+                // Simulate heavy IO wait
+                Thread.sleep(5 * 1000);
+
+                // Fake data
+                String fakeData = "Awesome work";
+
+                // Data file write
+                PrintWriter writer = new PrintWriter(file);
+                writer.println(fakeData);
+                writer.flush();
+                writer.close();
+
+                // Put the result in cache
+                result = fakeData;
+            }
 
         } catch (InterruptedException ex) {
             Log.e(TAG, "something go wrong while trying to pause the thread", ex);
