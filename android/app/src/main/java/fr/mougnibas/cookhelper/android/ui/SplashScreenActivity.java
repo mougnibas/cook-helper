@@ -5,9 +5,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import fr.mougnibas.cookhelper.android.R;
@@ -31,7 +33,7 @@ public class SplashScreenActivity extends Activity {
     /**
      * Service connection instance.
      */
-    private DataServiceConnection dataServiceConnection ;
+    private DataServiceConnection dataServiceConnection;
 
     /**
      * Service instance.
@@ -67,10 +69,15 @@ public class SplashScreenActivity extends Activity {
         // Call the super-method
         super.onStart();
 
-        // Change UI label value
-        // TODO Use AsyncTask to update the loading bar
+
         TextView textView = findViewById(R.id.splash_text);
         textView.setText("Loading data...");
+
+        // Change UI label value
+        // Use AsyncTask to update the loading bar and the result text view
+        TextView textTextView = findViewById(R.id.splash_text);
+        textTextView.setText("Loading in progress"); // TODO use strings.xml
+        new UpdateLoadStatusTask().execute();
 
         // Ask the data service to start to work
         startService(dataServiceIntent);
@@ -161,7 +168,81 @@ public class SplashScreenActivity extends Activity {
             dataservice = null;
 
             // Some logging
-            Log.i(INNER_TAG, "onServiceDisconnected (begin)");
+            Log.i(INNER_TAG, "onServiceDisconnected (end)");
+        }
+    }
+
+    /**
+     * An async task used to update the UI about the download status.
+     */
+    private class UpdateLoadStatusTask extends AsyncTask<Void, Integer, String> {
+
+        /**
+         * Inner class tag, for logging.
+         */
+        private final String INNER_TAG = UpdateLoadStatusTask.class.getName();
+
+        /**
+         * Get the data service result.
+         * The result may be null for various reasons (service not stated, not finished...).
+         * If the result is null, then the download is not finished.
+         * If the result is not null, the download is finished.
+         * Please note that the service itself may be null, waiting to become initialized.
+         *
+         * @param voids
+         * @return
+         */
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            // Some logging
+            Log.i(INNER_TAG, "doInBackground (begin)");
+
+            // Wait for data service to be bound
+            while (dataservice == null) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Log.e(INNER_TAG, "Exception while thead wait for service to be bound", e);
+                }
+            }
+
+            // Wait for the data service result to be available
+            while (!dataservice.isAvailable()) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Log.e(INNER_TAG, "Exception while thead wait for service to be available", e);
+                }
+            }
+            String result = dataservice.getResult();
+
+            // Some logging
+            Log.i(INNER_TAG, "doInBackground (end)");
+
+            // Return the result
+            return result;
+        }
+
+        /**
+         * Update the UI (front text, progress bar and result text ).
+         *
+         * @param result The final result.
+         */
+        @Override
+        protected void onPostExecute(String result) {
+
+            // Update the front text view
+            TextView textView = findViewById(R.id.splash_text);
+            textView.setText("Download is complete");
+
+            // Update the progress bar
+            ProgressBar progressBar = findViewById(R.id.progressBar);
+            progressBar.setProgress(100);
+
+            // Update the result text view
+            TextView resultTextView = findViewById(R.id.splash_result);
+            resultTextView.setText(result);
         }
     }
 }

@@ -85,7 +85,29 @@ public class DataService extends Service {
     }
 
     /**
+     * Return true if the data is available, false otherwise.
+     *
+     * @return true if the data is available, false otherwise.
+     */
+    public boolean isAvailable() {
+
+        // Some logging
+        Log.i(TAG, "isAvailable (begin)");
+
+        // Do the work
+        boolean isAvailable = (result != null);
+
+        // Some logging
+        Log.i(TAG, "isAvailable (end)");
+
+        // Return the result
+        return isAvailable;
+
+    }
+
+    /**
      * Get the service result.
+     * One should call "isAvailable()" method, to be sure the data is available BEFORE calling this method.
      *
      * @return the service result.
      */
@@ -99,7 +121,7 @@ public class DataService extends Service {
 
             // Create an exception
             String msg = "This method is not supposed to be called before the service has not" +
-                    "finished to handle the intent";
+                    " finished to handle the intent";
             RuntimeException ex = new RuntimeException(msg);
 
             // Log it
