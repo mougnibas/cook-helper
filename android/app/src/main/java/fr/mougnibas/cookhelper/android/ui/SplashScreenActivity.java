@@ -69,14 +69,10 @@ public class SplashScreenActivity extends Activity {
         // Call the super-method
         super.onStart();
 
-
-        TextView textView = findViewById(R.id.splash_text);
-        textView.setText("Loading data...");
-
         // Change UI label value
         // Use AsyncTask to update the loading bar and the result text view
         TextView textTextView = findViewById(R.id.splash_text);
-        textTextView.setText("Loading in progress"); // TODO use strings.xml
+        textTextView.setText(getString(R.string.loading_status_begin));
         new UpdateLoadStatusTask().execute();
 
         // Ask the data service to start to work
@@ -189,8 +185,8 @@ public class SplashScreenActivity extends Activity {
          * If the result is not null, the download is finished.
          * Please note that the service itself may be null, waiting to become initialized.
          *
-         * @param voids
-         * @return
+         * @param voids (not used)
+         * @return The data service result.
          */
         @Override
         protected String doInBackground(Void... voids) {
@@ -234,7 +230,7 @@ public class SplashScreenActivity extends Activity {
 
             // Update the front text view
             TextView textView = findViewById(R.id.splash_text);
-            textView.setText("Download is complete");
+            textView.setText(getString(R.string.loading_status_end));
 
             // Update the progress bar
             ProgressBar progressBar = findViewById(R.id.progressBar);

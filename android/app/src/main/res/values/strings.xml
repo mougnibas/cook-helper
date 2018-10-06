@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Cook Helper</string>
-    <string name="loading_stuff">This line will change once the loading process will start.</string>
-    <string name="loading_result">This line will change once loading is complete...</string>
+    <string name="loading_status_init">This line will change once the loading process will start.</string>
+    <string name="loading_status_begin">Loading in progress...</string>
+    <string name="loading_status_end">Loading completed!.</string>
+    <string name="loading_result_init">This line will change once loading is complete...</string>
 </resources>
