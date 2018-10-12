@@ -34,10 +34,10 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 # Requirements
 
 * Maven 3.5.4
-* JDK 1.8.0_121
+* JDK 1.8.0_171
 * Windows 10 (amd64)
-* Docker 18.06.0 (or higher)
-* DOCKER_HOST environment variable (example : `tcp://localhost:2375` or `tcp://localhost:2376`)
+* Docker 18.06.1-ce (or higher)
+   * it may be necessary to delete $HOME/.docker/config.json
 
 # Setup
 
