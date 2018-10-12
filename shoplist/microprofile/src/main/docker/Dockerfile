@@ -20,7 +20,7 @@
 #
 
 # From a base java image
-FROM openjdk:8-alpine
+FROM openjdk:11-jdk-slim
 
 # http port is exposed here
 EXPOSE 9080
@@ -37,7 +37,6 @@ HEALTHCHECK --start-period=5s --interval=2s --timeout=1s CMD java -jar /opt/libe
 # Run the server
 CMD [ \
 	"java", \
-	"-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", \
 	"-jar", \
 	"cook_helper_shoplist_microprofile.jar" \
 ]

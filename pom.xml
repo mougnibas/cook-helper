@@ -65,7 +65,7 @@
 	<properties>
 
 		<!-- Same java level for both source and target : Java 8 -->
-		<!-- <maven.compiler.release>10</maven.compiler.release> -->
+		<!-- <maven.compiler.release>11</maven.compiler.release> -->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
@@ -311,7 +311,7 @@
 											<version>[3.5.4]</version>
 										</requireMavenVersion>
 										<requireJavaVersion>
-											<version>[1.8.0-171]</version>
+											<version>[11]</version>
 										</requireJavaVersion>
 										<requireOS>
 											<name>windows 10</name>
