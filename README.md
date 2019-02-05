@@ -33,11 +33,11 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 
 # Requirements
 
-* Maven 3.5.4
-* JDK 1.8.0_121
+* Maven 3.6.0
+* JDK 11.0.2
 * Windows 10 (amd64)
-* Docker 18.06.0 (or higher)
-* DOCKER_HOST environment variable (example : `tcp://localhost:2375` or `tcp://localhost:2376`)
+* Docker 18.09.1 (or higher)
+   * Must expose daemon on tcp://localhost:2375 without TLS
 
 # Setup
 
