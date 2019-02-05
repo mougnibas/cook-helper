@@ -20,7 +20,7 @@
 #
 
 # From a base java image
-FROM openjdk:11-jdk-slim
+FROM openjdk:11.0.2-jdk-oraclelinux7
 
 # http port is exposed here
 EXPOSE 9080
