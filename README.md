@@ -38,6 +38,7 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 * Windows 10 (amd64)
 * Docker 18.09.1 (or higher)
    * Must expose daemon on tcp://localhost:2375 without TLS
+* Android SDK
 
 # Setup
 
@@ -46,6 +47,23 @@ Source encoding is UTF-8 (without BOM) with "CR LF" (windows) end of line charac
 1) Set `JAVE_HOME` environment variable to point to the JDK install directory.
 1) Get and unzip a Maven.
 1) Add the `bin` maven directory to the user path.
+
+## Android SDK
+
+1) Download `sdk-tools-windows-xxxxxxx.zip` from `https://developer.android.com/studio/#downloads`
+1) Extract it somewhere
+1) From `cmd.exe` (NOT powershell), install
+   1) SDK Platform version 28
+      1) Android SDK Platform (compile an app for that version)
+         1) `.\sdkmanager.bat --install platforms;android-28`
+      1) System Image (Android Emulator, a system image each supported form factor (handsets, Android TV, and Android Wear))
+         1) `.\sdkmanager.bat --install system-images;android-28;default;x86_64`
+      1) Sources for Android (show lines of code from these files)
+         1) `.\sdkmanager.bat --install sources;android-28`
+   1) Android SDK Build-Tools 28.0.3 (required for building Android apps)
+      1) `.\sdkmanager.bat --install build-tools;28.0.3`
+   1) Android SDK Platform-Tools (tools that interface with the Android platform, such as adb, fastboot, and systrace)
+      1) `.\sdkmanager.bat --install platform-tools`
 
 ## Eclipse
 
